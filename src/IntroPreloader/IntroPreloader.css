@@ -1,0 +1,208 @@
+/* ─── Fuentes ─── */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+
+/* ─── Capas del preloader ─── */
+
+.preloader-top-layer {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.preloader-bottom-layer {
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+}
+
+.preloader-top-layer,
+.preloader-bottom-layer,
+.preloader-tags-layer {
+    position: fixed;
+    width: 100%;
+    height: 100svh;
+}
+
+.preloader-top-layer,
+.preloader-bottom-layer {
+    /* Fondo oscuro casi negro, igual que el timeline-section */
+    background-color: #080604;
+    color: #fff;
+
+    /* Vignette radial sutil para dar profundidad como en el timeline */
+    background-image: radial-gradient(
+        ellipse at center,
+        rgba(255, 101, 32, 0.04) 0%,
+        rgba(0, 0, 0, 0) 60%
+    );
+}
+
+.preloader-bottom-layer {
+    z-index: 1;
+}
+
+/* ─── Títulos del preloader ─── */
+
+.preloader-name-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+}
+
+/* Tipografía igual que .card-company del timeline */
+.preloader-name-title h1 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(4rem, 10vw, 10rem);
+    letter-spacing: 0.08em;
+    color: #fff;
+    line-height: 1;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.preloader-role-title {
+    position: absolute;
+    top: 50%;
+    left: calc(50% + 10rem);
+    transform: translate(-50%, -50%);
+}
+
+/* Tipografía secundaria: mismo tono naranja fuego */
+.preloader-role-title h1 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(4rem, 10vw, 10rem);
+    letter-spacing: 0.2em;
+    color: #ff8c42;
+    line-height: 1;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* ─── Tags flotantes ─── */
+
+.preloader-tag {
+    position: absolute;
+    width: max-content;
+    overflow: hidden;
+
+    /* Igual que .card-content del timeline */
+    background: linear-gradient(
+        135deg,
+        rgba(10, 8, 6, 0.82) 0%,
+        rgba(28, 16, 8, 0.75) 100%
+    );
+    border: 1px solid rgba(255, 101, 32, 0.18);
+    border-radius: 2px;
+    backdrop-filter: blur(12px);
+    padding: 0.45rem 1rem;
+}
+
+.preloader-tag p {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: rgba(255, 180, 100, 0.75);
+    letter-spacing: 0.15em;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.preloader-tag--developer {
+    top: 15%;
+    left: 15%;
+}
+
+.preloader-tag--stack {
+    bottom: 15%;
+    right: 25%;
+}
+
+.preloader-tag--tech {
+    bottom: 30%;
+    left: 15%;
+}
+
+/* ─── Contenido principal ─── */
+
+.main-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #080604;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    will-change: clip-path;
+    clip-path: polygon(0 50%, 0 50%, 0 50%, 0 50%);
+    overflow: hidden;
+    z-index: 2;
+}
+
+/* ─── Caracteres divididos por SplitText ─── */
+
+.preloader-name-title .split-char,
+.preloader-role-title .split-char {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    margin-top: 0.75rem;
+}
+
+.preloader-name-title .split-char span,
+.preloader-role-title .split-char span,
+.preloader-tag .split-word {
+    position: relative;
+    display: inline-block;
+    transform: translateY(-150%);
+    will-change: transform;
+}
+
+.preloader-top-layer,
+.preloader-tags-layer {
+    z-index: 2;
+}
+
+.preloader-name-title .title-anchor-char {
+    transform-origin: top left;
+    text-shadow:
+        0 0 12px rgba(255, 158, 97, 0.774),
+        0 2px 4px rgba(184, 67, 67, 0.9);
+}
+
+/* ─── Línea divisoria central — guiño al SVG path del timeline ─── */
+.preloader-top-layer::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent 0%,
+        #ff6520 30%,
+        #e03800 50%,
+        #f5a020 70%,
+        transparent 100%
+    );
+    box-shadow: 0 0 8px rgba(255, 101, 32, 0.6), 0 0 16px rgba(224, 56, 0, 0.3);
+    opacity: 0.6;
+}
+
+/* ─── Responsive ─── */
+
+@media (max-width: 1000px) {
+    .preloader-role-title {
+        left: calc(50% + 4rem);
+    }
+
+    .preloader-name-title .split-char,
+    .preloader-role-title .split-char {
+        margin-top: 0.5rem;
+    }
+
+    .preloader-name-title h1,
+    .preloader-role-title h1 {
+        font-size: clamp(3rem, 12vw, 6rem);
+    }
+}

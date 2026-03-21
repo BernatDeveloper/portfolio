@@ -1,9 +1,9 @@
-import './App.css'
+import { IntroPreloader } from "./IntroPreloader/IntroPreloader"
 
 export function App() {
   return (
     <>
-      <div>PORTFOLIO</div>
+      <IntroPreloader />
     </>
   )
 }
