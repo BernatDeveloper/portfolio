@@ -4,7 +4,7 @@ import { CustomEase } from "gsap/CustomEase";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-// import { InsideHeroSection } from "../InsideHeroSection/InsideHeroSection";
+import { HeroSection } from "../HeroSection/HeroSection";
 
 gsap.registerPlugin(CustomEase, SplitText, ScrollTrigger);
 
@@ -322,7 +322,7 @@ export const IntroPreloader = () => {
 
             {/* Contenedor principal que se revela después del preloader */}
             <div className="main-content">
-                {/* <InsideHeroSection /> */}
+                <HeroSection />
             </div>
         </>
     );

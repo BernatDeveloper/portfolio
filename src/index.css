@@ -1,43 +1,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Rajdhani:wght@300;400;600&display=swap');
+
 :root {
   /* ── Colors ── */
-  --color-bg:              #080604;
-  --color-text:            #fff5e1;
-  --color-accent:          #ff6520;
-  --color-accent-alt:      #e03800;
-  --color-accent-warm:     #f5a020;
-  --color-accent-light:    #ff8c42;
-  --color-surface:         rgba(10, 8, 6, 0.82);
-  --color-border:          rgba(255, 101, 32, 0.18);
-  --color-text-muted:      rgba(255, 180, 100, 0.75);
-  --color-vignette:        rgba(255, 101, 32, 0.04);
-  --color-glow:            rgba(255, 101, 32, 0.6);
-  --color-glow-soft:       rgba(224, 56, 0, 0.3);
+  --color-bg: #080604;
+  --color-bg-secondary: #201A17;
+  --color-bg-deep: #080808;
+  --color-text: #fff5e1;
+  --color-lava: #c0160a;
+  --color-accent-alt: #e03800;
+  --color-accent: #ff6520;
+  --color-accent-light: #ff8c42;
+  --color-accent-warm: #f5a020;
+  --color-gold: #ffa500;
+  --color-surface: rgba(10, 8, 6, 0.82);
+  --color-border: rgba(255, 101, 32, 0.18);
+  --color-text-muted: rgba(255, 180, 100, 0.75);
+  --color-vignette: rgba(255, 101, 32, 0.04);
+  --color-glow: rgba(255, 101, 32, 0.6);
+  --color-glow-soft: rgba(224, 56, 0, 0.3);
+  --color-text-warm: rgba(220, 200, 190, 0.7);
 
   /* ── Typography ── */
-  --font-display:          "Bebas Neue", sans-serif;
-  --font-serif:            "Cormorant Garamond", serif;
-  --font-size-xl:          clamp(4rem, 10vw, 10rem);
-  --font-size-xl-sm:       clamp(3rem, 12vw, 6rem);
-  --font-size-sm:          0.82rem;
-  --tracking-wide:         0.08em;
-  --tracking-wider:        0.15em;
-  --tracking-widest:       0.2em;
+  --font-display: "Bebas Neue", sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-display-alt: "Cinzel Decorative", serif;
+  --font-body: "Rajdhani", sans-serif;
+  --font-size-xl: clamp(4rem, 10vw, 10rem);
+  --font-size-xl-sm: clamp(3rem, 12vw, 6rem);
+  --font-size-sm: 0.82rem;
+  --tracking-wide: 0.08em;
+  --tracking-wider: 0.15em;
+  --tracking-widest: 0.2em;
 
   /* ── Spacing ── */
-  --padding-tag:           0.45rem 1rem;
-  --offset-secondary:      calc(50% + 10rem);
-  --offset-secondary-sm:   calc(50% + 4rem);
+  --padding-tag: 0.45rem 1rem;
+  --offset-secondary: calc(50% + 10rem);
+  --offset-secondary-sm: calc(50% + 4rem);
 
   /* ── Effects ── */
-  --blur-sm:               12px;
-  --radius-sm:             2px;
-  --opacity-divider:       0.6;
+  --blur-sm: 12px;
+  --radius-sm: 2px;
+  --opacity-divider: 0.6;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
