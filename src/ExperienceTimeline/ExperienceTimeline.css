@@ -1,0 +1,164 @@
+/* ── Section ── */
+.timeline-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #080604;
+}
+
+/* ── Canvas ── */
+.timeline-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* ── Overlays ── */
+.timeline-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(8, 6, 4, 0.55) 0%,
+        rgba(8, 6, 4, 0.35) 50%,
+        rgba(8, 6, 4, 0.65) 100%
+    );
+    z-index: 1;
+}
+
+.timeline-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, var(--color-bg-deep) 80%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ── Layer wrapper ── */
+.timeline-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timeline-inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    will-change: transform;
+}
+
+/* ── Track ── */
+.timeline-track {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    padding: 12rem 1.5rem;
+}
+
+/* ── SVG ── */
+.timeline-svg {
+    position: absolute;
+    top: 0;
+    left: 1.5rem;
+    right: 1.5rem;
+    width: calc(100% - 3rem);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ── Card wrapper ── */
+.timeline-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 2.5rem 0;
+    opacity: 0;
+    position: relative;
+    z-index: 2;
+    flex-direction: row;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.timeline-card--left  { transform: translateX(-32px); }
+.timeline-card--right { transform: translateX(32px); }
+
+.timeline-card--visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.timeline-card__spacer { flex: 1; }
+
+/* ── Dot ── */
+.timeline-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ff8c42 0%, #e03800 100%);
+    border: 3px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 14px #ff6520, 0 0 28px rgba(255, 101, 32, 0.4);
+    flex-shrink: 0;
+    z-index: 3;
+    position: relative;
+}
+
+/* ── Card content ── */
+.card-content {
+    flex: 1;
+    max-width: calc(50% - 40px);
+    padding: 1.2rem 1.6rem;
+    background: linear-gradient(
+        135deg,
+        rgba(10, 8, 6, 0.82) 0%,
+        rgba(28, 16, 8, 0.75) 100%
+    );
+    border: 1px solid rgba(255, 101, 32, 0.18);
+    border-radius: 2px;
+    backdrop-filter: blur(12px);
+}
+
+.card-content--left  { text-align: left; }
+.card-content--right { text-align: right; }
+
+.card-year {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(color-accent-light);
+    margin-bottom: 0.25rem;
+}
+
+.card-company {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.35rem;
+    letter-spacing: 0.08em;
+    color: var(--color-text);
+    line-height: 1.1;
+}
+
+.card-role {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--color-text-muted);
+    margin: 0.25rem 0 0.6rem;
+    letter-spacing: 0.04em;
+}
+
+.card-desc {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 0.88rem;
+    color: var(--color-text-warm);
+    line-height: 1.6;
+    margin: 0;
+}

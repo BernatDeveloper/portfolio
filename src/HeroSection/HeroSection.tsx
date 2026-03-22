@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHeroData } from './hooks/useHeroData';
 import { useEmberInteraction } from './hooks/useEmberInteraction';
-import { useEmberHover } from '../hooks/UseEmberCursorHover';
+import { useEmberHover } from '../hooks/useEmberCursorHover';
 import './HeroSection.css';
 
 export const HeroSection: React.FC = () => {

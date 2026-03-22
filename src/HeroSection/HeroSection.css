@@ -87,8 +87,8 @@
   height: 28%;
   background: linear-gradient(to bottom,
       transparent 0%,
-      #0A0A0AB3 40%,
-      #000000 100%);
+      var(--color-bg-secondary) 40%,
+      var(--color-bg-deep) 100%);
   z-index: 4;
   pointer-events: none;
 }
