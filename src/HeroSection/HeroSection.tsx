@@ -1,12 +1,12 @@
 import React from 'react';
 import { useHeroData } from './hooks/useHeroData';
-import { useEmberHover } from '../hooks/useEmberCursorHover';
+import { useEmberCursorHover } from '../hooks/useEmberCursorHover';
 import './HeroSection.css';
 
 export const HeroSection: React.FC = () => {
   const { embers } = useHeroData();
-  const btn1 = useEmberHover<HTMLButtonElement>();
-  const btn2 = useEmberHover<HTMLButtonElement>();
+  const btn1 = useEmberCursorHover<HTMLButtonElement>();
+  const btn2 = useEmberCursorHover<HTMLButtonElement>();
 
   return (
     <section className="hero">
