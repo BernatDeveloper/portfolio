@@ -85,7 +85,7 @@ export const IntroPreloader = () => {
         // Posicionamiento de los caracteres del outro title (tiene que estar igual que el estado final para que la animación de desplazamiento funcione correctamente)
         gsap.set(".preloader-bottom-layer .preloader-role-title .split-char", {
             x: isMobile ? "-3rem" : "-8rem",
-            fontSize: isMobile ? "6rem" : "16rem",
+            fontSize: isMobile ? "4.5rem" : "16rem",
         });
     };
 
@@ -176,7 +176,7 @@ export const IntroPreloader = () => {
             ".preloader-top-layer .preloader-role-title .split-char",
             {
                 x: isMobile ? "-3rem" : "-8rem",
-                fontSize: isMobile ? "6rem" : "16rem",
+                fontSize: isMobile ? "4.5rem" : "16rem",
                 duration: 0.75
             },
             3.8

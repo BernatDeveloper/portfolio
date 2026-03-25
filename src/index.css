@@ -27,12 +27,27 @@
   --font-serif: "Cormorant Garamond", serif;
   --font-display-alt: "Cinzel Decorative", serif;
   --font-body: "Rajdhani", sans-serif;
+
+  /* Tipography size fluida */
+  --text-xs: clamp(0.6rem, 0.5rem + 0.3vw, 0.75rem);
+  --text-sm: clamp(0.7rem, 0.6rem + 0.4vw, 0.9rem);
+  --text-base: clamp(0.9rem, 0.7rem + 0.5vw, 1.1rem);
+  --text-lg: clamp(1.5rem, 5vw, 5rem);
+  --text-xl: clamp(2.6rem, 10vw, 10rem);
   --font-size-xl: clamp(4rem, 10vw, 10rem);
   --font-size-xl-sm: clamp(3rem, 12vw, 6rem);
-  --font-size-sm: 0.82rem;
-  --tracking-wide: 0.08em;
-  --tracking-wider: 0.15em;
-  --tracking-widest: 0.2em;
+
+  /* Space */
+  --space-xs: clamp(0.2rem, 0.2rem + 0.5vw, 0.6rem);
+  --space-sm: clamp(0.6rem, 0.3rem + 0.8vw, 1rem);
+  --space-md: clamp(1rem, 0.5rem + 1.2vw, 1.8rem);
+  --space-lg: clamp(1.6rem, 0.6rem + 2vw, 2.4rem);
+  --space-xl: clamp(2.2rem, 1rem + 3vw, 3.2rem);
+
+  /* Letter-spacing */
+  --tracking-tight: clamp(0.05em, 0.04em + 0.1vw, 0.1em);
+  --tracking-normal: clamp(0.15em, 0.1em + 0.3vw, 0.35em);
+  --tracking-wide: clamp(0.3em, 0.2em + 0.5vw, 0.5em);
 
   /* ── Spacing ── */
   --padding-tag: 0.45rem 1rem;

@@ -1,17 +1,15 @@
 import React from 'react';
 import { useHeroData } from './hooks/useHeroData';
-import { useEmberInteraction } from './hooks/useEmberInteraction';
-import { useEmberHover } from '../hooks/useEmberCursorHover';
+import { useEmberCursorHover } from '../hooks/useEmberCursorHover';
 import './HeroSection.css';
 
 export const HeroSection: React.FC = () => {
-  const { embers, ripples } = useHeroData();
-  const { embersContainerRef, areaRef } = useEmberInteraction(embers);
-  const btn1 = useEmberHover<HTMLButtonElement>();
-  const btn2 = useEmberHover<HTMLButtonElement>();
+  const { embers } = useHeroData();
+  const btn1 = useEmberCursorHover<HTMLButtonElement>();
+  const btn2 = useEmberCursorHover<HTMLButtonElement>();
 
   return (
-    <section className="hero" ref={areaRef as React.RefObject<HTMLElement>}>
+    <section className="hero">
       {/* Corners */}
       <div className="corner corner-tl" />
       <div className="corner corner-tr" />
@@ -19,7 +17,7 @@ export const HeroSection: React.FC = () => {
       <div className="corner corner-br" />
 
       {/* Ember particles */}
-      <div className="embers" ref={embersContainerRef}>
+      <div className="embers">
         {embers.map((e) => (
           <div
             key={e.id}
@@ -38,17 +36,7 @@ export const HeroSection: React.FC = () => {
       </div>
 
       {/* Water reflection */}
-      <div className="water-reflection">
-        <div className="water-ripples">
-          {ripples.map((r) => (
-            <div
-              key={r.id}
-              className="ripple"
-              style={{ '--rd': r.rd, '--rdelay': r.rdelay } as React.CSSProperties}
-            />
-          ))}
-        </div>
-      </div>
+      <div className="water-reflection" />
 
       {/* Main content */}
       <div className="hero-content">
@@ -60,11 +48,6 @@ export const HeroSection: React.FC = () => {
         </h1>
 
         <div className="hero-divider" />
-
-        <p className="hero-subtitle">
-          Born from darkness, forged in flame. A power that walks between
-          worlds — where shadow and fire become one unstoppable force.
-        </p>
 
         <div className="hero-cta">
           <button className="btn-primary" ref={btn1}>
@@ -87,12 +70,6 @@ export const HeroSection: React.FC = () => {
             <div className="stat-label">Fear</div>
           </div>
         </div>
-      </div>
-
-      {/* Scroll hint */}
-      <div className="scroll-hint">
-        <span>Scroll</span>
-        <div className="scroll-arrow" />
       </div>
     </section>
   );

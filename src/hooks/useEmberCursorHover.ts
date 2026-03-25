@@ -9,7 +9,7 @@ import { useRef } from 'react';
  *   const ref = useEmberHover();
  *   return <div ref={ref}>...</div>
  */
-export function useEmberHover<T extends HTMLElement = HTMLDivElement>() {
+export function useEmberCursorHover<T extends HTMLElement = HTMLDivElement>() {
   const ref = useRef<T>(null);
 
   const setRef = (el: T | null) => {
