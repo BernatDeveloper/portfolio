@@ -27,9 +27,3 @@ export interface Options {
   smoothing?: number;
   sizeInfluence?: number;
 }
-
-export interface Ripple {
-  id: number;
-  rd: string;
-  rdelay: string;
-}

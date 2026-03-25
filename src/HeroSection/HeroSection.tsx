@@ -4,7 +4,7 @@ import { useEmberHover } from '../hooks/useEmberCursorHover';
 import './HeroSection.css';
 
 export const HeroSection: React.FC = () => {
-  const { embers, ripples } = useHeroData();
+  const { embers } = useHeroData();
   const btn1 = useEmberHover<HTMLButtonElement>();
   const btn2 = useEmberHover<HTMLButtonElement>();
 
