@@ -45,7 +45,7 @@
 
 .preloader-name-title h1 {
     font-family: var(--font-display);
-    font-size: var(--font-size-xl);
+    font-size: var(--text-lg);
     letter-spacing: var(--tracking-wide);
     color: var(--color-text);
     line-height: 1;
@@ -62,7 +62,7 @@
 
 .preloader-role-title h1 {
     font-family: var(--font-display);
-    font-size: var(--font-size-xl);
+    font-size: var(--text-lg);
     letter-spacing: var(--tracking-widest);
     color: var(--color-accent-light);
     line-height: 1;
@@ -90,7 +90,7 @@
 
 .preloader-tag p {
     font-family: var(--font-serif);
-    font-size: var(--font-size-sm);
+    font-size: var(--text-sm);
     font-style: italic;
     color: var(--color-text-muted);
     letter-spacing: var(--tracking-wider);
