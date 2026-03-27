@@ -17,7 +17,6 @@
   --color-surface: rgba(10, 8, 6, 0.82);
   --color-border: rgba(255, 101, 32, 0.18);
   --color-text-muted: rgba(255, 180, 100, 0.75);
-  --color-vignette: rgba(255, 101, 32, 0.04);
   --color-glow: rgba(255, 101, 32, 0.6);
   --color-glow-soft: rgba(224, 56, 0, 0.3);
   --color-text-warm: rgba(220, 200, 190, 0.7);
@@ -32,7 +31,8 @@
   --text-xs: clamp(0.6rem, 0.5rem + 0.3vw, 0.75rem);
   --text-sm: clamp(0.7rem, 0.6rem + 0.4vw, 0.9rem);
   --text-base: clamp(0.9rem, 0.7rem + 0.5vw, 1.1rem);
-  --text-lg: clamp(1.5rem, 5vw, 5rem);
+  --text-md: clamp(1.3rem, 3vw, 2rem);
+  --text-lg: clamp(1.8rem, 5vw, 3rem);
   --text-xl: clamp(2.6rem, 10vw, 10rem);
   --font-size-xl: clamp(4rem, 10vw, 10rem);
   --font-size-xl-sm: clamp(3rem, 12vw, 6rem);
@@ -43,6 +43,7 @@
   --space-md: clamp(1rem, 0.5rem + 1.2vw, 1.8rem);
   --space-lg: clamp(1.6rem, 0.6rem + 2vw, 2.4rem);
   --space-xl: clamp(2.2rem, 1rem + 3vw, 3.2rem);
+  --space-xxl: clamp(4rem, 4vw, 8rem);
 
   /* Letter-spacing */
   --tracking-tight: clamp(0.05em, 0.04em + 0.1vw, 0.1em);
@@ -64,4 +65,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-bg-secondary);
 }

@@ -82,7 +82,7 @@
   height: 30%;
   background: linear-gradient(to bottom,
       transparent 0%,
-      var(--color-bg-secondary) 50%,
+      var(--color-bg-secondary) 40%,
       var(--color-bg-deep) 100%);
   z-index: 4;
   pointer-events: none;
@@ -129,7 +129,6 @@
 }
 
 .hero-title .line-2 {
-  display: block;
   background: linear-gradient(135deg, var(--color-lava) 0%, var(--color-accent) 40%, var(--color-gold) 70%, var(--color-lava) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -169,6 +168,7 @@
 .hero-cta {
   display: flex;
   gap: var(--space-lg);
+  padding: 0 var(--space-lg);
   margin-top: var(--space-md);
   flex-wrap: wrap;
   justify-content: center;

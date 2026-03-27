@@ -8,23 +8,42 @@ import { HeroSection } from "../HeroSection/HeroSection";
 
 gsap.registerPlugin(CustomEase, SplitText, ScrollTrigger);
 
-let scrollBarWidth: number;
+let scrollBarWidth = 0;
+let previousScrollY = 0;
 
 const disableScroll = () => {
-    // Calculamos el ancho de la barra de scroll
+    // Guardamos la posición actual del scroll
+    previousScrollY = window.scrollY;
+
+    // Calculamos el ancho de la scrollbar para evitar salto de layout
     scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
 
+    // Bloqueo de scroll
+    document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
 
-    // Evitamos el salto agregando padding
+    // Compensamos el espacio de la scrollbar para que no salte el contenido
     if (scrollBarWidth > 0) {
         document.body.style.paddingRight = `${scrollBarWidth}px`;
     }
+
+    // En móviles/iOS ayuda mucho fijar la posición
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${previousScrollY}px`;
+    document.body.style.width = "100%";
 };
 
 const enableScroll = () => {
+    // Restauramos todo
+    document.documentElement.style.overflow = "";
     document.body.style.overflow = "";
     document.body.style.paddingRight = "";
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.width = "";
+
+    // Volvemos a la posición exacta donde estaba el usuario
+    window.scrollTo(0, previousScrollY);
 };
 
 /**
