@@ -4,7 +4,7 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    background: #080604;
+    background: var(--color-bg);
 }
 
 /* ── Canvas ── */
@@ -32,7 +32,11 @@
 .timeline-vignette {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, var(--color-bg-deep) 80%);
+    background: radial-gradient(
+        circle,
+        transparent 0%,
+        var(--color-bg-deep) 70%
+    );
     z-index: 1;
     pointer-events: none;
 }
@@ -61,16 +65,16 @@
     position: relative;
     width: 100%;
     max-width: 900px;
-    padding: 12rem 1.5rem;
+    padding: var(--space-xxl) var(--space-sm);
 }
 
 /* ── SVG ── */
 .timeline-svg {
     position: absolute;
     top: 0;
-    left: 1.5rem;
-    right: 1.5rem;
-    width: calc(100% - 3rem);
+    left: var(--space-md);
+    right: var(--space-md);
+    width: calc(100% - (var(--space-md) * 2));
     pointer-events: none;
     z-index: 1;
 }
@@ -81,7 +85,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 2.5rem 0;
+    padding: var(--space-xl) 0;
     opacity: 0;
     position: relative;
     z-index: 2;
@@ -89,8 +93,8 @@
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.timeline-card--left  { transform: translateX(-32px); }
-.timeline-card--right { transform: translateX(32px); }
+.timeline-card--left  { transform: translateX(-2rem); }
+.timeline-card--right { transform: translateX(2rem); }
 
 .timeline-card--visible {
     opacity: 1;
@@ -104,9 +108,15 @@
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background: radial-gradient(circle, #ff8c42 0%, #e03800 100%);
-    border: 3px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 0 14px #ff6520, 0 0 28px rgba(255, 101, 32, 0.4);
+    background: radial-gradient(
+        circle,
+        var(--color-accent-light) 0%,
+        var(--color-accent-alt) 100%
+    );
+    border: 3px solid var(--color-border);
+    box-shadow:
+        0 0 14px var(--color-accent),
+        0 0 28px var(--color-glow-soft);
     flex-shrink: 0;
     z-index: 3;
     position: relative;
@@ -115,50 +125,62 @@
 /* ── Card content ── */
 .card-content {
     flex: 1;
-    max-width: calc(50% - 40px);
-    padding: 1.2rem 1.6rem;
+    padding: var(--space-md);
     background: linear-gradient(
         135deg,
-        rgba(10, 8, 6, 0.82) 0%,
-        rgba(28, 16, 8, 0.75) 100%
+        var(--color-surface) 0%,
+        var(--color-bg-secondary) 100%
     );
-    border: 1px solid rgba(255, 101, 32, 0.18);
-    border-radius: 2px;
-    backdrop-filter: blur(12px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    backdrop-filter: blur(var(--blur-sm));
+    -webkit-backdrop-filter: blur(var(--blur-sm));
 }
 
 .card-content--left  { text-align: left; }
 .card-content--right { text-align: right; }
 
 .card-year {
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    color: var(color-accent-light);
-    margin-bottom: 0.25rem;
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-normal);
+    color: var(--color-accent-light);
+    margin-bottom: var(--space-xs);
 }
 
 .card-company {
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 1.35rem;
-    letter-spacing: 0.08em;
+    font-family: var(--font-display);
+    font-size: var(--text-md);
+    letter-spacing: var(--tracking-tight);
     color: var(--color-text);
-    line-height: 1.1;
 }
 
 .card-role {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 0.82rem;
+    font-family: var(--font-serif);
+    font-size: var(--text-sm);
     font-style: italic;
     color: var(--color-text-muted);
-    margin: 0.25rem 0 0.6rem;
-    letter-spacing: 0.04em;
+    margin: var(--space-xs) 0 var(--space-sm);
 }
 
 .card-desc {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 0.88rem;
+    font-family: var(--font-serif);
+    font-size: var(--text-base);
     color: var(--color-text-warm);
-    line-height: 1.6;
-    margin: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+    .timeline-card__spacer { 
+        flex: .4; 
+    }
+}
+
+/* ── Accesibilidad ── */
+@media (prefers-reduced-motion: reduce) {
+    .timeline-card {
+        transition: none;
+        opacity: 1;
+        transform: none;
+    }
 }
