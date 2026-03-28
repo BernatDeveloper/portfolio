@@ -10,19 +10,19 @@ import "./ExperienceTimeline.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FRAME_BUFFER = 25;
 const FRAME_COUNT = 241;
+const BATCH_SIZE = 20;
 
 const currentFrameSrc = (index: number) =>
     `/frames/frame_${(index + 1).toString().padStart(3, "0")}.avif`;
 
 export default function ExperienceTimeline() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const loadingRef = useRef(false);
     const imagesRef = useRef<(HTMLImageElement | null)[]>(
         new Array(FRAME_COUNT).fill(null)
     );
     const videoFramesRef = useRef({ frame: 0 });
+    const [loadProgress, setLoadProgress] = useState(0);
     const [imagesLoaded, setImagesLoaded] = useState(false);
 
     const sectionRef = useRef<HTMLElement>(null);
@@ -35,33 +35,6 @@ export default function ExperienceTimeline() {
         new Array(experiences.length).fill(false)
     );
     const [svgHeight, setSvgHeight] = useState(1200);
-
-    const loadFramesAround = useCallback((centerFrame: number) => {
-        const start = Math.max(0, centerFrame - FRAME_BUFFER);
-        const end = Math.min(FRAME_COUNT - 1, centerFrame + FRAME_BUFFER);
-
-        for (let i = start; i <= end; i++) {
-            if (imagesRef.current[i]) continue;
-            const img = new Image();
-            img.src = currentFrameSrc(i);
-            imagesRef.current[i] = img;
-        }
-    }, []);
-
-    useEffect(() => {
-        if (loadingRef.current) return;
-        loadingRef.current = true;
-
-        const firstImg = new Image();
-        firstImg.onload = () => {
-            imagesRef.current[0] = firstImg;
-            renderFrame(0);
-            loadFramesAround(0);
-            setImagesLoaded(true);
-        };
-        firstImg.onerror = () => setImagesLoaded(true);
-        firstImg.src = currentFrameSrc(0);
-    }, [loadFramesAround]);
 
     const renderFrame = useCallback((forcedFrame?: number) => {
         const canvas = canvasRef.current;
@@ -96,6 +69,62 @@ export default function ExperienceTimeline() {
         }
         ctx.drawImage(img, x, y, drawW, drawH);
     }, []);
+
+    // Full preload: batch strategy to avoid flooding the network
+    useEffect(() => {
+        let loaded = 0;
+        let cancelled = false;
+
+        const loadBatch = (startIdx: number): Promise<void> => {
+            const end = Math.min(startIdx + BATCH_SIZE, FRAME_COUNT);
+            const promises: Promise<void>[] = [];
+
+            for (let i = startIdx; i < end; i++) {
+                const idx = i;
+                promises.push(
+                    new Promise((resolve) => {
+                        const img = new Image();
+                        img.onload = img.onerror = () => {
+                            if (cancelled) return resolve();
+                            imagesRef.current[idx] = img;
+                            loaded++;
+                            setLoadProgress(Math.round((loaded / FRAME_COUNT) * 100));
+                            resolve();
+                        };
+                        img.src = currentFrameSrc(idx);
+                    })
+                );
+            }
+
+            return Promise.all(promises).then(() => {
+                if (!cancelled && end < FRAME_COUNT) {
+                    return loadBatch(end);
+                }
+            });
+        };
+
+        // Load frame 0 first for immediate render
+        const firstImg = new Image();
+        firstImg.onload = () => {
+            imagesRef.current[0] = firstImg;
+            renderFrame(0);
+            loaded = 1;
+            setLoadProgress(1);
+            loadBatch(1).then(() => {
+                if (!cancelled) setImagesLoaded(true);
+            });
+        };
+        firstImg.onerror = () => {
+            loadBatch(0).then(() => {
+                if (!cancelled) setImagesLoaded(true);
+            });
+        };
+        firstImg.src = currentFrameSrc(0);
+
+        return () => {
+            cancelled = true;
+        };
+    }, [renderFrame]);
 
     const rebuildPath = useCallback(() => {
         const svg = svgRef.current;
@@ -137,110 +166,129 @@ export default function ExperienceTimeline() {
     }, [rebuildPath]);
 
     useGSAP(() => {
-    const canvas = canvasRef.current;
-    const section = sectionRef.current;
-    if (!canvas || !section) return;
+        const canvas = canvasRef.current;
+        const section = sectionRef.current;
+        if (!canvas || !section) return;
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
 
-    const setCanvasSize = () => {
-        const dpr = window.devicePixelRatio || 1;
-        const rect = canvas.getBoundingClientRect();
-        canvas.width = rect.width * dpr;
-        canvas.height = rect.height * dpr;
-        canvas.style.width = `${rect.width}px`;
-        canvas.style.height = `${rect.height}px`;
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        renderFrame();
-        ScrollTrigger.refresh();
-    };
+        const setCanvasSize = () => {
+            const dpr = window.devicePixelRatio || 1;
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            canvas.style.width = `${rect.width}px`;
+            canvas.style.height = `${rect.height}px`;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            renderFrame();
+            ScrollTrigger.refresh();
+        };
 
-    const handleResize = () => {
+        const handleResize = () => {
+            setCanvasSize();
+            rebuildPath();
+        };
+
         setCanvasSize();
         rebuildPath();
-    };
+        window.addEventListener("resize", handleResize);
 
-    setCanvasSize();
-    rebuildPath();
-    window.addEventListener("resize", handleResize);
+        if (!imagesLoaded) return;
 
-    if (!imagesLoaded) return;
+        const totalFrames = imagesRef.current.length - 1;
+        const n = experiences.length;
+        const scrollDistance = window.innerHeight * 2;
 
-    const totalFrames = imagesRef.current.length - 1;
-    const n = experiences.length;
-    const scrollDistance = window.innerHeight * 3;
+        // La primera card tiene threshold 0 (0/n = 0), pero onUpdate
+        // no se dispara al crear el trigger → forzamos el estado inicial
+        setVisibleNodes((prev) => {
+            const initial = [...prev];
+            initial[0] = true;
+            return initial;
+        });
 
-    /* 🔒 PIN TRIGGER */
-    const pinTrigger = ScrollTrigger.create({
-        trigger: section,
-        start: "top top",
-        end: `+=${scrollDistance}`,
-        pin: true,
-        pinSpacing: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-    });
+        /* 🔒 PIN TRIGGER */
+        const pinTrigger = ScrollTrigger.create({
+            trigger: section,
+            start: "top top",
+            end: `+=${scrollDistance}`,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+        });
 
-    /* 🎬 ANIMATION TRIGGER */
-    const animationTrigger = ScrollTrigger.create({
-        trigger: section,
-        start: "top 30%",
-        end: `+=${scrollDistance}`,
-        scrub: 1,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => {
-            const progress = self.progress;
+        /* 🎬 ANIMATION TRIGGER */
+        const animationTrigger = ScrollTrigger.create({
+            trigger: section,
+            start: "top top",
+            end: `+=${scrollDistance}`,
+            scrub: 1,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+                const progress = self.progress;
 
-            /* 🎞 Frames */
-            const targetFrame = Math.min(
-                Math.floor(progress * totalFrames),
-                totalFrames
-            );
+                /* 🎞 Frames */
+                const targetFrame = Math.min(
+                    Math.floor(progress * totalFrames),
+                    totalFrames
+                );
 
-            if (targetFrame !== videoFramesRef.current.frame) {
-                videoFramesRef.current.frame = targetFrame;
-                loadFramesAround(targetFrame);
-                renderFrame();
-            }
+                if (targetFrame !== videoFramesRef.current.frame) {
+                    videoFramesRef.current.frame = targetFrame;
+                    renderFrame();
+                }
 
-            /* 📜 Timeline scroll interno */
-            if (timelineRef.current) {
-                const contentH = timelineRef.current.scrollHeight;
-                const viewH = window.innerHeight;
-                const maxTranslate = Math.max(0, contentH - viewH);
-                gsap.set(timelineRef.current, { y: -maxTranslate * progress });
-            }
+                /* 📜 Timeline scroll interno */
+                if (timelineRef.current) {
+                    const contentH = timelineRef.current.scrollHeight;
+                    const viewH = window.innerHeight;
+                    const maxTranslate = Math.max(0, contentH - viewH);
+                    gsap.set(timelineRef.current, { y: -maxTranslate * progress });
+                }
 
-            /* 🔥 Path draw */
-            const len = pathLenRef.current;
-            if (pathRef.current && len > 0) {
-                pathRef.current.style.strokeDashoffset =
-                    `${len * (1 - progress)}`;
-            }
+                /* 🔥 Path draw */
+                const len = pathLenRef.current;
+                if (pathRef.current && len > 0) {
+                    pathRef.current.style.strokeDashoffset =
+                        `${len * (1 - progress)}`;
+                }
 
-            /* 🧩 Cards visibility */
-            setVisibleNodes((prev) => {
-                const newVis = experiences.map((_, i) => {
-                    const threshold = i / n;
-                    return progress >= threshold;
+                /* 🧩 Cards visibility */
+                setVisibleNodes((prev) => {
+                    const newVis = experiences.map((_, i) => {
+                        const threshold = i / n;
+                        return progress >= threshold;
+                    });
+                    const changed = prev.some((v, i) => v !== newVis[i]);
+                    return changed ? newVis : prev;
                 });
-                const changed = prev.some((v, i) => v !== newVis[i]);
-                return changed ? newVis : prev;
-            });
-        },
-    });
+            },
+        });
 
-    return () => {
-        window.removeEventListener("resize", handleResize);
-        pinTrigger.kill();
-        animationTrigger.kill();
-    };
-
-}, [imagesLoaded, renderFrame, rebuildPath, loadFramesAround]);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+            pinTrigger.kill();
+            animationTrigger.kill();
+        };
+    }, [imagesLoaded, renderFrame, rebuildPath]);
 
     return (
         <section ref={sectionRef} className="timeline-section">
+
+            {/* Loading screen */}
+            {!imagesLoaded && (
+                <div className="timeline-loader">
+                    <div className="timeline-loader__bar">
+                        <div
+                            className="timeline-loader__fill"
+                            style={{ width: `${loadProgress}%` }}
+                        />
+                    </div>
+                    <span className="timeline-loader__text">{loadProgress}%</span>
+                </div>
+            )}
+
             <canvas ref={canvasRef} className="timeline-canvas" />
 
             <div className="timeline-overlay" />
