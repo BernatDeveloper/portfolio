@@ -44,6 +44,7 @@ const enableScroll = () => {
 
     // Volvemos a la posición exacta donde estaba el usuario
     window.scrollTo(0, previousScrollY);
+    window.dispatchEvent(new Event("resize"));
 };
 
 /**
