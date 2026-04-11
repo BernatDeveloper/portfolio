@@ -1,0 +1,211 @@
+/* ══════════════════════════════════════════════
+   Loader — mismo lenguaje visual que .hero
+   ══════════════════════════════════════════════ */
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--color-bg-secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ── Ambient radial glow — copia de .hero::before ── */
+.loader::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 60%, rgba(192, 22, 10, 0.22) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 50% 75%, rgba(255, 69, 0, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 50% at 50% 100%, rgba(26, 0, 0, 0.9) 0%, transparent 80%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Scanline grain — copia de .hero::after ── */
+.loader::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-size: 180px;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── Corners ── */
+.loader-corner {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  z-index: 10;
+  opacity: 0.5;
+}
+.loader-corner--tl { top: 24px;    left: 24px;  border-top: 1px solid var(--color-accent); border-left: 1px solid var(--color-accent); }
+.loader-corner--tr { top: 24px;    right: 24px; border-top: 1px solid var(--color-accent); border-right: 1px solid var(--color-accent); }
+.loader-corner--bl { bottom: 24px; left: 24px;  border-bottom: 1px solid var(--color-accent); border-left: 1px solid var(--color-accent); }
+.loader-corner--br { bottom: 24px; right: 24px; border-bottom: 1px solid var(--color-accent); border-right: 1px solid var(--color-accent); }
+
+/* ── Embers — copia de .hero ── */
+.loader-embers {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.loader-ember {
+  position: absolute;
+  bottom: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-gold) 0%, var(--color-accent) 40%, transparent 70%);
+  animation: floatEmber var(--dur, 6s) ease-in var(--delay, 0s) infinite;
+  opacity: 0;
+}
+/* floatEmber está en el CSS global del hero */
+
+/* ── Water reflection ── */
+.loader-reflection {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 30%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--color-bg-secondary) 40%,
+    var(--color-bg-deep) 100%
+  );
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* ── Contenido central ── */
+.loader-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+/* ── Eyebrow ── */
+.loader-eyebrow {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 300;
+  letter-spacing: var(--tracking-wide);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* ══════════════════════════════════════════════
+   SIGIL
+   ══════════════════════════════════════════════ */
+.loader-sigil {
+  width: clamp(160px, 24vw, 240px);
+  height: clamp(160px, 24vw, 240px);
+  filter: drop-shadow(0 0 20px rgba(255,101,32,0.95)) drop-shadow(0 0 5px rgba(255,165,0,0.7));
+}
+
+/* ── Divider — copia de .hero-divider ── */
+.loader-divider {
+  width: 140px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-accent), transparent);
+  position: relative;
+  transform-origin: center center;
+}
+.loader-divider::before,
+.loader-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 6px;
+  height: 6px;
+  background: var(--color-accent);
+  box-shadow: 0 0 8px var(--color-accent);
+}
+.loader-divider::before { left: -4px; }
+.loader-divider::after  { right: -4px; }
+
+/* ── Progress wrap ── */
+.loader-progress-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* ── Barra de progreso ── */
+.loader-bar {
+  width: 220px;
+  height: 2px;
+  background: rgba(255, 101, 32, 0.12);
+  position: relative;
+  overflow: visible;
+}
+.loader-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-bottom: 1px solid rgba(255, 101, 32, 0.2);
+}
+.loader-bar__fill {
+  height: 100%;
+  background: linear-gradient(to right, var(--color-lava), var(--color-accent), var(--color-gold));
+  transition: width 0.12s linear;
+  position: relative;
+  box-shadow: 0 0 6px var(--color-accent), 0 0 18px rgba(255, 101, 32, 0.5);
+}
+/* Diamante en la punta del fill */
+.loader-bar__fill::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 5px;
+  height: 5px;
+  background: var(--color-gold);
+  box-shadow: 0 0 8px var(--color-accent);
+  opacity: 0.9;
+}
+
+/* ── Contador % ── */
+.loader-percent {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 300;
+  letter-spacing: var(--tracking-normal);
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+.loader-percent__num {
+  font-size: var(--text-md);
+  background: linear-gradient(135deg, var(--color-lava), var(--color-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.loader-percent__sym {
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+  -webkit-text-fill-color: var(--color-accent);
+}
+
+/* ── Accesibilidad ── */
+@media (prefers-reduced-motion: reduce) {
+  .loader-ember      { animation: none; }
+  .loader-bar__fill  { transition: none; }
+  .loader-sigil      { filter: drop-shadow(0 0 8px rgba(255,101,32,0.5)); animation: none; }
+}
