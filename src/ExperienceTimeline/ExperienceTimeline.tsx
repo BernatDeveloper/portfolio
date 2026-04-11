@@ -11,26 +11,40 @@ import "./ExperienceTimeline.css";
 gsap.registerPlugin(ScrollTrigger);
 
 const FRAME_COUNT = 241;
-const BATCH_SIZE = 20;
+const BATCH_SIZE  = 20;
 
 const currentFrameSrc = (index: number) =>
     `/frames/frame_${(index + 1).toString().padStart(3, "0")}.avif`;
 
-export default function ExperienceTimeline() {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const imagesRef = useRef<(HTMLImageElement | null)[]>(
+// ─── Props nuevas ───────────────────────────────────────────────────────────
+interface ExperienceTimelineProps {
+  /** Llamado cada vez que se carga una imagen más. Valor: 0–100 */
+  onProgress?: (percent: number) => void;
+  /** Llamado cuando los 241 frames están en memoria */
+  onLoaded?: () => void;
+}
+// ────────────────────────────────────────────────────────────────────────────
+
+export default function ExperienceTimeline({
+  onProgress,
+  onLoaded,
+}: ExperienceTimelineProps) {
+    const canvasRef      = useRef<HTMLCanvasElement>(null);
+    const imagesRef      = useRef<(HTMLImageElement | null)[]>(
         new Array(FRAME_COUNT).fill(null)
     );
     const videoFramesRef = useRef({ frame: 0 });
-    const [loadProgress, setLoadProgress] = useState(0);
     const [imagesLoaded, setImagesLoaded] = useState(false);
 
-    const sectionRef = useRef<HTMLElement>(null);
-    const timelineRef = useRef<HTMLDivElement>(null);
-    const svgRef = useRef<SVGSVGElement>(null);
-    const pathRef = useRef<SVGPathElement>(null);
-    const pathLenRef = useRef(0);
-    const nodeRefs = useRef(experiences.map(() => React.createRef<HTMLDivElement>()));
+    // ─ Contador interno para reportar progreso ─
+    const loadedCountRef = useRef(0);
+
+    const sectionRef   = useRef<HTMLElement>(null);
+    const timelineRef  = useRef<HTMLDivElement>(null);
+    const svgRef       = useRef<SVGSVGElement>(null);
+    const pathRef      = useRef<SVGPathElement>(null);
+    const pathLenRef   = useRef(0);
+    const nodeRefs     = useRef(experiences.map(() => React.createRef<HTMLDivElement>()));
     const [visibleNodes, setVisibleNodes] = useState<boolean[]>(
         new Array(experiences.length).fill(false)
     );
@@ -47,48 +61,53 @@ export default function ExperienceTimeline() {
         const h = rect.height;
 
         const frame = forcedFrame ?? videoFramesRef.current.frame;
-        const img = imagesRef.current[frame];
+        const img   = imagesRef.current[frame];
         if (!img?.complete || !img.naturalWidth) return;
 
         ctx.clearRect(0, 0, w, h);
 
-        const imgRatio = img.naturalWidth / img.naturalHeight;
+        const imgRatio    = img.naturalWidth / img.naturalHeight;
         const canvasRatio = w / h;
         let drawW: number, drawH: number, x: number, y: number;
 
         if (imgRatio > canvasRatio) {
             drawH = h;
             drawW = h * imgRatio;
-            x = (w - drawW) / 2;
-            y = 0;
+            x     = (w - drawW) / 2;
+            y     = 0;
         } else {
             drawW = w;
             drawH = w / imgRatio;
-            x = 0;
-            y = (h - drawH) / 2;
+            x     = 0;
+            y     = (h - drawH) / 2;
         }
         ctx.drawImage(img, x, y, drawW, drawH);
     }, []);
 
-    // Full preload: batch strategy to avoid flooding the network
+    // ─── Carga de imágenes con reporte de progreso ─────────────────────────
     useEffect(() => {
-        let loaded = 0;
         let cancelled = false;
 
+        /** Incrementa el contador y notifica al padre */
+        const reportProgress = () => {
+            loadedCountRef.current++;
+            const pct = Math.round((loadedCountRef.current / FRAME_COUNT) * 100);
+            onProgress?.(Math.min(pct, 100));
+        };
+
         const loadBatch = (startIdx: number): Promise<void> => {
-            const end = Math.min(startIdx + BATCH_SIZE, FRAME_COUNT);
+            const end      = Math.min(startIdx + BATCH_SIZE, FRAME_COUNT);
             const promises: Promise<void>[] = [];
 
             for (let i = startIdx; i < end; i++) {
                 const idx = i;
                 promises.push(
                     new Promise((resolve) => {
-                        const img = new Image();
+                        const img      = new Image();
                         img.onload = img.onerror = () => {
                             if (cancelled) return resolve();
                             imagesRef.current[idx] = img;
-                            loaded++;
-                            setLoadProgress(Math.round((loaded / FRAME_COUNT) * 100));
+                            reportProgress();
                             resolve();
                         };
                         img.src = currentFrameSrc(idx);
@@ -103,46 +122,51 @@ export default function ExperienceTimeline() {
             });
         };
 
-        // Load frame 0 first for immediate render
-        const firstImg = new Image();
-        firstImg.onload = () => {
+        // Carga el primer frame de inmediato para que el canvas no esté vacío
+        const firstImg    = new Image();
+        firstImg.onload   = () => {
             imagesRef.current[0] = firstImg;
+            reportProgress();
             renderFrame(0);
-            loaded = 1;
-            setLoadProgress(1);
             loadBatch(1).then(() => {
-                if (!cancelled) setImagesLoaded(true);
+                if (!cancelled) {
+                    setImagesLoaded(true);
+                    onLoaded?.();
+                }
             });
         };
         firstImg.onerror = () => {
+            // Si falla el primero, seguimos con el resto igualmente
             loadBatch(0).then(() => {
-                if (!cancelled) setImagesLoaded(true);
+                if (!cancelled) {
+                    setImagesLoaded(true);
+                    onLoaded?.();
+                }
             });
         };
         firstImg.src = currentFrameSrc(0);
 
-        return () => {
-            cancelled = true;
-        };
-    }, [renderFrame]);
+        return () => { cancelled = true; };
+    }, [renderFrame, onProgress, onLoaded]);
+    // ───────────────────────────────────────────────────────────────────────
 
     const rebuildPath = useCallback(() => {
-        const svg = svgRef.current;
+        const svg  = svgRef.current;
         const path = pathRef.current;
         if (!svg || !path) return;
 
         const svgTop = svg.getBoundingClientRect().top + window.scrollY;
-        const svgW = svg.getBoundingClientRect().width;
+        const svgW   = svg.getBoundingClientRect().width;
 
         const stops = nodeRefs.current
             .map((ref) => {
                 const el = ref.current;
                 if (!el) return null;
-                const r = el.getBoundingClientRect();
+                const r    = el.getBoundingClientRect();
                 const absY = r.top + window.scrollY + r.height / 2;
                 const relY = absY - svgTop;
                 const isLeft = el.dataset.side === "left";
-                const x = isLeft ? svgW * 0.37 : svgW * 0.63;
+                const x      = isLeft ? svgW * 0.37 : svgW * 0.63;
                 return { x, y: relY };
             })
             .filter(Boolean) as { x: number; y: number }[];
@@ -152,12 +176,12 @@ export default function ExperienceTimeline() {
         const maxY = Math.max(...stops.map((s) => s.y));
         setSvgHeight(maxY + 80);
 
-        const d = buildZigzagPath(stops);
+        const d   = buildZigzagPath(stops);
         path.setAttribute("d", d);
         const len = path.getTotalLength();
-        pathLenRef.current = len;
-        path.style.strokeDasharray = `${len}`;
-        path.style.strokeDashoffset = `${len}`;
+        pathLenRef.current              = len;
+        path.style.strokeDasharray      = `${len}`;
+        path.style.strokeDashoffset     = `${len}`;
     }, []);
 
     useEffect(() => {
@@ -166,7 +190,7 @@ export default function ExperienceTimeline() {
     }, [rebuildPath]);
 
     useGSAP(() => {
-        const canvas = canvasRef.current;
+        const canvas  = canvasRef.current;
         const section = sectionRef.current;
         if (!canvas || !section) return;
 
@@ -174,21 +198,18 @@ export default function ExperienceTimeline() {
         if (!ctx) return;
 
         const setCanvasSize = () => {
-            const dpr = window.devicePixelRatio || 1;
+            const dpr  = window.devicePixelRatio || 1;
             const rect = canvas.getBoundingClientRect();
-            canvas.width = rect.width * dpr;
-            canvas.height = rect.height * dpr;
-            canvas.style.width = `${rect.width}px`;
+            canvas.width       = rect.width  * dpr;
+            canvas.height      = rect.height * dpr;
+            canvas.style.width  = `${rect.width}px`;
             canvas.style.height = `${rect.height}px`;
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
             renderFrame();
             ScrollTrigger.refresh();
         };
 
-        const handleResize = () => {
-            setCanvasSize();
-            rebuildPath();
-        };
+        const handleResize = () => { setCanvasSize(); rebuildPath(); };
 
         setCanvasSize();
         rebuildPath();
@@ -196,19 +217,16 @@ export default function ExperienceTimeline() {
 
         if (!imagesLoaded) return;
 
-        const totalFrames = imagesRef.current.length - 1;
-        const n = experiences.length;
+        const totalFrames    = imagesRef.current.length - 1;
+        const n              = experiences.length;
         const scrollDistance = window.innerHeight * 2;
 
-        // La primera card tiene threshold 0 (0/n = 0), pero onUpdate
-        // no se dispara al crear el trigger → forzamos el estado inicial
         setVisibleNodes((prev) => {
             const initial = [...prev];
-            initial[0] = true;
+            initial[0]    = true;
             return initial;
         });
 
-        /* 🔒 PIN TRIGGER */
         const pinTrigger = ScrollTrigger.create({
             trigger: section,
             start: "top top",
@@ -218,7 +236,6 @@ export default function ExperienceTimeline() {
             invalidateOnRefresh: true,
         });
 
-        /* 🎬 ANIMATION TRIGGER */
         const animationTrigger = ScrollTrigger.create({
             trigger: section,
             start: "top top",
@@ -226,9 +243,7 @@ export default function ExperienceTimeline() {
             scrub: 1,
             invalidateOnRefresh: true,
             onUpdate: (self) => {
-                const progress = self.progress;
-
-                /* 🎞 Frames */
+                const progress    = self.progress;
                 const targetFrame = Math.min(
                     Math.floor(progress * totalFrames),
                     totalFrames
@@ -239,22 +254,18 @@ export default function ExperienceTimeline() {
                     renderFrame();
                 }
 
-                /* 📜 Timeline scroll interno */
                 if (timelineRef.current) {
-                    const contentH = timelineRef.current.scrollHeight;
-                    const viewH = window.innerHeight;
+                    const contentH     = timelineRef.current.scrollHeight;
+                    const viewH        = window.innerHeight;
                     const maxTranslate = Math.max(0, contentH - viewH);
                     gsap.set(timelineRef.current, { y: -maxTranslate * progress });
                 }
 
-                /* 🔥 Path draw */
                 const len = pathLenRef.current;
                 if (pathRef.current && len > 0) {
-                    pathRef.current.style.strokeDashoffset =
-                        `${len * (1 - progress)}`;
+                    pathRef.current.style.strokeDashoffset = `${len * (1 - progress)}`;
                 }
 
-                /* 🧩 Cards visibility */
                 setVisibleNodes((prev) => {
                     const newVis = experiences.map((_, i) => {
                         const threshold = i / n;
@@ -275,20 +286,6 @@ export default function ExperienceTimeline() {
 
     return (
         <section ref={sectionRef} className="timeline-section">
-
-            {/* Loading screen */}
-            {!imagesLoaded && (
-                <div className="timeline-loader">
-                    <div className="timeline-loader__bar">
-                        <div
-                            className="timeline-loader__fill"
-                            style={{ width: `${loadProgress}%` }}
-                        />
-                    </div>
-                    <span className="timeline-loader__text">{loadProgress}%</span>
-                </div>
-            )}
-
             <canvas ref={canvasRef} className="timeline-canvas" />
 
             <div className="timeline-overlay" />
@@ -305,9 +302,9 @@ export default function ExperienceTimeline() {
                         >
                             <defs>
                                 <linearGradient id="fireGrad" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stopColor="var(--color-accent-light)" />
-                                    <stop offset="35%" stopColor="var(--color-lava)" />
-                                    <stop offset="65%" stopColor="var(--color-gold)" />
+                                    <stop offset="0%"   stopColor="var(--color-accent-light)" />
+                                    <stop offset="35%"  stopColor="var(--color-lava)" />
+                                    <stop offset="65%"  stopColor="var(--color-gold)" />
                                     <stop offset="100%" stopColor="var(--color-lava)" />
                                 </linearGradient>
                                 <filter id="glow">
