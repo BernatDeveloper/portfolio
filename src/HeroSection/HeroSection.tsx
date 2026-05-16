@@ -65,7 +65,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ shouldAnimate }) => {
       </div>
 
       {/* Water reflection */}
-      <div className="water-reflection" />
+      <div className="water-reflection-bottom" />
 
       {/* Main content */}
       <div className="hero-content">

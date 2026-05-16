@@ -73,21 +73,6 @@
   }
 }
 
-/* ── Water reflection strip ── */
-.water-reflection {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 30%;
-  background: linear-gradient(to bottom,
-      transparent 0%,
-      var(--color-bg-secondary) 40%,
-      var(--color-bg-deep) 100%);
-  z-index: 4;
-  pointer-events: none;
-}
-
 /* ── Main content ── */
 .hero-content {
   position: relative;

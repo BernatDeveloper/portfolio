@@ -4,6 +4,7 @@ import { HeroSection } from '../HeroSection/HeroSection';
 import ExperienceTimeline from '../ExperienceTimeline/ExperienceTimeline';
 import { useEmberCursor } from '../hooks/useEmberCursor';
 import { useLenis } from '../hooks/useLenis';
+import ProjectsSection from '../ProjectsSection/ProjectsSection';
 
 export function AppLayout() {
 
@@ -48,6 +49,8 @@ export function AppLayout() {
         onProgress={handleProgress}
         onLoaded={handleLoaded}
       />
+
+      <ProjectsSection />
     </>
   );
 }
