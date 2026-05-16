@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 type EmberKind = "glow" | "spark" | "speck";
 
-const createEmber = (i: number) => {
+const createEmber = () => {
     const rand = Math.random();
     const kind: EmberKind = rand < 0.38 ? "glow" : rand < 0.65 ? "spark" : "speck";
 
@@ -43,7 +43,7 @@ const createEmber = (i: number) => {
     };
 };
 
-const EMBERS = Array.from({ length: 40 }, (_, i) => createEmber(i));
+const EMBERS = Array.from({ length: 40 }, () => createEmber());
 
 /* ─── Component ─────────────────────────────── */
 
