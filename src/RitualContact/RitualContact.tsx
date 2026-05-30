@@ -10,7 +10,6 @@ import { SOCIAL_ORBS }                from './data/socialOrbs';
 import { useEmberCanvas }             from './hooks/useEmberCanvas';
 import { useOrbitalSystem }           from './hooks/useOrbitalSystem';
 import { useRitualGSAP }              from './hooks/useRitualGSAP';
-import { RitualHeader }               from './components/RitualHeader';
 import { RitualStage }                from './components/RitualStage';
 import { RitualStatus }               from './components/RitualStatus';
 
@@ -79,8 +78,6 @@ export function RitualContact() {
   return (
     <section className="ritual-section" id="ritual" ref={sectionRef}>
       <canvas id="ritual-canvas" ref={canvasRef} />
-
-      <RitualHeader />
 
       <RitualStage
         stageRef={stageRef}
