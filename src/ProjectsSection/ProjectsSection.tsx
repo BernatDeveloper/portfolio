@@ -53,7 +53,33 @@ export default function ProjectsSection() {
     const lineRef = useRef<HTMLDivElement>(null);
     const cardsRef = useRef<HTMLDivElement>(null);
     const embersRef = useRef<HTMLDivElement>(null);
-    const cardRef = useEmberCursorHover<HTMLButtonElement>();
+    const { onMouseEnter: emberEnter, onMouseLeave: emberLeave } = useEmberCursorHover();
+
+    const handleCardEnter = (e: React.MouseEvent<HTMLElement>) => {
+        const card    = e.currentTarget;
+        const glow    = card.querySelector(".card-glow");
+        const tags    = card.querySelectorAll(".tag");
+        const viewBtn = card.querySelector(".view-btn");
+        const bgNum   = card.querySelector(".bg-num");
+        gsap.to(glow,    { opacity: 1, duration: .4 });
+        gsap.to(bgNum,   { y: -8, color: "rgba(255,101,32,.12)", duration: .6, ease: "power2.out" });
+        gsap.to(tags,    { color: "var(--color-accent)", borderColor: "rgba(255,101,32,.45)", stagger: .04, duration: .25 });
+        gsap.to(viewBtn, { x: 6, duration: .3, ease: "power2.out" });
+        emberEnter();
+    };
+
+    const handleCardLeave = (e: React.MouseEvent<HTMLElement>) => {
+        const card    = e.currentTarget;
+        const glow    = card.querySelector(".card-glow");
+        const tags    = card.querySelectorAll(".tag");
+        const viewBtn = card.querySelector(".view-btn");
+        const bgNum   = card.querySelector(".bg-num");
+        gsap.to(glow,    { opacity: 0, duration: .5 });
+        gsap.to(bgNum,   { y: 0, color: "rgba(255,101,32,.055)", duration: .6, ease: "power2.out" });
+        gsap.to(tags,    { color: "rgba(255,180,80,.42)", borderColor: "rgba(255,101,32,.14)", stagger: .04, duration: .3 });
+        gsap.to(viewBtn, { x: 0, duration: .3 });
+        emberLeave();
+    };
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -146,24 +172,6 @@ export default function ProjectsSection() {
                     }
                 );
 
-                const glow = card.querySelector(".card-glow");
-                const tags = card.querySelectorAll(".tag");
-                const viewBtn = card.querySelector(".view-btn");
-                const bgNum = card.querySelector(".bg-num");
-
-                card.addEventListener("mouseenter", () => {
-                    gsap.to(glow, { opacity: 1, duration: .4 });
-                    gsap.to(bgNum, { y: -8, color: "rgba(255,101,32,.12)", duration: .6, ease: "power2.out" });
-                    gsap.to(tags, { color: "var(--color-accent)", borderColor: "rgba(255,101,32,.45)", stagger: .04, duration: .25 });
-                    gsap.to(viewBtn, { x: 6, duration: .3, ease: "power2.out" });
-                });
-
-                card.addEventListener("mouseleave", () => {
-                    gsap.to(glow, { opacity: 0, duration: .5 });
-                    gsap.to(bgNum, { y: 0, color: "rgba(255,101,32,.055)", duration: .6, ease: "power2.out" });
-                    gsap.to(tags, { color: "rgba(255,180,80,.42)", borderColor: "rgba(255,101,32,.14)", stagger: .04, duration: .3 });
-                    gsap.to(viewBtn, { x: 0, duration: .3 });
-                });
             });
 
         }, sectionRef);
@@ -207,7 +215,7 @@ export default function ProjectsSection() {
                 {PROJECTS.map((project) => {
                     const SvgComponent = project.svg;
                     return (
-                        <article className="project-card" key={project.id} ref={cardRef}>
+                        <article className="project-card" key={project.id} onMouseEnter={handleCardEnter} onMouseLeave={handleCardLeave}>
                             <div className="card-border-glow" />
                             <div className="card-inner-bg" />
                             <div className="card-glow" />

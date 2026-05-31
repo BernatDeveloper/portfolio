@@ -14,8 +14,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ shouldAnimate }) => {
   const { embers } = useHeroData();
   const heroRef = useRef<HTMLElement>(null);
 
-  const btn1 = useEmberCursorHover<HTMLButtonElement>();
-  const btn2 = useEmberCursorHover<HTMLButtonElement>();
+  const emberHandlers = useEmberCursorHover();
 
   const eyebrowRef = useRef<HTMLParagraphElement>(null);
   const line1Ref = useRef<HTMLSpanElement>(null);
@@ -79,10 +78,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ shouldAnimate }) => {
         <div ref={dividerRef} className="hero-divider" />
 
         <div ref={ctaRef} className="hero-cta">
-          <button className="btn-primary" ref={btn1}>
+          <button className="btn-primary" {...emberHandlers}>
             <span>Enter the void</span>
           </button>
-          <button className="btn-secondary" ref={btn2}>Discover more</button>
+          <button className="btn-secondary" {...emberHandlers}>Discover more</button>
         </div>
 
         <div ref={statsRef} className="hero-stats">

@@ -10,6 +10,7 @@ import { SOCIAL_ORBS }                from './data/socialOrbs';
 import { useEmberCanvas }             from './hooks/useEmberCanvas';
 import { useOrbitalSystem }           from './hooks/useOrbitalSystem';
 import { useRitualGSAP }              from './hooks/useRitualGSAP';
+import { useConnectorLines }          from './hooks/useConnectorLines';
 import { RitualStage }                from './components/RitualStage';
 import { RitualStatus }               from './components/RitualStatus';
 
@@ -70,9 +71,10 @@ export function RitualContact() {
   }));
 
   // ── Hooks ──────────────────────────────────────────
-  useEmberCanvas(canvasRef, sectionRef, burstRef);
-  useOrbitalSystem(stageRef, orbRefs);
-  useRitualGSAP({ sectionRef, eyeRef, eyeCountRef, eyeLabelRef, orbRefs, fieldRefs, filledRef, burstRef });
+  useEmberCanvas(canvasRef, sectionRef, burstRef, eyeRef as RefObject<HTMLElement | null>);
+  const orbHandlers                  = useOrbitalSystem(stageRef, orbRefs);
+  const { fieldHandlers, onEyeClick } = useRitualGSAP({ sectionRef, eyeRef, eyeCountRef, eyeLabelRef, orbRefs, fieldRefs, filledRef, burstRef });
+  useConnectorLines(stageRef, eyeRef, totemRefs as RefObject<HTMLDivElement | null>[], lineRefs as RefObject<SVGLineElement | null>[]);
 
   // ── Render ─────────────────────────────────────────
   return (
@@ -90,6 +92,10 @@ export function RitualContact() {
         lineRefs={lineRefs}
         fields={FIELDS}
         orbs={SOCIAL_ORBS}
+        filledRef={filledRef}
+        orbHandlers={orbHandlers}
+        fieldHandlers={fieldHandlers}
+        onEyeClick={onEyeClick}
       />
 
       <RitualStatus fields={FIELDS} dotRefs={dotRefs} />

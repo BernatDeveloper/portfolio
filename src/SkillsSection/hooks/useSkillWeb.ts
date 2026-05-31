@@ -4,6 +4,7 @@ import gsap from 'gsap'
 import type { LineData, NodeData, NodeEls } from '../types'
 import { CAT, NODES, CONNS, TRAVEL_DUR } from '../data/nodes'
 import { LAYOUTS } from '../data/layouts'
+import { useEmberCursorHover } from '../../hooks/useEmberCursorHover'
 
 const NS = 'http://www.w3.org/2000/svg'
 
@@ -41,6 +42,7 @@ interface Refs {
  */
 export function useSkillWeb(refs: Refs) {
   const initedRef = useRef(false)
+  const { onMouseEnter: emberEnter, onMouseLeave: emberLeave } = useEmberCursorHover()
 
   function init() {
     if (initedRef.current) return
@@ -128,8 +130,8 @@ export function useSkillWeb(refs: Refs) {
       ln.setAttribute('x1', String(na.x)); ln.setAttribute('y1', String(na.y))
       ln.setAttribute('x2', String(nb.x)); ln.setAttribute('y2', String(nb.y))
       ln.setAttribute('stroke', '#ff5200')
-      ln.setAttribute('stroke-opacity', '0.13')
-      ln.setAttribute('stroke-width', '0.5')
+      ln.setAttribute('stroke-opacity', '0.2')
+      ln.setAttribute('stroke-width', '0.8')
 
       const len = Math.hypot(nb.x - na.x, nb.y - na.y)
       ln.style.strokeDasharray  = `${len}`
@@ -153,8 +155,8 @@ export function useSkillWeb(refs: Refs) {
 
       const gl2 = mkCircle(n.r + 22, cat.hex, '0')
       const gl1 = mkCircle(n.r + 10, cat.hex, '0')
-      const bg  = mkCircle(n.r, '#0e0705', '1', cat.hex, '0.3', '1')
-      const ir  = mkCircle(Math.max(n.r - 5, 2), 'none', '1', cat.hex, '0.1', '0.5')
+      const bg  = mkCircle(n.r, '#0e0705', '1', cat.hex, '0.55', '1')
+      const ir  = mkCircle(Math.max(n.r - 5, 2), 'none', '1', cat.hex, '0.22', '0.5')
       const dot = mkCircle(3, cat.hex, '1')
 
       const hr = document.createElementNS(NS, 'circle') as SVGCircleElement
@@ -170,7 +172,7 @@ export function useSkillWeb(refs: Refs) {
       const lbl = document.createElementNS(NS, 'text') as SVGTextElement
       lbl.setAttribute('text-anchor', 'middle')
       lbl.setAttribute('dy', String(n.r + 14))
-      lbl.setAttribute('fill', '#7a3810')
+      lbl.setAttribute('fill', '#a05a20')
       lbl.setAttribute('font-size', n.r >= 18 ? 'var(--text-sm)' : 'var(--text-xs)')
       lbl.setAttribute('letter-spacing', '0.5')
       lbl.setAttribute('font-family', '"Courier New", monospace')
@@ -191,6 +193,7 @@ export function useSkillWeb(refs: Refs) {
       let ringTl: gsap.core.Tween | null = null
 
       g.addEventListener('mouseenter', () => {
+        emberEnter()
         const nd = nm[n.id]
         setHint(`${nd.n}  ·  ${nd.cat}`)
 
@@ -250,15 +253,16 @@ export function useSkillWeb(refs: Refs) {
       })
 
       g.addEventListener('mouseleave', () => {
+        emberLeave()
         const nd  = nm[n.id]
         const cat = CAT[nd.cat]
         setHint('— hover a node —')
 
-        gsap.to(bg,  { attr: { r: nd.r, 'stroke-opacity': 0.3, 'stroke-width': 1 }, duration: 0.35 })
+        gsap.to(bg,  { attr: { r: nd.r, 'stroke-opacity': 0.2, 'stroke-width': 1 }, duration: 0.35 })
         gsap.to(gl1, { attr: { r: nd.r + 10, 'fill-opacity': 0 }, duration: 0.4  })
         gsap.to(gl2, { attr: { r: nd.r + 22, 'fill-opacity': 0 }, duration: 0.45 })
         gsap.to(dot, { attr: { r: 3, fill: cat.hex }, duration: 0.3 })
-        gsap.to(lbl, { attr: { fill: '#7a3810' }, duration: 0.3 })
+        gsap.to(lbl, { attr: { fill: '#a05a20' }, duration: 0.3 })
         if (ringTl) { ringTl.kill(); ringTl = null }
         gsap.to(hr, { opacity: 0, duration: 0.3, onComplete: () => gsap.set(hr, { rotation: 0 }) })
 
@@ -268,16 +272,16 @@ export function useSkillWeb(refs: Refs) {
           ld.el.setAttribute('x2', String(ld.x2)); ld.el.setAttribute('y2', String(ld.y2))
           ld.el.style.strokeDasharray  = `${ld.len}`
           ld.el.style.strokeDashoffset = '0'
-          gsap.to(ld.el, { strokeOpacity: 0.13, strokeWidth: 0.5, duration: 0.35 })
+          gsap.to(ld.el, { strokeOpacity: 0.2, strokeWidth: 0.8, duration: 0.35 })
         })
 
         NODES.forEach(other => {
           if (other.id === n.id) return
           const o = nodeEls[other.id]
           gsap.to(o.gl1, { attr: { 'fill-opacity': 0     }, duration: 0.4  })
-          gsap.to(o.bg,  { attr: { 'stroke-opacity': 0.3 }, duration: 0.35 })
+          gsap.to(o.bg,  { attr: { 'stroke-opacity': 0.55 }, duration: 0.35 })
           gsap.to(o.dot, { attr: { r: 3 },                  duration: 0.35 })
-          gsap.to(o.lbl, { attr: { fill: '#7a3810' },       duration: 0.35 })
+          gsap.to(o.lbl, { attr: { fill: '#a05a20' },       duration: 0.35 })
         })
 
         hideTT()
