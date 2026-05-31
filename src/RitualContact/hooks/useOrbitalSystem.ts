@@ -1,5 +1,5 @@
 import type { RefObject } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 const SPEED = 0.006;
 const INITIAL_ANGLES = [
@@ -16,31 +16,22 @@ export function useOrbitalSystem(
   stageRef: RefObject<HTMLDivElement | null>,
   orbRefs:  RefObject<HTMLAnchorElement>[],
 ) {
+  const pausedRef = useRef(orbRefs.map(() => false));
+
   useEffect(() => {
     const stage = stageRef.current!;
     let ORBIT_R = getOrbitR();
     let raf     = 0;
     let alive   = true;
 
-    const orbs = orbRefs.map((ref, i) => ({
-      el:           ref.current!,
+    const orbEls = orbRefs.map(r => r.current!);
+    const paused = pausedRef.current;
+
+    const orbs = orbEls.map((el, i) => ({
+      el,
       angle:        INITIAL_ANGLES[i],
       currentSpeed: SPEED,
-      paused:       false,
     }));
-
-    const listeners: Array<() => void> = [];
-
-    orbs.forEach(orb => {
-      const enter = () => { orb.paused = true;  };
-      const leave = () => { orb.paused = false; };
-      orb.el.addEventListener('mouseenter', enter);
-      orb.el.addEventListener('mouseleave', leave);
-      listeners.push(
-        () => orb.el.removeEventListener('mouseenter', enter),
-        () => orb.el.removeEventListener('mouseleave', leave),
-      );
-    });
 
     const onResize = () => { ORBIT_R = getOrbitR(); };
     window.addEventListener('resize', onResize);
@@ -49,8 +40,8 @@ export function useOrbitalSystem(
       if (!alive) return;
       const W = stage.offsetWidth  / 2;
       const H = stage.offsetHeight / 2;
-      orbs.forEach(orb => {
-        const target = orb.paused ? 0 : SPEED;
+      orbs.forEach((orb, i) => {
+        const target = paused[i] ? 0 : SPEED;
         orb.currentSpeed += (target - orb.currentSpeed) * 0.08;
         orb.angle        += orb.currentSpeed;
         orb.el.style.left = (W + Math.cos(orb.angle) * ORBIT_R) + 'px';
@@ -63,8 +54,12 @@ export function useOrbitalSystem(
       alive = false;
       cancelAnimationFrame(raf);
       window.removeEventListener('resize', onResize);
-      listeners.forEach(fn => fn());
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  return orbRefs.map((_, i) => ({
+    onMouseEnter: () => { pausedRef.current[i] = true;  },
+    onMouseLeave: () => { pausedRef.current[i] = false; },
+  }));
 }

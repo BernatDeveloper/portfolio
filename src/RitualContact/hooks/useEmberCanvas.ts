@@ -6,6 +6,7 @@ export function useEmberCanvas(
   canvasRef:  RefObject<HTMLCanvasElement | null>,
   sectionRef: RefObject<HTMLElement | null>,
   burstRef:   MutableRefObject<BurstFn | null>,
+  eyeRef?:    RefObject<HTMLElement | null>,
 ) {
   useEffect(() => {
     const canvas = canvasRef.current!;
@@ -27,8 +28,14 @@ export function useEmberCanvas(
       reset() {
         const w = canvas.width  || window.innerWidth;
         const h = canvas.height || window.innerHeight;
+        let eyeY = h * 0.1;
+        if (eyeRef?.current) {
+          const er = eyeRef.current.getBoundingClientRect();
+          const cr = canvas.getBoundingClientRect();
+          eyeY = er.top - cr.top + er.height / 2;
+        }
         this.x    = w * 0.5 + (Math.random() - 0.5) * 300;
-        this.y    = h * 0.62 + Math.random() * 100;
+        this.y    = eyeY + 100 + Math.random() * 60;
         this.vx   = (Math.random() - 0.5) * 1.2;
         this.vy   = -(0.8 + Math.random() * 2.4);
         this.life = 0;

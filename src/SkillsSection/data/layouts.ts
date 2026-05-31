@@ -48,7 +48,7 @@ export const LAYOUTS: Record<'desktop' | 'tablet' | 'mobile' | 'xs', Layout> = {
     nodes: [
       { id: 'js',    x: 73,  y: 101, r: 19 },
       { id: 'ts',    x: 180, y: 63,  r: 17 },
-      { id: 'react', x: 194, y: 105, r: 19 },
+      { id: 'react', x: 294, y: 105, r: 19 },
       { id: 'git',   x: 69,  y: 194, r: 16 },
       { id: 'vue',   x: 193, y: 166, r: 16 },
       { id: 'node',  x: 312, y: 191, r: 17 },

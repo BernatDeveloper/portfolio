@@ -20,7 +20,7 @@
   line-height: 1;
   margin: 0;
   color: var(--color-accent);
-  opacity: 0.05;
+  opacity: 0.2;
   letter-spacing: var(--tracking-tight);
   user-select: none;
   pointer-events: none;
@@ -30,7 +30,7 @@
 /* ── Contenido sobre el ghost ────────────────────────── */
 .st-over {
   position: absolute;
-  bottom: 10%;          /* se alinea a la línea base del ghost */
+  bottom: 10%;
   left: 0;
   right: 0;
   display: flex;

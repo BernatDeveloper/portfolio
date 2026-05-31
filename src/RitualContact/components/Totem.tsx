@@ -1,25 +1,31 @@
 import type { MutableRefObject } from 'react';
 import { forwardRef } from 'react';
 import type { FieldConfig } from '../types';
+import { useEmberCursorHover } from '../../hooks/useEmberCursorHover';
 
 interface Props {
-  config:    FieldConfig;
-  inputRef:  MutableRefObject<HTMLInputElement | HTMLTextAreaElement | null>;
-  totemId:   string;      // id used by GSAP entrance (t1, t2, t3)
-  className?: string;     // positional class: t-top | t-bl | t-br
+  config:       FieldConfig;
+  inputRef:     MutableRefObject<HTMLInputElement | HTMLTextAreaElement | null>;
+  totemId:      string;
+  className?:   string;
+  onChange:     () => void;
+  onTotemClick: () => void;
 }
 
 export const Totem = forwardRef<HTMLDivElement, Props>(
-  ({ config, inputRef, totemId, className = '' }, ref) => {
+  ({ config, inputRef, totemId, className = '', onChange, onTotemClick }, ref) => {
+    const emberHandlers = useEmberCursorHover();
+
     const sharedProps = {
       className:    'totem-inp',
       placeholder:  config.placeholder,
       autoComplete: 'off' as const,
       spellCheck:   false,
+      onChange,
     };
 
     return (
-      <div className={`totem ${className}`.trim()} ref={ref} id={totemId}>
+      <div className={`totem ${className}`.trim()} ref={ref} id={totemId} onClick={onTotemClick}>
         <div className="totem-box">
           <div className="totem-topbar">
             <span className="totem-rune">{config.rune}</span>
@@ -27,7 +33,7 @@ export const Totem = forwardRef<HTMLDivElement, Props>(
             <span className="totem-status">✦</span>
           </div>
 
-          <div className="totem-input-area">
+          <div className="totem-input-area" {...emberHandlers}>
             {config.type === 'textarea' ? (
               <textarea
                 {...sharedProps}
