@@ -54,24 +54,42 @@
 .timeline-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        to bottom,
-        rgba(8, 6, 4, 0.55) 0%,
-        rgba(8, 6, 4, 0.35) 50%,
-        rgba(8, 6, 4, 0.65) 100%
-    );
+    background: rgba(8, 6, 4, 0.62);
     z-index: 1;
+    pointer-events: none;
 }
 
 .timeline-vignette {
     position: absolute;
     inset: 0;
     background: radial-gradient(
-        circle,
-        transparent 0%,
-        var(--color-bg-deep) 70%
+        ellipse 90% 80% at 50% 50%,
+        transparent 30%,
+        rgba(8, 6, 4, 0.52) 65%,
+        var(--color-bg) 100%
     );
     z-index: 1;
+    pointer-events: none;
+}
+
+/* ── Section edge fades — transitions with adjacent sections ── */
+.timeline-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 22%;
+    background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%);
+    z-index: 3;
+    pointer-events: none;
+}
+
+.timeline-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 22%;
+    background: linear-gradient(to top, var(--color-bg) 0%, transparent 100%);
+    z-index: 3;
     pointer-events: none;
 }
 
@@ -124,7 +142,7 @@
     position: relative;
     z-index: 2;
     flex-direction: row;
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition: opacity 0.9s ease, transform 0.9s ease;
 }
 
 .timeline-card--left  { transform: translateX(-2rem); }
@@ -203,10 +221,98 @@
     color: var(--color-text-warm);
 }
 
+/* ── Mobile custom background ── */
+.tl-mob-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+        /* Forge glow — strong hot core from bottom */
+        radial-gradient(ellipse 140% 70% at 50% 108%, #5c1400 0%, #2e0800 28%, transparent 52%),
+        /* Left heat plume */
+        radial-gradient(ellipse 85%  62% at  5% 78%,  rgba(210, 55,  0, 0.42) 0%, transparent 50%),
+        /* Right ember drift */
+        radial-gradient(ellipse 80%  58% at 95% 62%,  rgba(245, 105, 15, 0.30) 0%, transparent 50%),
+        /* Centre lava pool */
+        radial-gradient(ellipse 95%  52% at 50% 52%,  rgba(155, 32,  0, 0.28) 0%, transparent 58%),
+        /* Upper warmth — keeps top from going pure black */
+        radial-gradient(ellipse 110% 38% at 50% 5%,   rgba(90,  18,  0, 0.22) 0%, transparent 55%),
+        var(--color-bg);
+}
+
+.tl-mob-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 101, 32, .018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 101, 32, .018) 1px, transparent 1px);
+    background-size: 56px 56px;
+}
+
+.tl-mob-embers {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ── Mobile / tablet layout (≤ 1024px) ── */
+@media (max-width: 1024px) {
+    .timeline-section {
+        height: auto;
+    }
+
+    .timeline-overlay {
+        background: rgba(8, 6, 4, 0.20);
+    }
+
+    .timeline-layer {
+        position: relative;
+        inset: auto;
+        overflow: visible;
+    }
+
+    .timeline-inner {
+        transform: none !important;
+        will-change: auto;
+    }
+
+    .timeline-svg {
+        display: none;
+    }
+
+    .timeline-track::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        transform: translateX(-50%);
+        background: linear-gradient(
+            to bottom,
+            transparent       0%,
+            var(--color-lava)         12%,
+            var(--color-accent)       35%,
+            var(--color-accent-warm)  60%,
+            var(--color-gold)         80%,
+            transparent       100%
+        );
+        opacity: 0.35;
+        pointer-events: none;
+    }
+
+    .timeline-track {
+        padding-top: var(--space-xxl);
+    }
+}
+
 /* ── Responsive ── */
 @media (max-width: 700px) {
-    .timeline-card__spacer { 
-        flex: .4; 
+    .timeline-card__spacer {
+        flex: .4;
     }
 }
 

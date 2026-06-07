@@ -36,10 +36,6 @@ interface Refs {
   ttCRef:  RefObject<HTMLDivElement | null>
 }
 
-/**
- * Returns an `init()` function to be called once on scroll-reveal.
- * Keeps all SVG creation, hover effects and layout switching in one place.
- */
 export function useSkillWeb(refs: Refs) {
   const initedRef = useRef(false)
   const { onMouseEnter: emberEnter, onMouseLeave: emberLeave } = useEmberCursorHover()
@@ -242,8 +238,8 @@ export function useSkillWeb(refs: Refs) {
                 const on = nm[neighborId]
                 if (!o || !on) return
                 gsap.to(o.gl1, { attr: { r: on.r + 12, 'fill-opacity': 0.13 }, duration: 0.55, ease: 'power2.out' })
-                gsap.to(o.bg,  { attr: { 'stroke-opacity': 0.52 },              duration: 0.55, ease: 'power2.out' })
-                gsap.to(o.lbl, { attr: { fill: '#cc8833' },                      duration: 0.55, ease: 'power2.out' })
+                gsap.to(o.bg,  { attr: { 'stroke-opacity': 0.52 }, duration: 0.55, ease: 'power2.out' })
+                gsap.to(o.lbl, { attr: { fill: '#cc8833' }, duration: 0.55, ease: 'power2.out' })
               },
             },
           )
@@ -258,7 +254,7 @@ export function useSkillWeb(refs: Refs) {
         const cat = CAT[nd.cat]
         setHint('— hover a node —')
 
-        gsap.to(bg,  { attr: { r: nd.r, 'stroke-opacity': 0.2, 'stroke-width': 1 }, duration: 0.35 })
+        gsap.to(bg,  { attr: { r: nd.r, 'stroke-opacity': 0.55, 'stroke-width': 1 }, duration: 0.35 })
         gsap.to(gl1, { attr: { r: nd.r + 10, 'fill-opacity': 0 }, duration: 0.4  })
         gsap.to(gl2, { attr: { r: nd.r + 22, 'fill-opacity': 0 }, duration: 0.45 })
         gsap.to(dot, { attr: { r: 3, fill: cat.hex }, duration: 0.3 })

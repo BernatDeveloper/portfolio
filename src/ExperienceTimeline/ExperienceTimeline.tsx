@@ -6,37 +6,35 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { experiences } from "./data/experience";
 import { buildZigzagPath } from "./utils/zigZagPath";
 import Card from "./components/Card";
+import { MobileBackground } from "./components/MobileBackground";
 import "./ExperienceTimeline.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FRAME_COUNT = 241;
-const BATCH_SIZE  = 20;
+const FRAME_COUNT   = 241;
+const BATCH_SIZE    = 20;
+const MOBILE_BP     = 1024;
 
 const currentFrameSrc = (index: number) =>
     `/frames/frame_${(index + 1).toString().padStart(3, "0")}.avif`;
 
-// ─── Props nuevas ───────────────────────────────────────────────────────────
 interface ExperienceTimelineProps {
-  /** Llamado cada vez que se carga una imagen más. Valor: 0–100 */
   onProgress?: (percent: number) => void;
-  /** Llamado cuando los 241 frames están en memoria */
   onLoaded?: () => void;
 }
-// ────────────────────────────────────────────────────────────────────────────
 
 export default function ExperienceTimeline({
   onProgress,
   onLoaded,
 }: ExperienceTimelineProps) {
+    const isMobile = window.innerWidth <= MOBILE_BP;
+
     const canvasRef      = useRef<HTMLCanvasElement>(null);
     const imagesRef      = useRef<(HTMLImageElement | null)[]>(
         new Array(FRAME_COUNT).fill(null)
     );
     const videoFramesRef = useRef({ frame: 0 });
     const [imagesLoaded, setImagesLoaded] = useState(false);
-
-    // ─ Contador interno para reportar progreso ─
     const loadedCountRef = useRef(0);
 
     const sectionRef   = useRef<HTMLElement>(null);
@@ -84,11 +82,16 @@ export default function ExperienceTimeline({
         ctx.drawImage(img, x, y, drawW, drawH);
     }, []);
 
-    // ─── Carga de imágenes con reporte de progreso ─────────────────────────
+    // ── Frame loading — skipped on mobile ─────────────────────────────────────
     useEffect(() => {
+        if (isMobile) {
+            onProgress?.(100);
+            onLoaded?.();
+            return;
+        }
+
         let cancelled = false;
 
-        /** Incrementa el contador y notifica al padre */
         const reportProgress = () => {
             loadedCountRef.current++;
             const pct = Math.round((loadedCountRef.current / FRAME_COUNT) * 100);
@@ -116,39 +119,59 @@ export default function ExperienceTimeline({
             }
 
             return Promise.all(promises).then(() => {
-                if (!cancelled && end < FRAME_COUNT) {
-                    return loadBatch(end);
-                }
+                if (!cancelled && end < FRAME_COUNT) return loadBatch(end);
             });
         };
 
-        // Carga el primer frame de inmediato para que el canvas no esté vacío
-        const firstImg    = new Image();
-        firstImg.onload   = () => {
+        const firstImg  = new Image();
+        firstImg.onload = () => {
             imagesRef.current[0] = firstImg;
             reportProgress();
             renderFrame(0);
             loadBatch(1).then(() => {
-                if (!cancelled) {
-                    setImagesLoaded(true);
-                    onLoaded?.();
-                }
+                if (!cancelled) { setImagesLoaded(true); onLoaded?.(); }
             });
         };
         firstImg.onerror = () => {
-            // Si falla el primero, seguimos con el resto igualmente
             loadBatch(0).then(() => {
-                if (!cancelled) {
-                    setImagesLoaded(true);
-                    onLoaded?.();
-                }
+                if (!cancelled) { setImagesLoaded(true); onLoaded?.(); }
             });
         };
         firstImg.src = currentFrameSrc(0);
 
         return () => { cancelled = true; };
-    }, [renderFrame, onProgress, onLoaded]);
-    // ───────────────────────────────────────────────────────────────────────
+    }, [isMobile, renderFrame, onProgress, onLoaded]);
+
+    // ── Mobile card reveal via IntersectionObserver ───────────────────────────
+    useEffect(() => {
+        if (!isMobile) return;
+
+        const observers = nodeRefs.current.map((ref, i) => {
+            const el = ref.current;
+            if (!el) return null;
+
+            const obs = new IntersectionObserver(
+                ([entry]) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            setVisibleNodes(prev => {
+                                const next = [...prev];
+                                next[i] = true;
+                                return next;
+                            });
+                        }, 280);
+                        obs.disconnect();
+                    }
+                },
+                { threshold: 0.2, rootMargin: '0px 0px -8% 0px' }
+            );
+            obs.observe(el);
+            return obs;
+        });
+
+        return () => observers.forEach(o => o?.disconnect());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const rebuildPath = useCallback(() => {
         const svg  = svgRef.current;
@@ -179,9 +202,9 @@ export default function ExperienceTimeline({
         const d   = buildZigzagPath(stops);
         path.setAttribute("d", d);
         const len = path.getTotalLength();
-        pathLenRef.current              = len;
-        path.style.strokeDasharray      = `${len}`;
-        path.style.strokeDashoffset     = `${len}`;
+        pathLenRef.current          = len;
+        path.style.strokeDasharray  = `${len}`;
+        path.style.strokeDashoffset = `${len}`;
     }, []);
 
     useEffect(() => {
@@ -189,6 +212,7 @@ export default function ExperienceTimeline({
         return () => clearTimeout(t);
     }, [rebuildPath]);
 
+    // ── Desktop GSAP — canvas is null on mobile so guard returns early ────────
     useGSAP(() => {
         const canvas  = canvasRef.current;
         const section = sectionRef.current;
@@ -200,8 +224,8 @@ export default function ExperienceTimeline({
         const setCanvasSize = () => {
             const dpr  = window.devicePixelRatio || 1;
             const rect = canvas.getBoundingClientRect();
-            canvas.width       = rect.width  * dpr;
-            canvas.height      = rect.height * dpr;
+            canvas.width        = rect.width  * dpr;
+            canvas.height       = rect.height * dpr;
             canvas.style.width  = `${rect.width}px`;
             canvas.style.height = `${rect.height}px`;
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -286,7 +310,10 @@ export default function ExperienceTimeline({
 
     return (
         <section ref={sectionRef} className="timeline-section">
-            <canvas ref={canvasRef} className="timeline-canvas" />
+            {isMobile
+                ? <MobileBackground sectionRef={sectionRef} />
+                : <canvas ref={canvasRef} className="timeline-canvas" />
+            }
 
             <div className="timeline-overlay" />
             <div className="timeline-vignette" />
