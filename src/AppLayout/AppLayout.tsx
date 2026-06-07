@@ -4,9 +4,9 @@ import { HeroSection } from '../HeroSection/HeroSection';
 import ExperienceTimeline from '../ExperienceTimeline/ExperienceTimeline';
 import { useEmberCursor } from '../hooks/useEmberCursor';
 import { useLenis } from '../hooks/useLenis';
-import ProjectsSection from '../ProjectsSection/ProjectsSection';
 import { SkillSectionComp } from '../SkillsSection';
 import { RitualContactComp } from '../RitualContact';
+import { ProjectsSectionComp } from '../ProjectsSection';
 
 export function AppLayout() {
 
@@ -52,9 +52,8 @@ export function AppLayout() {
         onLoaded={handleLoaded}
       />
 
-      <ProjectsSection />
+      <ProjectsSectionComp />
       <SkillSectionComp />
-
       <RitualContactComp />
     </>
   );
