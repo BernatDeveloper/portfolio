@@ -26,8 +26,8 @@ export function useMobileEmbers(
       constructor() { this.reset(); }
 
       reset() {
-        const w   = canvas.width  || window.innerWidth;
-        const h   = canvas.height || window.innerHeight;
+        const w   = canvas!.width  || window.innerWidth;
+        const h   = canvas!.height || window.innerHeight;
         this.x      = Math.random() * w;
         this.y      = h * 0.45 + Math.random() * h * 0.55;
         this.vx     = (Math.random() - 0.5) * 0.5;
@@ -50,15 +50,15 @@ export function useMobileEmbers(
 
       draw() {
         const a = (1 - this.life / this.max) * 0.7;
-        ctx.save();
-        ctx.globalAlpha = a;
-        ctx.fillStyle   = `hsl(${this.hue}, 100%, ${50 + a * 22}%)`;
-        ctx.shadowBlur  = 9;
-        ctx.shadowColor = `hsl(${this.hue}, 100%, 55%)`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.r * (0.4 + a * 0.6) + 0.2, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
+        ctx!.save();
+        ctx!.globalAlpha = a;
+        ctx!.fillStyle   = `hsl(${this.hue}, 100%, ${50 + a * 22}%)`;
+        ctx!.shadowBlur  = 9;
+        ctx!.shadowColor = `hsl(${this.hue}, 100%, 55%)`;
+        ctx!.beginPath();
+        ctx!.arc(this.x, this.y, this.r * (0.4 + a * 0.6) + 0.2, 0, Math.PI * 2);
+        ctx!.fill();
+        ctx!.restore();
       }
     }
 
