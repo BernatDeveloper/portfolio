@@ -306,6 +306,36 @@
 .sc { animation: svgCirclePulse 3s ease-in-out infinite; }
 .sl { animation: svgLinePulse   4s ease-in-out infinite; }
 
+/* ── EVENTAPP SVG ANIMATIONS ─────────────────────────── */
+#ev-c1, #ev-c2, #ev-c3,
+#ev-c4, #ev-c5, #ev-c6 {
+  transition: transform .55s cubic-bezier(.25, .46, .45, .94);
+}
+
+.pc.featured:hover #ev-c1 { transform: translateY(-5px);  transition: transform .6s cubic-bezier(.34, 1.56, .64, 1); }
+.pc.featured:hover #ev-c2 { transform: translateY(-8px);  transition: transform .6s .04s cubic-bezier(.34, 1.56, .64, 1); }
+.pc.featured:hover #ev-c3 { transform: translateY(-6px);  transition: transform .6s .08s cubic-bezier(.34, 1.56, .64, 1); }
+.pc.featured:hover #ev-c4 { transform: translateY(-9px);  transition: transform .6s .06s cubic-bezier(.34, 1.56, .64, 1); }
+.pc.featured:hover #ev-c5 { transform: translateY(-7px);  transition: transform .6s .02s cubic-bezier(.34, 1.56, .64, 1); }
+.pc.featured:hover #ev-c6 { transform: translateY(-10px); transition: transform .6s .10s cubic-bezier(.34, 1.56, .64, 1); }
+
+/* ── SKULL KING SVG ANIMATIONS ───────────────────────── */
+#sk-c1, #sk-c2, #sk-c3, #sk-c4, #sk-c5 {
+  transform-origin: 350px 321px;
+}
+
+#sk-c1 { transform: rotate(-16deg) translateX(-60px);  transition: transform .7s cubic-bezier(.25, .46, .45, .94); }
+#sk-c2 { transform: rotate(-8deg)  translateX(-30px);  transition: transform .7s .04s cubic-bezier(.25, .46, .45, .94); }
+#sk-c3 { transform: rotate(0deg);                      transition: transform .7s .08s cubic-bezier(.25, .46, .45, .94); }
+#sk-c4 { transform: rotate(8deg)   translateX(30px);   transition: transform .7s .04s cubic-bezier(.25, .46, .45, .94); }
+#sk-c5 { transform: rotate(16deg)  translateX(60px);   transition: transform .7s cubic-bezier(.25, .46, .45, .94); }
+
+.pc.medium:nth-child(2):hover #sk-c1 { transform: rotate(-26deg) translateX(-180px); transition: transform .75s cubic-bezier(.34, 1.56, .64, 1); }
+.pc.medium:nth-child(2):hover #sk-c2 { transform: rotate(-16deg) translateX(-80px);  transition: transform .75s .04s cubic-bezier(.34, 1.56, .64, 1); }
+.pc.medium:nth-child(2):hover #sk-c3 { transform: rotate(0deg)   translateY(-24px);  transition: transform .75s .08s cubic-bezier(.34, 1.56, .64, 1); }
+.pc.medium:nth-child(2):hover #sk-c4 { transform: rotate(16deg)  translateX(80px);   transition: transform .75s .04s cubic-bezier(.34, 1.56, .64, 1); }
+.pc.medium:nth-child(2):hover #sk-c5 { transform: rotate(26deg)  translateX(180px);  transition: transform .75s cubic-bezier(.34, 1.56, .64, 1); }
+
 /* ── RESPONSIVE ──────────────────────────────────────── */
 @media (max-width: 900px) {
   .proj-grid {

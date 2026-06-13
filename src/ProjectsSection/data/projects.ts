@@ -1,30 +1,30 @@
 import type { JSX } from 'react';
 import type { Project } from '../types';
-import { ArtNexus }  from '../svg/ArtNexus';
-import { ArtCipher } from '../svg/ArtCipher';
-import { ArtEmber }  from '../svg/ArtEmber';
-import { ArtAtlas }  from '../svg/ArtAtlas';
-import { ArtVoid }   from '../svg/ArtVoid';
+import { ArtEventApp } from '../svg/ArtEventApp';
+import { ArtSkullKing } from '../svg/ArtSkullKing';
+import { ArtEmber }    from '../svg/ArtEmber';
+import { ArtAtlas }    from '../svg/ArtAtlas';
+import { ArtVoid }     from '../svg/ArtVoid';
 
 export const PROJECTS: Project[] = [
   {
     idx: 0,
-    num: '01 — FEATURED',
-    type: 'Web App · 2024',
-    title: 'NEXUS',
-    sub: 'Full-Stack Platform',
-    desc: 'Real-time collaboration platform with Next.js and WebSockets. 10k+ users, sub-50ms latency globally.',
-    tags: ['Next.js', 'WebSocket', 'PostgreSQL', 'Redis'],
+    num: '01',
+    type: 'App · 2025',
+    title: 'EVENTAPP',
+    sub: 'Event Dashboard',
+    desc: 'Dashboard de gestión de eventos con tarjetas visuales, categorías por color y soporte para usuarios premium.',
+    tags: ['React', 'TypeScript', 'Node.js'],
     size: 'featured',
   },
   {
     idx: 1,
     num: '02',
-    type: 'SaaS · 2024',
-    title: 'CIPHER',
-    sub: 'Security Dashboard',
-    desc: 'Zero-knowledge encrypted analytics. End-to-end cryptography with real-time threat detection.',
-    tags: ['React', 'Node.js', 'Crypto'],
+    type: 'Game · 2024',
+    title: 'SKULL KING',
+    sub: 'Score Tracker',
+    desc: 'Scorer para el juego de cartas Skull King. Calcula puntuaciones por ronda, lleva el historial de partidas y determina al ganador.',
+    tags: ['React', 'TypeScript', 'PWA'],
     size: 'medium',
   },
   {
@@ -60,8 +60,8 @@ export const PROJECTS: Project[] = [
 ];
 
 export const ART_MAP: Record<number, () => JSX.Element> = {
-  0: ArtNexus,
-  1: ArtCipher,
+  0: ArtEventApp,
+  1: ArtSkullKing,
   2: ArtEmber,
   3: ArtAtlas,
   4: ArtVoid,
