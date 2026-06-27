@@ -1,0 +1,375 @@
+.cs {
+  position: relative;
+  padding: var(--space-xxl) var(--space-xl);
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+/* ambient lava glow from bottom */
+.cs::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 55% at 50% 110%, rgba(192, 22, 10, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Floating embers ── */
+.cs-embers {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cs-ember {
+  position: absolute;
+  bottom: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-gold) 0%, var(--color-accent) 40%, transparent 70%);
+  animation: cs-float-up var(--dur, 9s) ease-in var(--delay, 0s) infinite;
+  opacity: 0;
+}
+
+@keyframes cs-float-up {
+  0%   { transform: translateX(0) translateY(0) scale(1); opacity: 0; }
+  10%  { opacity: 0.6; }
+  50%  { transform: translateX(var(--x1, 20px)) translateY(-45vh) scale(0.6); opacity: 0.4; }
+  90%  { opacity: 0.08; }
+  100% { transform: translateX(var(--x2, -20px)) translateY(-95vh) scale(0); opacity: 0; }
+}
+
+/* ── Layout ── */
+.cs-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xxl);
+  align-items: start;
+}
+
+/* ── Left column ── */
+.cs-tagline {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  line-height: 1.05;
+  color: var(--color-text);
+  margin-bottom: var(--space-md);
+  text-transform: uppercase;
+}
+
+.cs-tagline-gradient {
+  display: block;
+  background: linear-gradient(135deg, var(--color-lava) 0%, var(--color-accent) 45%, var(--color-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cs-divider {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(to right, var(--color-accent), transparent);
+  margin-bottom: var(--space-lg);
+  position: relative;
+}
+
+.cs-divider::before {
+  content: '';
+  position: absolute;
+  left: -3px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 5px;
+  height: 5px;
+  background: var(--color-accent);
+  box-shadow: 0 0 6px var(--color-accent);
+}
+
+.cs-bio {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  line-height: 1.75;
+  margin-bottom: var(--space-xl);
+  max-width: 36ch;
+}
+
+/* ── Social links ── */
+.cs-socials {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.cs-social {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  letter-spacing: var(--tracking-normal);
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+  padding: var(--space-xs) 0;
+  width: fit-content;
+}
+
+/* arrow that slides in diagonally from bottom-left */
+.cs-social::after {
+  content: '↗';
+  font-size: 0.8em;
+  line-height: 1;
+  color: var(--color-accent);
+  opacity: 0;
+  transform: translate(-5px, 5px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.cs-social:hover {
+  color: var(--color-accent-light);
+}
+
+.cs-social:hover::after {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.cs-social-icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  flex-shrink: 0;
+  transition: filter 0.3s ease, transform 0.25s ease;
+}
+
+.cs-social:hover .cs-social-icon {
+  filter: drop-shadow(0 0 5px var(--color-accent));
+  transform: scale(1.12);
+}
+
+/* ── Form ── */
+.cs-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.cs-field {
+  position: relative;
+}
+
+.cs-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-xs);
+  transition: color 0.3s ease;
+}
+
+.cs-field:focus-within .cs-label {
+  color: var(--color-accent);
+}
+
+/* valid field */
+.cs-field.is-valid .cs-label { color: var(--color-gold); }
+.cs-field.is-valid .cs-input,
+.cs-field.is-valid .cs-textarea {
+  border-bottom-color: var(--color-gold);
+  box-shadow: 0 3px 0 -1px rgba(255, 165, 0, 0.08);
+}
+
+/* invalid field (email format error) */
+.cs-field.is-invalid .cs-label { color: var(--color-lava); }
+.cs-field.is-invalid .cs-input {
+  border-bottom-color: var(--color-lava);
+  box-shadow: 0 3px 0 -1px rgba(192, 22, 10, 0.1);
+}
+
+/* status icon inside label */
+.cs-field-status {
+  flex-shrink: 0;
+  opacity: 0;
+  transform: scale(0.3) rotate(-20deg);
+  transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  line-height: 1;
+  color: var(--color-gold);
+}
+
+.cs-field-status--err {
+  color: var(--color-lava);
+}
+
+.cs-field.is-valid .cs-field-status,
+.cs-field.is-invalid .cs-field-status--err {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.cs-input,
+.cs-textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-sm) 0;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  -webkit-appearance: none;
+}
+
+.cs-input::placeholder,
+.cs-textarea::placeholder {
+  color: rgba(255, 180, 100, 0.2);
+}
+
+.cs-input:focus,
+.cs-textarea:focus {
+  border-bottom-color: var(--color-accent);
+  box-shadow: 0 3px 0 -1px rgba(255, 101, 32, 0.12);
+}
+
+.cs-textarea {
+  resize: none;
+  min-height: 120px;
+  line-height: 1.7;
+}
+
+/* ── Submit button ── */
+.cs-submit-wrap {
+  padding-top: var(--space-sm);
+}
+
+.cs-submit {
+  position: relative;
+  padding: var(--space-sm) var(--space-xl);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: rgba(255, 150, 80, 0.35);
+  background: transparent;
+  border: 1px solid rgba(255, 101, 32, 0.2);
+  cursor: not-allowed;
+  clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.4s ease;
+  overflow: hidden;
+}
+
+/* base gradient layer — fades in when ready */
+.cs-submit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--color-lava), var(--color-accent));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+/* hover gradient layer */
+.cs-submit::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-gold));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
+.cs-submit span {
+  position: relative;
+  z-index: 1;
+}
+
+/* ready state */
+.cs-submit--ready {
+  color: var(--color-text);
+  border-color: transparent;
+  cursor: pointer;
+  animation: cs-btn-pulse 2.5s ease-in-out infinite;
+}
+
+.cs-submit--ready::before { opacity: 1; }
+
+.cs-submit--ready:hover {
+  transform: translateY(-2px);
+  animation: none;
+  box-shadow: 0 8px 30px rgba(255, 69, 0, 0.4), 0 0 50px rgba(200, 20, 10, 0.2);
+}
+
+.cs-submit--ready:hover::after { opacity: 1; }
+
+@keyframes cs-btn-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 101, 32, 0); }
+  50%       { box-shadow: 0 0 22px 4px rgba(255, 101, 32, 0.35); }
+}
+
+/* ── Sent confirmation ── */
+.cs-sent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-xxl) var(--space-lg);
+  gap: var(--space-md);
+  animation: cs-fade-up 0.7s ease both;
+}
+
+.cs-sent-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cs-sent-title {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  color: var(--color-text);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.cs-sent-sub {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+}
+
+@keyframes cs-fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .cs-inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .cs-bio {
+    max-width: none;
+  }
+}

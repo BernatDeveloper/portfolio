@@ -5,8 +5,9 @@ import ExperienceTimeline from '../ExperienceTimeline/ExperienceTimeline';
 import { useEmberCursor } from '../hooks/useEmberCursor';
 import { useLenis } from '../hooks/useLenis';
 import { SkillSectionComp } from '../SkillsSection';
-import { RitualContactComp } from '../RitualContact';
+// import { RitualContactComp } from '../RitualContact'; // kept for reference
 import { ProjectsSectionComp } from '../ProjectsSection';
+import { ContactSectionComp } from '../ContactSection';
 
 export function AppLayout() {
 
@@ -54,7 +55,8 @@ export function AppLayout() {
 
       <ProjectsSectionComp />
       <SkillSectionComp />
-      <RitualContactComp />
+      {/* <RitualContactComp /> */}
+      <ContactSectionComp />
     </>
   );
 }
