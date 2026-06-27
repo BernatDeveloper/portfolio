@@ -1,8 +1,8 @@
 .st {
   position: relative;
-  display: inline-block;
+  display: block;
   width: 100%;
-  margin: var(--space-xxl) 0 00;
+  margin: var(--space-xxl) 0 0;
   line-height: 1;
   overflow: hidden;
 }

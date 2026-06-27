@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
+  overflow: hidden;
 }
 
 /* ════════════════════════════════════════

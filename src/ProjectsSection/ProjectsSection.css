@@ -1,8 +1,9 @@
 /* ── SECTION ─────────────────────────────────────────── */
 .proj-section {
-  padding: clamp(40px, 6vh, 80px) clamp(24px, 4vw, 72px) clamp(60px, 8vh, 100px);
+  padding: clamp(40px, 6vh, 80px) clamp(24px, 4vw, 100px) clamp(60px, 8vh, 100px);
   background: var(--color-bg);
   position: relative;
+  overflow: hidden;
 }
 
 .proj-section::before {
@@ -19,10 +20,9 @@
 /* ── GRID ────────────────────────────────────────────── */
 .proj-grid {
   display: grid;
-  grid-template-columns: 1.38fr 1fr;
-  grid-template-rows: auto auto auto;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
-  max-width: 1260px;
+  max-width: var(--max-width);
   margin: 0 auto;
   position: relative;
   z-index: 1;
@@ -43,31 +43,27 @@
   box-shadow: 0 0 40px var(--color-glow-soft), inset 0 0 28px rgba(255, 101, 32, .05);
 }
 
-/* sizes */
+/* sizes
+   layout: 1 1 2 2
+           1 1 3 3
+           4 4 5 5
+*/
 .pc.featured {
   grid-column: 1;
   grid-row: span 2;
-  min-height: 520px;
 }
 
 .pc.medium {
   grid-column: 2;
-  min-height: 248px;
+  min-height: clamp(240px, 30vh, 500px);
 }
 
 .pc.small {
-  min-height: 200px;
+  min-height: clamp(200px, 26vh, 420px);
 }
 
-.pc.small:nth-child(4) {
-  grid-column: 1;
-  grid-row: 3;
-}
-
-.pc.small:nth-child(5) {
-  grid-column: 2;
-  grid-row: 3;
-}
+.pc.small:nth-child(4) { grid-column: 1; grid-row: 3; }
+.pc.small:nth-child(5) { grid-column: 2; grid-row: 3; }
 
 /* corner brackets */
 .pc-tl,
@@ -224,15 +220,15 @@
 }
 
 .featured .pc-title {
-  font-size: clamp(34px, 4.2vw, 58px);
+  font-size: clamp(34px, 4.2vw, 80px);
 }
 
 .medium .pc-title {
-  font-size: clamp(20px, 2.4vw, 30px);
+  font-size: clamp(20px, 2.4vw, 42px);
 }
 
 .small .pc-title {
-  font-size: clamp(17px, 1.9vw, 23px);
+  font-size: clamp(17px, 1.9vw, 32px);
 }
 
 .pc-sub {
@@ -241,7 +237,7 @@
   font-weight: 300;
   color: var(--color-text-muted);
   margin-top: 3px;
-  font-size: clamp(12px, 1.3vw, 16px);
+  font-size: clamp(12px, 1.3vw, 20px);
 }
 
 /* summary */
@@ -340,23 +336,15 @@
 @media (max-width: 900px) {
   .proj-grid {
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
   }
 
-  .pc.featured {
-    grid-column: 1;
-    grid-row: auto;
-    min-height: 320px;
-  }
-
-  .pc.medium {
-    grid-column: 1;
-    grid-row: auto;
-  }
+  .pc.featured { grid-column: 1; grid-row: auto; min-height: 320px; }
+  .pc.medium   { grid-column: 1; grid-row: auto; min-height: 220px; }
 
   .pc.small:nth-child(4),
   .pc.small:nth-child(5) {
     grid-column: 1;
     grid-row: auto;
+    min-height: 200px;
   }
 }
