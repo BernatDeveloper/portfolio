@@ -64,12 +64,6 @@ export function ContactSection() {
   return (
     <section className="cs" ref={sectionRef}>
 
-      {/* corner decorations */}
-      <div className="corner corner-tl" />
-      <div className="corner corner-tr" />
-      <div className="corner corner-bl" />
-      <div className="corner corner-br" />
-
       {/* floating ember particles */}
       <div className="cs-embers" aria-hidden="true">
         {embers.map(e => (

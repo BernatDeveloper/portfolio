@@ -8,6 +8,7 @@ import { SkillSectionComp } from '../SkillsSection';
 // import { RitualContactComp } from '../RitualContact'; // kept for reference
 import { ProjectsSectionComp } from '../ProjectsSection';
 import { ContactSectionComp } from '../ContactSection';
+import { Footer }             from '../Footer/Footer';
 
 export function AppLayout() {
 
@@ -57,6 +58,7 @@ export function AppLayout() {
       <SkillSectionComp />
       {/* <RitualContactComp /> */}
       <ContactSectionComp />
+      <Footer />
     </>
   );
 }
