@@ -9,14 +9,14 @@ import { SkillSectionComp } from '../SkillsSection';
 import { ProjectsSectionComp } from '../ProjectsSection';
 import { ContactSectionComp } from '../ContactSection';
 import { Footer }             from '../Footer/Footer';
+import { LanguageProvider }   from '../i18n/LanguageContext';
 
-export function AppLayout() {
-
+function AppLayoutInner() {
   const [loadProgress, setLoadProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [heroVisible, setHeroVisible] = useState(false);
   const [loaderGone, setLoaderGone] = useState(false);
-  
+
   useEmberCursor();
   useLenis();
 
@@ -60,5 +60,13 @@ export function AppLayout() {
       <ContactSectionComp />
       <Footer />
     </>
+  );
+}
+
+export function AppLayout() {
+  return (
+    <LanguageProvider>
+      <AppLayoutInner />
+    </LanguageProvider>
   );
 }
