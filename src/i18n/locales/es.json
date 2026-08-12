@@ -20,11 +20,11 @@
   "projects": {
     "EVENTAPP": {
       "sub": "Panel de eventos",
-      "desc": "Dashboard de gestión de eventos con tarjetas visuales, categorías por color y soporte para usuarios premium."
+      "desc": "Panel de gestión de eventos con tarjetas visuales, categorías por color y soporte para usuarios premium."
     },
     "SKULL KING": {
       "sub": "Contador de puntos",
-      "desc": "Scorer para el juego de cartas Skull King. Calcula puntuaciones por ronda, lleva el historial de partidas y determina al ganador."
+      "desc": "Marcador para el juego de cartas Skull King. Calcula puntuaciones por ronda, lleva el historial de partidas y determina al ganador."
     }
   },
 
