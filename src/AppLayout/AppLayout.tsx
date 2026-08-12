@@ -1,4 +1,6 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import i18n from '../i18n/i18n';
 import { Loader } from '../Loader/Loader';
 import { HeroSection } from '../HeroSection/HeroSection';
 import ExperienceTimeline from '../ExperienceTimeline/ExperienceTimeline';
@@ -18,6 +20,12 @@ export function AppLayout() {
 
   useEmberCursor();
   useLenis();
+
+  useEffect(() => {
+    const refresh = () => ScrollTrigger.refresh();
+    i18n.on('languageChanged', refresh);
+    return () => { i18n.off('languageChanged', refresh); };
+  }, []);
 
   const handleProgress = useCallback((pct: number) => {
     setLoadProgress(pct);
