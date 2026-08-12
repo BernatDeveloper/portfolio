@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useScrollLock } from './hooks/useScrollLock';
 import { useSigilAnimation } from './hooks/useSigilAnimation';
 import { useLoaderExit } from './hooks/useLoaderExit';
@@ -20,6 +21,8 @@ export const Loader: React.FC<LoaderProps> = ({
   const dividerRef = useRef<HTMLDivElement>(null);
   const progressWrapRef = useRef<HTMLDivElement>(null);
   const cornersRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  const { t } = useTranslation();
 
   useScrollLock();
   useSigilAnimation(sigilRef, sigilPathRefs);
@@ -50,7 +53,7 @@ export const Loader: React.FC<LoaderProps> = ({
       <div className="loader-content">
 
         <p ref={eyebrowRef} className="loader-eyebrow">
-          Initializing
+          {t('loader.eyebrow')}
         </p>
 
         <Sigil
