@@ -1,4 +1,5 @@
 import { useRef, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useFooterScroll } from './hooks/useFooterScroll';
 import { LangSwitcher }    from '../LangSwitcher/LangSwitcher';
 import './Footer.css';
@@ -19,11 +20,12 @@ export function Footer() {
   const footerRef = useRef<HTMLElement>(null);
   const textRef   = useRef<HTMLDivElement>(null);
   const embers    = useMemo(() => makeEmbers(16), []);
+  const { t } = useTranslation();
 
   useFooterScroll(footerRef, textRef);
 
   return (
-    <footer className="ft" ref={footerRef} aria-label="Site footer">
+    <footer className="ft" ref={footerRef} aria-label={t('footer.ariaLabel')}>
 
       {/* gradient border line + falling embers */}
       <div className="ft-border" aria-hidden="true">
@@ -48,9 +50,9 @@ export function Footer() {
 
       {/* scroll-revealed statement */}
       <div className="ft-statement" ref={textRef}>
-        <p className="ft-line ft-line--main">Fire shapes the finest things.</p>
+        <p className="ft-line ft-line--main">{t('footer.statementMain')}</p>
         <p className="ft-line ft-line--sub">
-          Frontend developer passionate about crafting digital experiences that ignite.
+          {t('footer.statementSub')}
         </p>
       </div>
 
@@ -58,7 +60,7 @@ export function Footer() {
       <div className="ft-bar">
         <span className="ft-copy">© {new Date().getFullYear()} Bernat Font</span>
         <LangSwitcher />
-        <span className="ft-copy ft-copy--muted">Forged with obsession</span>
+        <span className="ft-copy ft-copy--muted">{t('footer.tagline')}</span>
       </div>
 
     </footer>
