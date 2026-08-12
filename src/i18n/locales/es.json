@@ -3,7 +3,6 @@
 
   "hero": {
     "eyebrow": "Desata a la bestia interior",
-    "role": "Desarrollador",
     "ctaPrimary": "Entra en el vacío",
     "ctaSecondary": "Descubre más",
     "stats": { "power": "Poder", "realms": "Reinos", "fear": "Miedo" }
