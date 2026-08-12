@@ -5,6 +5,7 @@ import type { LineData, NodeData, NodeEls } from '../types'
 import { CAT, NODES, CONNS, TRAVEL_DUR } from '../data/nodes'
 import { LAYOUTS } from '../data/layouts'
 import { useEmberCursorHover } from '../../hooks/useEmberCursorHover'
+import i18n from '../../i18n/i18n'
 
 const NS = 'http://www.w3.org/2000/svg'
 
@@ -252,7 +253,7 @@ export function useSkillWeb(refs: Refs) {
         emberLeave()
         const nd  = nm[n.id]
         const cat = CAT[nd.cat]
-        setHint('— hover a node —')
+        setHint(i18n.t('skills.hint'))
 
         gsap.to(bg,  { attr: { r: nd.r, 'stroke-opacity': 0.55, 'stroke-width': 1 }, duration: 0.35 })
         gsap.to(gl1, { attr: { r: nd.r + 10, 'fill-opacity': 0 }, duration: 0.4  })
