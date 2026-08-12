@@ -74,7 +74,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ shouldAnimate }) => {
 
         <h1 className="hero-title">
           <span ref={line1Ref} className="line-1">Bernat</span>
-          <span ref={line2Ref} className="line-2">{t('hero.role')}</span>
+          <span ref={line2Ref} className="line-2">Developer</span>
         </h1>
 
         <div ref={dividerRef} className="hero-divider" />
