@@ -1,0 +1,60 @@
+{
+  "loader": { "eyebrow": "Inicializando" },
+
+  "hero": {
+    "eyebrow": "Desata a la bestia interior",
+    "role": "Desarrollador",
+    "ctaPrimary": "Entra en el vacío",
+    "ctaSecondary": "Descubre más",
+    "stats": { "power": "Poder", "realms": "Reinos", "fear": "Miedo" }
+  },
+
+  "sections": {
+    "projects": { "eyebrow": "Trabajo seleccionado", "title": "Proyectos" },
+    "skills": { "eyebrow": "Con lo que trabajo", "title": "Habilidades" },
+    "contact": { "eyebrow": "Ponte en contacto", "title": "Contacto" }
+  },
+
+  "skills": { "hint": "— pasa el cursor por un nodo —" },
+
+  "projects": {
+    "EVENTAPP": {
+      "sub": "Panel de eventos",
+      "desc": "Panel de gestión de eventos con tarjetas visuales, categorías por color y soporte para usuarios premium."
+    },
+    "SKULL KING": {
+      "sub": "Contador de puntos",
+      "desc": "Marcador para el juego de cartas Skull King. Calcula puntuaciones por ronda, lleva el historial de partidas y determina al ganador."
+    }
+  },
+
+  "contact": {
+    "taglineLine1": "Trabajemos",
+    "taglineLine2": "juntos.",
+    "bio": "Abierto a nuevos proyectos, trabajo freelance y colaboraciones. Envíame un mensaje y te responderé enseguida.",
+    "socialsAriaLabel": "Enlaces sociales",
+    "sentTitle": "Mensaje recibido",
+    "sentSub": "Te responderé pronto.",
+    "form": {
+      "nameLabel": "Nombre",
+      "namePlaceholder": "Tu nombre",
+      "emailLabel": "Email",
+      "emailPlaceholder": "tu@email.com",
+      "messageLabel": "Mensaje",
+      "messagePlaceholder": "Cuéntame sobre tu proyecto…",
+      "submit": "Enviar mensaje"
+    }
+  },
+
+  "footer": {
+    "ariaLabel": "Pie de página",
+    "statementMain": "El fuego forja las mejores cosas.",
+    "statementSub": "Desarrollador frontend apasionado por crear experiencias digitales que encienden.",
+    "tagline": "Forjado con obsesión"
+  },
+
+  "langSwitcher": {
+    "ariaLabel": "Selector de idioma",
+    "switchToPrefix": "Cambiar a"
+  }
+}

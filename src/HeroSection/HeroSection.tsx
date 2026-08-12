@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useEmberCursorHover } from '../hooks/useEmberCursorHover';
 import { useHeroData } from './hooks/useHeroData';
 import './HeroSection.css';
@@ -11,6 +12,7 @@ interface HeroSectionProps {
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ shouldAnimate }) => {
+  const { t } = useTranslation();
   const { embers } = useHeroData();
   const heroRef = useRef<HTMLElement>(null);
 
@@ -68,34 +70,34 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ shouldAnimate }) => {
 
       {/* Main content */}
       <div className="hero-content">
-        <p ref={eyebrowRef} className="hero-eyebrow">Unleash the beast within</p>
+        <p ref={eyebrowRef} className="hero-eyebrow">{t('hero.eyebrow')}</p>
 
         <h1 className="hero-title">
           <span ref={line1Ref} className="line-1">Bernat</span>
-          <span ref={line2Ref} className="line-2">Developer</span>
+          <span ref={line2Ref} className="line-2">{t('hero.role')}</span>
         </h1>
 
         <div ref={dividerRef} className="hero-divider" />
 
         <div ref={ctaRef} className="hero-cta">
           <button className="btn-primary" {...emberHandlers}>
-            <span>Enter the void</span>
+            <span>{t('hero.ctaPrimary')}</span>
           </button>
-          <button className="btn-secondary" {...emberHandlers}>Discover more</button>
+          <button className="btn-secondary" {...emberHandlers}>{t('hero.ctaSecondary')}</button>
         </div>
 
         <div ref={statsRef} className="hero-stats">
           <div className="stat">
             <div className="stat-value">∞</div>
-            <div className="stat-label">Power</div>
+            <div className="stat-label">{t('hero.stats.power')}</div>
           </div>
           <div className="stat">
             <div className="stat-value">VII</div>
-            <div className="stat-label">Realms</div>
+            <div className="stat-label">{t('hero.stats.realms')}</div>
           </div>
           <div className="stat">
             <div className="stat-value">0°</div>
-            <div className="stat-label">Fear</div>
+            <div className="stat-label">{t('hero.stats.fear')}</div>
           </div>
         </div>
       </div>

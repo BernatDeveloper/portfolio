@@ -1,0 +1,60 @@
+{
+  "loader": { "eyebrow": "Initializing" },
+
+  "hero": {
+    "eyebrow": "Unleash the beast within",
+    "role": "Developer",
+    "ctaPrimary": "Enter the void",
+    "ctaSecondary": "Discover more",
+    "stats": { "power": "Power", "realms": "Realms", "fear": "Fear" }
+  },
+
+  "sections": {
+    "projects": { "eyebrow": "Selected work", "title": "Projects" },
+    "skills": { "eyebrow": "What I work with", "title": "Skills" },
+    "contact": { "eyebrow": "Get in touch", "title": "Contact" }
+  },
+
+  "skills": { "hint": "— hover a node —" },
+
+  "projects": {
+    "EVENTAPP": {
+      "sub": "Event Dashboard",
+      "desc": "Event management dashboard with visual cards, color-coded categories and support for premium users."
+    },
+    "SKULL KING": {
+      "sub": "Score Tracker",
+      "desc": "Scorer for the Skull King card game. Calculates round scores, keeps a match history and determines the winner."
+    }
+  },
+
+  "contact": {
+    "taglineLine1": "Let's work",
+    "taglineLine2": "together.",
+    "bio": "Open to new projects, freelance work and collaborations. Drop me a message and I'll get back to you shortly.",
+    "socialsAriaLabel": "Social links",
+    "sentTitle": "Message received",
+    "sentSub": "I'll be in touch soon.",
+    "form": {
+      "nameLabel": "Name",
+      "namePlaceholder": "Your name",
+      "emailLabel": "Email",
+      "emailPlaceholder": "your@email.com",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Tell me about your project…",
+      "submit": "Send message"
+    }
+  },
+
+  "footer": {
+    "ariaLabel": "Site footer",
+    "statementMain": "Fire shapes the finest things.",
+    "statementSub": "Frontend developer passionate about crafting digital experiences that ignite.",
+    "tagline": "Forged with obsession"
+  },
+
+  "langSwitcher": {
+    "ariaLabel": "Language selector",
+    "switchToPrefix": "Switch to"
+  }
+}

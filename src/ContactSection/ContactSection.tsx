@@ -1,4 +1,5 @@
 import React, { useRef, useState, useMemo } from 'react';
+import { useTranslation }      from 'react-i18next';
 import { useEmberCursorHover } from '../hooks/useEmberCursorHover';
 import { useContactEntrance }  from './hooks/useContactEntrance';
 import { SOCIAL_LINKS }        from './data/socialLinks';
@@ -29,6 +30,7 @@ export function ContactSection() {
 
   const embers        = useMemo(() => makeEmbers(8), []);
   const emberHandlers = useEmberCursorHover();
+  const { t } = useTranslation();
 
   useContactEntrance(sectionRef, leftRef, rightRef);
 
@@ -88,18 +90,17 @@ export function ContactSection() {
         {/* ── Left: tagline + socials ── */}
         <div className="cs-info" ref={leftRef}>
           <h2 className="cs-tagline">
-            Let's work<br />
-            <span className="cs-tagline-gradient">together.</span>
+            {t('contact.taglineLine1')}<br />
+            <span className="cs-tagline-gradient">{t('contact.taglineLine2')}</span>
           </h2>
 
           <div className="cs-divider" />
 
           <p className="cs-bio">
-            Open to new projects, freelance work and collaborations.
-            Drop me a message and I'll get back to you shortly.
+            {t('contact.bio')}
           </p>
 
-          <nav className="cs-socials" aria-label="Social links">
+          <nav className="cs-socials" aria-label={t('contact.socialsAriaLabel')}>
             {SOCIAL_LINKS.map(s => (
               <a
                 key={s.id}
@@ -129,15 +130,15 @@ export function ContactSection() {
           {sent ? (
             <div className="cs-sent" role="status">
               <p className="cs-sent-icon" aria-hidden="true">✦</p>
-              <p className="cs-sent-title">Message received</p>
-              <p className="cs-sent-sub">I'll be in touch soon.</p>
+              <p className="cs-sent-title">{t('contact.sentTitle')}</p>
+              <p className="cs-sent-sub">{t('contact.sentSub')}</p>
             </div>
           ) : (
             <form className="cs-form" onSubmit={handleSubmit} noValidate>
 
               <div className={fieldClass('name')}>
                 <label htmlFor="cs-name" className="cs-label">
-                  Name
+                  {t('contact.form.nameLabel')}
                   {valid.name && (
                     <span className="cs-field-status" aria-hidden="true">✦</span>
                   )}
@@ -146,7 +147,7 @@ export function ContactSection() {
                   id="cs-name"
                   type="text"
                   className="cs-input"
-                  placeholder="Your name"
+                  placeholder={t('contact.form.namePlaceholder')}
                   value={values.name}
                   onChange={onChange('name')}
                   onBlur={onBlur('name')}
@@ -156,7 +157,7 @@ export function ContactSection() {
 
               <div className={fieldClass('email')}>
                 <label htmlFor="cs-email" className="cs-label">
-                  Email
+                  {t('contact.form.emailLabel')}
                   {valid.email
                     ? <span className="cs-field-status" aria-hidden="true">✦</span>
                     : touched.email && values.email.length > 0
@@ -168,7 +169,7 @@ export function ContactSection() {
                   id="cs-email"
                   type="email"
                   className="cs-input"
-                  placeholder="your@email.com"
+                  placeholder={t('contact.form.emailPlaceholder')}
                   value={values.email}
                   onChange={onChange('email')}
                   onBlur={onBlur('email')}
@@ -178,7 +179,7 @@ export function ContactSection() {
 
               <div className={fieldClass('message')}>
                 <label htmlFor="cs-message" className="cs-label">
-                  Message
+                  {t('contact.form.messageLabel')}
                   {valid.message && (
                     <span className="cs-field-status" aria-hidden="true">✦</span>
                   )}
@@ -186,7 +187,7 @@ export function ContactSection() {
                 <textarea
                   id="cs-message"
                   className="cs-textarea"
-                  placeholder="Tell me about your project…"
+                  placeholder={t('contact.form.messagePlaceholder')}
                   value={values.message}
                   onChange={onChange('message')}
                   onBlur={onBlur('message')}
@@ -200,7 +201,7 @@ export function ContactSection() {
                   aria-disabled={!allValid}
                   {...(allValid ? emberHandlers : {})}
                 >
-                  <span>Send message</span>
+                  <span>{t('contact.form.submit')}</span>
                 </button>
               </div>
 

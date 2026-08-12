@@ -1,0 +1,60 @@
+{
+  "loader": { "eyebrow": "Inicialitzant" },
+
+  "hero": {
+    "eyebrow": "Deslliga la bèstia interior",
+    "role": "Desenvolupador",
+    "ctaPrimary": "Entra al buit",
+    "ctaSecondary": "Descobreix més",
+    "stats": { "power": "Poder", "realms": "Regnes", "fear": "Por" }
+  },
+
+  "sections": {
+    "projects": { "eyebrow": "Treball seleccionat", "title": "Projectes" },
+    "skills": { "eyebrow": "Amb què treballo", "title": "Habilitats" },
+    "contact": { "eyebrow": "Posa't en contacte", "title": "Contacte" }
+  },
+
+  "skills": { "hint": "— passa el cursor per un node —" },
+
+  "projects": {
+    "EVENTAPP": {
+      "sub": "Panell d'esdeveniments",
+      "desc": "Panell de gestió d'esdeveniments amb targetes visuals, categories per color i suport per a usuaris premium."
+    },
+    "SKULL KING": {
+      "sub": "Comptador de punts",
+      "desc": "Marcador per al joc de cartes Skull King. Calcula puntuacions per ronda, guarda l'historial de partides i determina el guanyador."
+    }
+  },
+
+  "contact": {
+    "taglineLine1": "Treballem",
+    "taglineLine2": "junts.",
+    "bio": "Obert a nous projectes, treball freelance i col·laboracions. Envia'm un missatge i et respondré de seguida.",
+    "socialsAriaLabel": "Enllaços socials",
+    "sentTitle": "Missatge rebut",
+    "sentSub": "Et respondré aviat.",
+    "form": {
+      "nameLabel": "Nom",
+      "namePlaceholder": "El teu nom",
+      "emailLabel": "Email",
+      "emailPlaceholder": "tu@email.com",
+      "messageLabel": "Missatge",
+      "messagePlaceholder": "Explica'm sobre el teu projecte…",
+      "submit": "Envia el missatge"
+    }
+  },
+
+  "footer": {
+    "ariaLabel": "Peu de pàgina",
+    "statementMain": "El foc forja les millors coses.",
+    "statementSub": "Desenvolupador frontend apassionat per crear experiències digitals que encenen.",
+    "tagline": "Forjat amb obsessió"
+  },
+
+  "langSwitcher": {
+    "ariaLabel": "Selector d'idioma",
+    "switchToPrefix": "Canvia a"
+  }
+}

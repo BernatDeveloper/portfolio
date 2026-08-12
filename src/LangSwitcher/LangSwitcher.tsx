@@ -1,4 +1,6 @@
-import { useLang, type Lang } from '../i18n/LanguageContext';
+import { useTranslation } from 'react-i18next';
+import { useEmberCursorHover } from '../hooks/useEmberCursorHover';
+import type { Lang } from '../i18n/i18n';
 import './LangSwitcher.css';
 
 const LANGS: { code: Lang; label: string }[] = [
@@ -8,17 +10,23 @@ const LANGS: { code: Lang; label: string }[] = [
 ];
 
 export function LangSwitcher() {
-  const { lang, setLang } = useLang();
+  const { t, i18n } = useTranslation();
+  const emberHandlers = useEmberCursorHover();
 
   return (
-    <div className="ls" role="group" aria-label="Language selector">
+    <div
+      className="ls"
+      role="group"
+      aria-label={t('langSwitcher.ariaLabel')}
+      {...emberHandlers}
+    >
       {LANGS.map(({ code, label }, i) => (
         <button
           key={code}
-          className={`ls-btn${lang === code ? ' ls-btn--active' : ''}`}
-          onClick={() => setLang(code)}
-          aria-pressed={lang === code}
-          aria-label={`Switch to ${label}`}
+          className={`ls-btn${i18n.language === code ? ' ls-btn--active' : ''}`}
+          onClick={() => i18n.changeLanguage(code)}
+          aria-pressed={i18n.language === code}
+          aria-label={`${t('langSwitcher.switchToPrefix')} ${label}`}
         >
           {label}
           {i < LANGS.length - 1 && (

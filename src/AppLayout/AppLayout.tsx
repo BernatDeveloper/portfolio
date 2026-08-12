@@ -1,4 +1,6 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import i18n from '../i18n/i18n';
 import { Loader } from '../Loader/Loader';
 import { HeroSection } from '../HeroSection/HeroSection';
 import ExperienceTimeline from '../ExperienceTimeline/ExperienceTimeline';
@@ -9,9 +11,8 @@ import { SkillSectionComp } from '../SkillsSection';
 import { ProjectsSectionComp } from '../ProjectsSection';
 import { ContactSectionComp } from '../ContactSection';
 import { Footer }             from '../Footer/Footer';
-import { LanguageProvider }   from '../i18n/LanguageContext';
 
-function AppLayoutInner() {
+export function AppLayout() {
   const [loadProgress, setLoadProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [heroVisible, setHeroVisible] = useState(false);
@@ -19,6 +20,12 @@ function AppLayoutInner() {
 
   useEmberCursor();
   useLenis();
+
+  useEffect(() => {
+    const refresh = () => ScrollTrigger.refresh();
+    i18n.on('languageChanged', refresh);
+    return () => { i18n.off('languageChanged', refresh); };
+  }, []);
 
   const handleProgress = useCallback((pct: number) => {
     setLoadProgress(pct);
@@ -60,13 +67,5 @@ function AppLayoutInner() {
       <ContactSectionComp />
       <Footer />
     </>
-  );
-}
-
-export function AppLayout() {
-  return (
-    <LanguageProvider>
-      <AppLayoutInner />
-    </LanguageProvider>
   );
 }
