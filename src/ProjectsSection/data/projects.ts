@@ -59,6 +59,11 @@ export const PROJECTS: Project[] = [
   },
 ];
 
+export const PROJECT_I18N_KEYS: Partial<Record<number, string>> = {
+  0: 'EVENTAPP',
+  1: 'SKULL KING',
+};
+
 export const ART_MAP: Record<number, () => JSX.Element> = {
   0: ArtEventApp,
   1: ArtSkullKing,
