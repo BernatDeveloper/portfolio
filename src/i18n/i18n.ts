@@ -13,7 +13,15 @@ function isSupportedLang(value: string | null): value is Lang {
   return (SUPPORTED_LANGS as readonly string[]).includes(value ?? '');
 }
 
-const stored = localStorage.getItem(STORAGE_KEY);
+function safeGetStoredLang(): string | null {
+  try {
+    return localStorage.getItem(STORAGE_KEY);
+  } catch {
+    return null;
+  }
+}
+
+const stored = safeGetStoredLang();
 const initialLang: Lang = isSupportedLang(stored) ? stored : 'es';
 
 void i18n.use(initReactI18next).init({
@@ -30,7 +38,12 @@ void i18n.use(initReactI18next).init({
 document.documentElement.lang = initialLang;
 
 i18n.on('languageChanged', (lng) => {
-  localStorage.setItem(STORAGE_KEY, lng);
+  try {
+    localStorage.setItem(STORAGE_KEY, lng);
+  } catch {
+    // Storage unavailable (e.g. locked-down browser mode) — language still
+    // applies for this session, just isn't persisted.
+  }
   document.documentElement.lang = lng;
 });
 
