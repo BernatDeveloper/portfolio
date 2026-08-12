@@ -36,20 +36,6 @@
   color: var(--color-accent);
 }
 
-/* glow dot under active */
-.ls-btn--active::after {
-  content: '';
-  position: absolute;
-  bottom: 4px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: var(--color-accent);
-  box-shadow: 0 0 6px var(--color-accent);
-}
-
 .ls-divider {
   display: block;
   width: 1px;
