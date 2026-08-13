@@ -4,10 +4,10 @@ import { ArtEventApp } from '../svg/ArtEventApp';
 import { ArtSkullKing } from '../svg/ArtSkullKing';
 import { ArtEmber }    from '../svg/ArtEmber';
 import { ArtPulse }    from '../svg/ArtPulse';
-import { ArtForge }    from '../svg/ArtForge';
-import { ArtCipher }   from '../svg/ArtCipher';
 import { ArtBrand }    from '../svg/ArtBrand';
 import { ArtTiger }    from '../svg/ArtTiger';
+import { ArtReactTs }  from '../svg/ArtReactTs';
+import { ArtCampfire } from '../svg/ArtCampfire';
 
 export const PROJECTS: Project[] = [
   {
@@ -104,6 +104,6 @@ export const ART_MAP: Record<number, () => JSX.Element> = {
   3: ArtBrand,
   4: ArtTiger,
   5: ArtPulse,
-  6: ArtForge,
-  7: ArtCipher,
+  6: ArtReactTs,
+  7: ArtCampfire,
 };
