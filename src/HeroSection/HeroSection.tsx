@@ -104,7 +104,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ shouldAnimate }) => {
         </div>
 
         <div ref={statsRef} className="hero-socials">
-          <svg width="0" height="0" aria-hidden="true">
+          <svg width="0" height="0" aria-hidden="true" style={{ position: 'absolute' }}>
             <defs>
               <linearGradient id="hero-social-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="var(--color-lava)" />
