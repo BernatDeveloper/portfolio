@@ -136,6 +136,12 @@
   height: 100%;
 }
 
+/* Logo tiles hold a distinct mark, not an abstract tiling pattern — give
+   it breathing room and let it show whole (no edge-to-edge crop). */
+.pc--logo .pc-art {
+  inset: 16%;
+}
+
 .pc:hover .pc-art {
   filter: brightness(1.7) saturate(1.25);
 }
