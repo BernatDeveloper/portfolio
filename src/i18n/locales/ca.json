@@ -28,7 +28,7 @@
 
   "experience": {
     "FP_DAW": {
-      "year": "SET 2022",
+      "year": "SET 2022 – JUN 2024",
       "role": "CFGS DAW · Desenvolupament d'Aplicacions Web",
       "desc": "Formació de grau superior en desenvolupament web full-stack: HTML, CSS, JavaScript i bases de dades com a fonaments de l'ofici, amb Vue i Laravel en projectes aplicats."
     },
@@ -38,7 +38,7 @@
       "desc": "Desenvolupament de Power Pages amb HTML, CSS, JavaScript i Liquid, i noves funcionalitats a l'ERP amb C/AL sobre Microsoft Dynamics NAV."
     },
     "MASTER": {
-      "year": "OCT 2024",
+      "year": "OCT 2024 – JUL 2025",
       "role": "Màster en Desenvolupament Web Avançat",
       "desc": "Especialització full-stack amb React i Node.js, aprofundint en arquitectura de software i bones pràctiques modernes."
     },

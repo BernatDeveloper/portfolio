@@ -5,7 +5,7 @@ import type { Experience } from "../types";
 export const experiences: Experience[] = [
     {
         id: "FP_DAW",
-        year: "SEP 2022",
+        year: "SEP 2022 – JUN 2024",
         company: "Institut Bernat el Ferrer",
         role: "FP DAW · Desarrollo de Aplicaciones Web",
         desc: "Formación de grado superior en desarrollo web full-stack: HTML, CSS, JavaScript y bases de datos como cimientos del oficio, con Vue y Laravel en proyectos aplicados.",
@@ -21,7 +21,7 @@ export const experiences: Experience[] = [
     },
     {
         id: "MASTER",
-        year: "OCT 2024",
+        year: "OCT 2024 – JUL 2025",
         company: "Nett Digital School",
         role: "Máster en Desarrollo Web Avanzado",
         desc: "Especialización full-stack con React y Node.js, profundizando en arquitectura de software y buenas prácticas modernas.",
