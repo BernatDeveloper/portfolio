@@ -5,6 +5,9 @@ import { ArtSkullKing } from '../svg/ArtSkullKing';
 import { ArtEmber }    from '../svg/ArtEmber';
 import { ArtAtlas }    from '../svg/ArtAtlas';
 import { ArtVoid }     from '../svg/ArtVoid';
+import { ArtPulse }    from '../svg/ArtPulse';
+import { ArtForge }    from '../svg/ArtForge';
+import { ArtCipher }   from '../svg/ArtCipher';
 
 export const PROJECTS: Project[] = [
   {
@@ -57,6 +60,36 @@ export const PROJECTS: Project[] = [
     tags: ['Go', 'Redis', 'Docker'],
     size: 'small',
   },
+  {
+    idx: 5,
+    num: '06',
+    type: 'Dashboard · 2024',
+    title: 'PULSE',
+    sub: 'Realtime Analytics',
+    desc: 'Live metrics dashboard tracking user engagement across 40+ product surfaces with sub-second updates.',
+    tags: ['Vue', 'WebSocket', 'ClickHouse'],
+    size: 'medium',
+  },
+  {
+    idx: 6,
+    num: '07',
+    type: 'Tool · 2022',
+    title: 'FORGE',
+    sub: 'CI/CD Pipeline',
+    desc: 'Automated build and deployment pipeline with parallel job execution and one-click rollback.',
+    tags: ['Go', 'Docker', 'GitHub Actions'],
+    size: 'small',
+  },
+  {
+    idx: 7,
+    num: '08',
+    type: 'Service · 2021',
+    title: 'CIPHER',
+    sub: 'Auth Gateway',
+    desc: 'Zero-trust authentication service handling 2M+ daily logins with adaptive multi-factor auth.',
+    tags: ['Rust', 'PostgreSQL', 'OAuth2'],
+    size: 'small',
+  },
 ];
 
 export const PROJECT_I18N_KEYS: Partial<Record<number, string>> = {
@@ -70,4 +103,7 @@ export const ART_MAP: Record<number, () => JSX.Element> = {
   2: ArtEmber,
   3: ArtAtlas,
   4: ArtVoid,
+  5: ArtPulse,
+  6: ArtForge,
+  7: ArtCipher,
 };
