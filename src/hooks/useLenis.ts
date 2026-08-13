@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 let activeLenis: Lenis | null = null;
 
 /** Smooth-scrolls to a target through the app's single Lenis instance. No-op before it mounts. */
-export function scrollToLenis(target: string | HTMLElement): void {
+export function scrollToLenis(target: string | number | HTMLElement): void {
     activeLenis?.scrollTo(target);
 }
 

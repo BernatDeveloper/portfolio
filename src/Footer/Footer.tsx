@@ -2,6 +2,8 @@ import { useRef, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useFooterScroll } from './hooks/useFooterScroll';
 import { LangSwitcher }    from '../LangSwitcher/LangSwitcher';
+import { scrollToLenis }   from '../hooks/useLenis';
+import { useEmberCursorHover } from '../hooks/useEmberCursorHover';
 import './Footer.css';
 
 function makeEmbers(n: number) {
@@ -21,6 +23,7 @@ export function Footer() {
   const textRef   = useRef<HTMLDivElement>(null);
   const embers    = useMemo(() => makeEmbers(16), []);
   const { t } = useTranslation();
+  const emberHandlers = useEmberCursorHover();
 
   useFooterScroll(footerRef, textRef);
 
@@ -60,7 +63,18 @@ export function Footer() {
       <div className="ft-bar">
         <span className="ft-copy">© {new Date().getFullYear()} Bernat Font</span>
         <LangSwitcher />
-        <span className="ft-copy ft-copy--muted">{t('footer.tagline')}</span>
+        <button
+          type="button"
+          className="ft-top"
+          onClick={() => scrollToLenis(0)}
+          {...emberHandlers}
+        >
+          <span>{t('footer.backToTop')}</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M12 19V5" />
+            <path d="M5 12l7-7 7 7" />
+          </svg>
+        </button>
       </div>
 
     </footer>

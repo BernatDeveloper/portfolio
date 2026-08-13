@@ -5,7 +5,7 @@ import { useProjectCardHover } from '../hooks/useProjectCardHover';
 import { useEmberCursorHover } from '../../hooks/useEmberCursorHover';
 
 export function ProjectCard({ project }: { project: Project }) {
-  const cardRef = useRef<HTMLAnchorElement>(null);
+  const cardRef = useRef<HTMLElement>(null);
   const { handleMouseEnter } = useProjectCardHover(cardRef);
   const { onMouseEnter: emberEnter, onMouseLeave: emberLeave } = useEmberCursorHover();
   const ArtComponent = ART_MAP[project.idx];
@@ -14,18 +14,11 @@ export function ProjectCard({ project }: { project: Project }) {
   // art only, no title/description/hover panel.
   const isLogo = project.size === 'small';
 
-  // Always an <a> — without href it's a plain non-interactive container
-  // (same effective behavior as the <article> this replaces), and with
-  // href it's a real link. Avoids a dynamically-typed JSX tag, which
-  // TypeScript can't type well against a single ref.
   return (
-    <a
+    <article
       ref={cardRef}
       className={`pc ${project.size}${isLogo ? ' pc--logo' : ''}`}
       data-idx={project.idx}
-      href={project.url}
-      target={project.url ? '_blank' : undefined}
-      rel={project.url ? 'noopener noreferrer' : undefined}
       onMouseEnter={() => { handleMouseEnter(); emberEnter(); }}
       onMouseLeave={emberLeave}
     >
@@ -49,15 +42,31 @@ export function ProjectCard({ project }: { project: Project }) {
             <div className="pc-summary">
               <div className="pc-summary-divider" />
               <p className="pc-desc">{project.desc}</p>
-              <div className="pc-tags">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="pc-tag">{tag}</span>
-                ))}
+              <div className="pc-tags-row">
+                <div className="pc-tags">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="pc-tag">{tag}</span>
+                  ))}
+                </div>
+                {project.url && (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="pc-link"
+                    aria-label={`Visit ${project.title}`}
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M7 17L17 7" />
+                      <path d="M7 7h10v10" />
+                    </svg>
+                  </a>
+                )}
               </div>
             </div>
           </div>
         </>
       )}
-    </a>
+    </article>
   );
 }

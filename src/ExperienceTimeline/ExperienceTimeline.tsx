@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTranslation } from "react-i18next";
 
 import { experiences } from "./data/experience";
 import { buildZigzagPath } from "./utils/zigZagPath";
@@ -28,6 +29,13 @@ export default function ExperienceTimeline({
   onLoaded,
 }: ExperienceTimelineProps) {
     const isMobile = window.innerWidth <= MOBILE_BP;
+    const { t } = useTranslation();
+    const translatedExperiences = experiences.map((exp) => ({
+        ...exp,
+        year: t(`experience.${exp.id}.year`, { defaultValue: exp.year }),
+        role: t(`experience.${exp.id}.role`, { defaultValue: exp.role }),
+        desc: t(`experience.${exp.id}.desc`, { defaultValue: exp.desc }),
+    }));
 
     const canvasRef      = useRef<HTMLCanvasElement>(null);
     const imagesRef      = useRef<(HTMLImageElement | null)[]>(
@@ -352,9 +360,9 @@ export default function ExperienceTimeline({
                             />
                         </svg>
 
-                        {experiences.map((exp, i) => (
+                        {translatedExperiences.map((exp, i) => (
                             <Card
-                                key={exp.year}
+                                key={exp.id}
                                 exp={exp}
                                 visible={visibleNodes[i]}
                                 nodeRef={nodeRefs.current[i] as React.RefObject<HTMLDivElement>}

@@ -138,6 +138,35 @@
   opacity: 0.45;
 }
 
+.ft-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.ft-top:hover {
+  color: var(--color-accent);
+}
+
+.ft-top svg {
+  width: 12px;
+  height: 12px;
+  transition: transform 0.3s ease;
+}
+
+.ft-top:hover svg {
+  transform: translateY(-2px);
+}
+
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .ft-border::before {

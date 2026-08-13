@@ -23,6 +23,33 @@
     "SKULL KING": {
       "sub": "Contador de puntos",
       "desc": "Marcador para el juego de cartas Skull King. Calcula puntuaciones por ronda, lleva el historial de partidas y determina al ganador."
+    },
+    "GYMTRACKER": {
+      "sub": "Seguimiento de entrenos",
+      "desc": "Registra tus rutinas de entrenamiento, consulta el historial y controla tus récords personales. Funciona offline como PWA instalable."
+    }
+  },
+
+  "experience": {
+    "FP_DAW": {
+      "year": "SEP 2022 – JUN 2024",
+      "role": "FP DAW · Desarrollo de Aplicaciones Web",
+      "desc": "Formación de grado superior en desarrollo web full-stack: HTML, CSS, JavaScript y bases de datos como cimientos del oficio, con Vue y Laravel en proyectos aplicados."
+    },
+    "ELADIET": {
+      "year": "OCT 2023 – JUL 2024",
+      "role": "Programador",
+      "desc": "Desarrollo de Power Pages con HTML, CSS, JavaScript y Liquid, y nuevas funcionalidades en el ERP con C/AL sobre Microsoft Dynamics NAV."
+    },
+    "MASTER": {
+      "year": "OCT 2024 – JUL 2025",
+      "role": "Máster en Desarrollo Web Avanzado",
+      "desc": "Especialización full-stack con React y Node.js, profundizando en arquitectura de software y buenas prácticas modernas."
+    },
+    "DATALAB": {
+      "year": "OCT 2025 – ACTUALIDAD",
+      "role": "Desarrollador de Software",
+      "desc": "Desarrollo de nuevas funcionalidades en el ERP corporativo con Java, JavaScript y GWT, y refactorización de módulos existentes preservando su mantenibilidad."
     }
   },
 
@@ -40,15 +67,23 @@
       "emailPlaceholder": "tu@email.com",
       "messageLabel": "Mensaje",
       "messagePlaceholder": "Cuéntame sobre tu proyecto…",
-      "submit": "Enviar mensaje"
+      "submit": "Enviar mensaje",
+      "sending": "Enviando…",
+      "error": "Algo ha ido mal. Inténtalo de nuevo en un momento."
     }
+  },
+
+  "social": {
+    "whatsappMessage": "¡Hola Bernat! Vi tu portfolio y me gustaría hablar contigo sobre un proyecto.",
+    "emailSubject": "Contacto desde tu portfolio",
+    "emailBody": "¡Hola Bernat!\n\n"
   },
 
   "footer": {
     "ariaLabel": "Pie de página",
-    "statementMain": "El fuego forja las mejores cosas.",
+    "statementMain": "Código bien construido, pensado para durar.",
     "statementSub": "Desarrollador frontend apasionado por crear experiencias digitales que encienden.",
-    "tagline": "Forjado con obsesión"
+    "backToTop": "Volver arriba"
   },
 
   "langSwitcher": {

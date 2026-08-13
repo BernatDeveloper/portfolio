@@ -23,6 +23,33 @@
     "SKULL KING": {
       "sub": "Comptador de punts",
       "desc": "Marcador per al joc de cartes Skull King. Calcula puntuacions per ronda, guarda l'historial de partides i determina el guanyador."
+    },
+    "GYMTRACKER": {
+      "sub": "Seguiment d'entrenaments",
+      "desc": "Registra les teves rutines d'entrenament, consulta l'historial i controla els teus rècords personals. Funciona offline com a PWA instal·lable."
+    }
+  },
+
+  "experience": {
+    "FP_DAW": {
+      "year": "SET 2022 – JUN 2024",
+      "role": "CFGS DAW · Desenvolupament d'Aplicacions Web",
+      "desc": "Formació de grau superior en desenvolupament web full-stack: HTML, CSS, JavaScript i bases de dades com a fonaments de l'ofici, amb Vue i Laravel en projectes aplicats."
+    },
+    "ELADIET": {
+      "year": "OCT 2023 – JUL 2024",
+      "role": "Programador",
+      "desc": "Desenvolupament de Power Pages amb HTML, CSS, JavaScript i Liquid, i noves funcionalitats a l'ERP amb C/AL sobre Microsoft Dynamics NAV."
+    },
+    "MASTER": {
+      "year": "OCT 2024 – JUL 2025",
+      "role": "Màster en Desenvolupament Web Avançat",
+      "desc": "Especialització full-stack amb React i Node.js, aprofundint en arquitectura de software i bones pràctiques modernes."
+    },
+    "DATALAB": {
+      "year": "OCT 2025 – ACTUALITAT",
+      "role": "Desenvolupador de Software",
+      "desc": "Desenvolupament de noves funcionalitats a l'ERP corporatiu amb Java, JavaScript i GWT, i refactorització de mòduls existents preservant-ne la mantenibilitat."
     }
   },
 
@@ -40,15 +67,23 @@
       "emailPlaceholder": "tu@email.com",
       "messageLabel": "Missatge",
       "messagePlaceholder": "Explica'm sobre el teu projecte…",
-      "submit": "Envia el missatge"
+      "submit": "Envia el missatge",
+      "sending": "Enviant…",
+      "error": "Alguna cosa ha anat malament. Torna-ho a provar d'aquí un moment."
     }
+  },
+
+  "social": {
+    "whatsappMessage": "Hola Bernat! He vist el teu portfolio i m'agradaria parlar amb tu sobre un projecte.",
+    "emailSubject": "Contacte des del teu portfolio",
+    "emailBody": "Hola Bernat,\n\n"
   },
 
   "footer": {
     "ariaLabel": "Peu de pàgina",
-    "statementMain": "El foc forja les millors coses.",
+    "statementMain": "Codi ben construït, pensat per durar.",
     "statementSub": "Desenvolupador frontend apassionat per crear experiències digitals que encenen.",
-    "tagline": "Forjat amb obsessió"
+    "backToTop": "Tornar amunt"
   },
 
   "langSwitcher": {

@@ -2,10 +2,11 @@ import React, { useRef, useState, useMemo } from 'react';
 import { useTranslation }      from 'react-i18next';
 import { useEmberCursorHover } from '../hooks/useEmberCursorHover';
 import { useContactEntrance }  from './hooks/useContactEntrance';
-import { SOCIAL_LINKS }        from '../data/socialLinks';
+import { SOCIAL_LINKS, getSocialHref } from '../data/socialLinks';
 import './ContactSection.css';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY as string | undefined;
 
 function makeEmbers(n: number) {
   return Array.from({ length: n }, (_, i) => ({
@@ -26,7 +27,7 @@ export function ContactSection() {
 
   const [values,  setValues]  = useState({ name: '', email: '', message: '' });
   const [touched, setTouched] = useState({ name: false, email: false, message: false });
-  const [sent,    setSent]    = useState(false);
+  const [status,  setStatus]  = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
   const embers        = useMemo(() => makeEmbers(8), []);
   const emberHandlers = useEmberCursorHover();
@@ -57,10 +58,29 @@ export function ContactSection() {
     return () => setTouched(prev => ({ ...prev, [key]: true }));
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!allValid) return;
-    setSent(true);
+    if (!allValid || status === 'sending') return;
+
+    setStatus('sending');
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `New portfolio contact from ${values.name}`,
+          name: values.name,
+          email: values.email,
+          message: values.message,
+        }),
+      });
+      const data = await res.json();
+      setStatus(data.success ? 'sent' : 'error');
+    } catch {
+      setStatus('error');
+    }
   }
 
   return (
@@ -104,7 +124,7 @@ export function ContactSection() {
             {SOCIAL_LINKS.map(s => (
               <a
                 key={s.id}
-                href={s.href}
+                href={getSocialHref(s, t)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="cs-social"
@@ -127,7 +147,7 @@ export function ContactSection() {
 
         {/* ── Right: form ── */}
         <div ref={rightRef}>
-          {sent ? (
+          {status === 'sent' ? (
             <div className="cs-sent" role="status">
               <p className="cs-sent-icon" aria-hidden="true">✦</p>
               <p className="cs-sent-title">{t('contact.sentTitle')}</p>
@@ -198,11 +218,17 @@ export function ContactSection() {
                 <button
                   type="submit"
                   className={`cs-submit${allValid ? ' cs-submit--ready' : ''}`}
-                  aria-disabled={!allValid}
+                  aria-disabled={!allValid || status === 'sending'}
+                  disabled={status === 'sending'}
                   {...(allValid ? emberHandlers : {})}
                 >
-                  <span>{t('contact.form.submit')}</span>
+                  <span>
+                    {status === 'sending' ? t('contact.form.sending') : t('contact.form.submit')}
+                  </span>
                 </button>
+                {status === 'error' && (
+                  <p className="cs-error" role="alert">{t('contact.form.error')}</p>
+                )}
               </div>
 
             </form>

@@ -23,6 +23,33 @@
     "SKULL KING": {
       "sub": "Score Tracker",
       "desc": "Scorer for the Skull King card game. Calculates round scores, keeps a match history and determines the winner."
+    },
+    "GYMTRACKER": {
+      "sub": "Workout Tracker",
+      "desc": "Log your workout routines, check your history and track your personal records. Works offline as an installable PWA."
+    }
+  },
+
+  "experience": {
+    "FP_DAW": {
+      "year": "SEP 2022 – JUN 2024",
+      "role": "Higher Diploma in Web Application Development (DAW)",
+      "desc": "Higher vocational training in full-stack web development: HTML, CSS, JavaScript and databases as the craft's foundation, with Vue and Laravel in applied projects."
+    },
+    "ELADIET": {
+      "year": "OCT 2023 – JUL 2024",
+      "role": "Developer",
+      "desc": "Built Power Pages with HTML, CSS, JavaScript and Liquid, and new ERP features in C/AL on Microsoft Dynamics NAV."
+    },
+    "MASTER": {
+      "year": "OCT 2024 – JUL 2025",
+      "role": "Master's in Advanced Web Development",
+      "desc": "Full-stack specialization with React and Node.js, deepening software architecture and modern best practices."
+    },
+    "DATALAB": {
+      "year": "OCT 2025 – PRESENT",
+      "role": "Software Developer",
+      "desc": "Building new features for the corporate ERP with Java, JavaScript and GWT, and refactoring existing modules while preserving maintainability."
     }
   },
 
@@ -40,15 +67,23 @@
       "emailPlaceholder": "your@email.com",
       "messageLabel": "Message",
       "messagePlaceholder": "Tell me about your project…",
-      "submit": "Send message"
+      "submit": "Send message",
+      "sending": "Sending…",
+      "error": "Something went wrong. Please try again in a moment."
     }
+  },
+
+  "social": {
+    "whatsappMessage": "Hi Bernat! I saw your portfolio and I'd like to talk to you about a project.",
+    "emailSubject": "Contact from your portfolio",
+    "emailBody": "Hi Bernat,\n\n"
   },
 
   "footer": {
     "ariaLabel": "Site footer",
-    "statementMain": "Fire shapes the finest things.",
+    "statementMain": "Well-built code, made to last.",
     "statementSub": "Frontend developer passionate about crafting digital experiences that ignite.",
-    "tagline": "Forged with obsession"
+    "backToTop": "Back to top"
   },
 
   "langSwitcher": {
