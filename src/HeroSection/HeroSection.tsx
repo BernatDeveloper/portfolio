@@ -104,6 +104,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ shouldAnimate }) => {
         </div>
 
         <div ref={statsRef} className="hero-socials">
+          <svg width="0" height="0" aria-hidden="true">
+            <defs>
+              <linearGradient id="hero-social-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="var(--color-lava)" />
+                <stop offset="100%" stopColor="var(--color-gold)" />
+              </linearGradient>
+            </defs>
+          </svg>
           {HERO_SOCIALS.map((s) => (
             <a
               key={s.id}
@@ -120,8 +128,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ shouldAnimate }) => {
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
               >
-                <path d={s.path} />
+                <path d={s.path} fill="url(#hero-social-gradient)" />
               </svg>
+              <span className="hero-social-label">{s.label}</span>
             </a>
           ))}
         </div>
