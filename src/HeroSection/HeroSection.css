@@ -118,6 +118,10 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  /* Solid backing layer (0 blur/offset) behind the gradient clip — normally fully
+     covered by it, but guards against thin-stroke rendering gaps on this
+     decorative font's swashes (e.g. the final "r") on some GPUs/browsers. */
+  text-shadow: 0 0 0 var(--color-gold);
   filter: drop-shadow(0 0 20px var(--color-accent));
 }
 
@@ -222,31 +226,35 @@
   transform: translateY(-2px);
 }
 
-/* ── Stats row ── */
-.hero-stats {
+/* ── Social links row ── */
+.hero-socials {
   display: flex;
   gap: 3rem;
   margin-top: 1rem;
 }
 
-.stat {
-  text-align: center;
-}
-
-.stat-value {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 1.8rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--color-lava), var(--color-gold));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.stat-label {
-  font-size: 0.65rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
+.hero-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--color-accent);
-  margin-top: 0.2rem;
+  transition: color 0.3s ease, transform 0.25s ease;
+}
+
+.hero-social-link:hover {
+  color: var(--color-gold);
+  transform: translateY(-2px);
+}
+
+.hero-social-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  fill: currentColor;
+  filter: drop-shadow(0 0 8px var(--color-lava));
+  transition: filter 0.3s ease, transform 0.25s ease;
+}
+
+.hero-social-link:hover .hero-social-icon {
+  filter: drop-shadow(0 0 14px var(--color-accent));
+  transform: scale(1.12);
 }
