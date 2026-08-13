@@ -9,7 +9,7 @@ import type { Lang } from '../i18n/i18n';
 import './HeroSection.css';
 import { useHeroEntranceTl } from './hooks/useHeroEntranceTl';
 
-const HERO_SOCIAL_IDS = ['whatsapp', 'linkedin', 'github'];
+const HERO_SOCIAL_IDS = ['linkedin', 'github', 'whatsapp'];
 const HERO_SOCIALS = HERO_SOCIAL_IDS.map(
   (id) => SOCIAL_LINKS.find((s) => s.id === id)!,
 );
