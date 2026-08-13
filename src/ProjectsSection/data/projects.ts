@@ -17,8 +17,9 @@ export const PROJECTS: Project[] = [
     title: 'EVENTAPP',
     sub: 'Event Dashboard',
     desc: 'Plataforma para crear y gestionar eventos: invita participantes, personaliza ubicaciones con mapas interactivos y activa opciones premium.',
-    tags: ['React', 'TypeScript', 'Laravel', 'MySQL'],
+    tags: ['React', 'TS', 'Laravel', 'MySQL'],
     size: 'featured',
+    url: 'https://github.com/BernatDeveloper/eventos-app',
   },
   {
     idx: 1,
@@ -27,8 +28,9 @@ export const PROJECTS: Project[] = [
     title: 'SKULL KING',
     sub: 'Score Tracker',
     desc: 'Scorer para el juego de cartas Skull King. Calcula puntuaciones por ronda, lleva el historial de partidas y determina al ganador.',
-    tags: ['React', 'TypeScript', 'PWA'],
+    tags: ['React', 'TS', 'PWA'],
     size: 'medium',
+    url: 'https://skull-king-nu.vercel.app',
   },
   {
     idx: 2,
