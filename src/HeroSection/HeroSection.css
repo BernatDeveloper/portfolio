@@ -227,7 +227,10 @@
 /* ── Social links row ── */
 .hero-socials {
   display: flex;
-  gap: 3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-lg);
+  padding: 0 var(--space-lg);
   margin-top: 1rem;
 }
 
