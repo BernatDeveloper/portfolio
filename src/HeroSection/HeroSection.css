@@ -114,11 +114,21 @@
 }
 
 .hero-title .line-2 {
+  /* inline-block (not plain inline) so the transform below actually applies */
+  display: inline-block;
   background: linear-gradient(135deg, var(--color-lava) 0%, var(--color-accent) 40%, var(--color-gold) 70%, var(--color-lava) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   filter: drop-shadow(0 0 20px var(--color-accent));
+  /* Force this element onto its own GPU compositing layer. On some GPU/driver
+     combinations, background-clip:text sharing a layer with other painted
+     content can mis-rasterize thin diagonal strokes on decorative fonts
+     (reported: the "R" swash rendering shortened). Isolating the layer is
+     the standard fix for that class of compositing artifact. Uses
+     will-change rather than a static transform so it doesn't fight with
+     GSAP's own transform writes during the entrance animation. */
+  will-change: filter, transform;
 }
 
 /* ── Divider ── */
