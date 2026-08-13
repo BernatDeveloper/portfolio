@@ -18,7 +18,7 @@
   "projects": {
     "EVENTAPP": {
       "sub": "Event Dashboard",
-      "desc": "Event management dashboard with visual cards, color-coded categories and support for premium users."
+      "desc": "Platform for creating and managing events: invite participants, customize locations with interactive maps and unlock premium options."
     },
     "SKULL KING": {
       "sub": "Score Tracker",

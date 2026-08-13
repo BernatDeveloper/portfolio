@@ -16,8 +16,8 @@ export const PROJECTS: Project[] = [
     type: 'App · 2025',
     title: 'EVENTAPP',
     sub: 'Event Dashboard',
-    desc: 'Dashboard de gestión de eventos con tarjetas visuales, categorías por color y soporte para usuarios premium.',
-    tags: ['React', 'TypeScript', 'Node.js'],
+    desc: 'Plataforma para crear y gestionar eventos: invita participantes, personaliza ubicaciones con mapas interactivos y activa opciones premium.',
+    tags: ['React', 'TypeScript', 'Laravel', 'MySQL'],
     size: 'featured',
   },
   {
