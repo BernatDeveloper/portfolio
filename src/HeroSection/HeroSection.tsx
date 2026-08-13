@@ -1,9 +1,18 @@
 import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEmberCursorHover } from '../hooks/useEmberCursorHover';
+import { scrollToLenis } from '../hooks/useLenis';
 import { useHeroData } from './hooks/useHeroData';
+import { CV_FILES } from './data/cvFiles';
+import { SOCIAL_LINKS } from '../data/socialLinks';
+import type { Lang } from '../i18n/i18n';
 import './HeroSection.css';
 import { useHeroEntranceTl } from './hooks/useHeroEntranceTl';
+
+const HERO_SOCIAL_IDS = ['whatsapp', 'linkedin', 'github'];
+const HERO_SOCIALS = HERO_SOCIAL_IDS.map(
+  (id) => SOCIAL_LINKS.find((s) => s.id === id)!,
+);
 
 interface HeroSectionProps {
   /** Cuando pasa a true, dispara la animación de entrada del hero.
@@ -12,11 +21,17 @@ interface HeroSectionProps {
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ shouldAnimate }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { embers } = useHeroData();
   const heroRef = useRef<HTMLElement>(null);
 
   const emberHandlers = useEmberCursorHover();
+  const cvHref = CV_FILES[i18n.language as Lang] ?? CV_FILES.es;
+
+  function handleContactClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.preventDefault();
+    scrollToLenis('#contact');
+  }
 
   const eyebrowRef = useRef<HTMLParagraphElement>(null);
   const line1Ref = useRef<HTMLSpanElement>(null);
@@ -74,31 +89,50 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ shouldAnimate }) => {
 
         <h1 className="hero-title">
           <span ref={line1Ref} className="line-1">Bernat</span>
-          <span ref={line2Ref} className="line-2">{t('hero.role')}</span>
+          <span ref={line2Ref} className="line-2">Developer</span>
         </h1>
 
         <div ref={dividerRef} className="hero-divider" />
 
         <div ref={ctaRef} className="hero-cta">
-          <button className="btn-primary" {...emberHandlers}>
+          <a href="#contact" className="btn-primary" onClick={handleContactClick} {...emberHandlers}>
             <span>{t('hero.ctaPrimary')}</span>
-          </button>
-          <button className="btn-secondary" {...emberHandlers}>{t('hero.ctaSecondary')}</button>
+          </a>
+          <a href={cvHref} download className="btn-secondary" {...emberHandlers}>
+            {t('hero.ctaSecondary')}
+          </a>
         </div>
 
-        <div ref={statsRef} className="hero-stats">
-          <div className="stat">
-            <div className="stat-value">∞</div>
-            <div className="stat-label">{t('hero.stats.power')}</div>
-          </div>
-          <div className="stat">
-            <div className="stat-value">VII</div>
-            <div className="stat-label">{t('hero.stats.realms')}</div>
-          </div>
-          <div className="stat">
-            <div className="stat-value">0°</div>
-            <div className="stat-label">{t('hero.stats.fear')}</div>
-          </div>
+        <div ref={statsRef} className="hero-socials">
+          <svg width="0" height="0" aria-hidden="true">
+            <defs>
+              <linearGradient id="hero-social-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="var(--color-lava)" />
+                <stop offset="100%" stopColor="var(--color-gold)" />
+              </linearGradient>
+            </defs>
+          </svg>
+          {HERO_SOCIALS.map((s) => (
+            <a
+              key={s.id}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero-social-link"
+              aria-label={s.label}
+              {...emberHandlers}
+            >
+              <svg
+                className="hero-social-icon"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path d={s.path} fill="url(#hero-social-gradient)" />
+              </svg>
+              <span className="hero-social-label">{s.label}</span>
+            </a>
+          ))}
         </div>
       </div>
     </section>

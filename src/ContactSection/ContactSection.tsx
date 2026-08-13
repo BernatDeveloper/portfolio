@@ -2,7 +2,7 @@ import React, { useRef, useState, useMemo } from 'react';
 import { useTranslation }      from 'react-i18next';
 import { useEmberCursorHover } from '../hooks/useEmberCursorHover';
 import { useContactEntrance }  from './hooks/useContactEntrance';
-import { SOCIAL_LINKS }        from './data/socialLinks';
+import { SOCIAL_LINKS }        from '../data/socialLinks';
 import './ContactSection.css';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -64,7 +64,7 @@ export function ContactSection() {
   }
 
   return (
-    <section className="cs" ref={sectionRef}>
+    <section className="cs" ref={sectionRef} id="contact">
 
       {/* floating ember particles */}
       <div className="cs-embers" aria-hidden="true">

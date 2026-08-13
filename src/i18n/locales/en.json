@@ -3,10 +3,8 @@
 
   "hero": {
     "eyebrow": "Unleash the beast within",
-    "role": "Developer",
-    "ctaPrimary": "Enter the void",
-    "ctaSecondary": "Discover more",
-    "stats": { "power": "Power", "realms": "Realms", "fear": "Fear" }
+    "ctaPrimary": "Contact me",
+    "ctaSecondary": "Download CV"
   },
 
   "sections": {

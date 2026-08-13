@@ -167,6 +167,7 @@
   font-weight: 600;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
+  text-decoration: none;
   color: var(--color-text);
   background: linear-gradient(135deg, var(--color-lava), var(--color-accent));
   border: none;
@@ -206,6 +207,7 @@
   font-weight: 600;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
+  text-decoration: none;
   color: rgba(255, 150, 80, 0.9);
   background: transparent;
   border: 1px solid rgba(255, 69, 0, 0.4);
@@ -222,31 +224,46 @@
   transform: translateY(-2px);
 }
 
-/* ── Stats row ── */
-.hero-stats {
+/* ── Social links row ── */
+.hero-socials {
   display: flex;
   gap: 3rem;
   margin-top: 1rem;
 }
 
-.stat {
-  text-align: center;
+.hero-social-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  transition: transform 0.25s ease;
 }
 
-.stat-value {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 1.8rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--color-lava), var(--color-gold));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.hero-social-link:hover {
+  transform: translateY(-2px);
 }
 
-.stat-label {
+.hero-social-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  filter: drop-shadow(0 0 8px var(--color-lava));
+  transition: filter 0.3s ease, transform 0.25s ease;
+}
+
+.hero-social-link:hover .hero-social-icon {
+  filter: drop-shadow(0 0 14px var(--color-accent));
+  transform: scale(1.12);
+}
+
+.hero-social-label {
   font-size: 0.65rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--color-accent);
-  margin-top: 0.2rem;
+  transition: color 0.3s ease;
+}
+
+.hero-social-link:hover .hero-social-label {
+  color: var(--color-gold);
 }

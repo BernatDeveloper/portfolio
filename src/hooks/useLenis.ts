@@ -6,12 +6,20 @@ import 'lenis/dist/lenis.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
+let activeLenis: Lenis | null = null;
+
+/** Smooth-scrolls to a target through the app's single Lenis instance. No-op before it mounts. */
+export function scrollToLenis(target: string | HTMLElement): void {
+    activeLenis?.scrollTo(target);
+}
+
 export function useLenis() {
     useEffect(() => {
         const lenis = new Lenis({
             lerp: 0.06,
             smoothWheel: true,
         });
+        activeLenis = lenis;
 
         // Drive Lenis from GSAP's ticker so ScrollTrigger reads the correct position
         function onTick(time: number) {
@@ -25,6 +33,7 @@ export function useLenis() {
         return () => {
             gsap.ticker.remove(onTick);
             lenis.destroy();
+            activeLenis = null;
         };
     }, []);
 }

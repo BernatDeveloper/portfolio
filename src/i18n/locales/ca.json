@@ -3,10 +3,8 @@
 
   "hero": {
     "eyebrow": "Deslliga la bèstia interior",
-    "role": "Desenvolupador",
-    "ctaPrimary": "Entra al buit",
-    "ctaSecondary": "Descobreix més",
-    "stats": { "power": "Poder", "realms": "Regnes", "fear": "Por" }
+    "ctaPrimary": "Contacta'm",
+    "ctaSecondary": "Descarregar el CV"
   },
 
   "sections": {
