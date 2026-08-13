@@ -325,16 +325,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
-  border: 1px solid var(--color-border);
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid var(--color-accent);
   border-radius: 50%;
   color: var(--color-accent);
-  font-size: 10px;
-  line-height: 1;
   text-decoration: none;
   cursor: pointer;
   transition: color .3s ease, border-color .3s ease, transform .3s ease, background .3s ease;
+}
+
+.pc-link svg {
+  width: 13px;
+  height: 13px;
 }
 
 .pc-link:hover {
