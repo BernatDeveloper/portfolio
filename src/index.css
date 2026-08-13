@@ -101,6 +101,12 @@
   box-shadow: 0 0 12px rgba(255, 165, 0, 0.65);
 }
 
+/* ── Text selection ─────────────────────────────────────────── */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
 /* Firefox */
 html {
   scrollbar-width: thin;
