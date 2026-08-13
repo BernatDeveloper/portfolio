@@ -338,12 +338,16 @@
 .pc-link svg {
   width: 13px;
   height: 13px;
+  transition: transform .3s ease;
 }
 
 .pc-link:hover {
   color: var(--color-bg);
   background: var(--color-accent);
   border-color: var(--color-accent);
+}
+
+.pc-link:hover svg {
   transform: translate(2px, -2px);
 }
 
