@@ -3,8 +3,11 @@ import type { Project } from '../types';
 import { ArtEventApp } from '../svg/ArtEventApp';
 import { ArtSkullKing } from '../svg/ArtSkullKing';
 import { ArtEmber }    from '../svg/ArtEmber';
-import { ArtAtlas }    from '../svg/ArtAtlas';
-import { ArtVoid }     from '../svg/ArtVoid';
+import { ArtPulse }    from '../svg/ArtPulse';
+import { ArtBrand }    from '../svg/ArtBrand';
+import { ArtTiger }    from '../svg/ArtTiger';
+import { ArtReactTs }  from '../svg/ArtReactTs';
+import { ArtCampfire } from '../svg/ArtCampfire';
 
 export const PROJECTS: Project[] = [
   {
@@ -13,9 +16,10 @@ export const PROJECTS: Project[] = [
     type: 'App · 2025',
     title: 'EVENTAPP',
     sub: 'Event Dashboard',
-    desc: 'Dashboard de gestión de eventos con tarjetas visuales, categorías por color y soporte para usuarios premium.',
-    tags: ['React', 'TypeScript', 'Node.js'],
+    desc: 'Plataforma para crear y gestionar eventos: invita participantes, personaliza ubicaciones con mapas interactivos y activa opciones premium.',
+    tags: ['React', 'TS', 'Laravel', 'MySQL'],
     size: 'featured',
+    url: 'https://github.com/BernatDeveloper/eventos-app',
   },
   {
     idx: 1,
@@ -24,8 +28,9 @@ export const PROJECTS: Project[] = [
     title: 'SKULL KING',
     sub: 'Score Tracker',
     desc: 'Scorer para el juego de cartas Skull King. Calcula puntuaciones por ronda, lleva el historial de partidas y determina al ganador.',
-    tags: ['React', 'TypeScript', 'PWA'],
+    tags: ['React', 'TS', 'PWA'],
     size: 'medium',
+    url: 'https://skull-king-nu.vercel.app',
   },
   {
     idx: 2,
@@ -57,6 +62,36 @@ export const PROJECTS: Project[] = [
     tags: ['Go', 'Redis', 'Docker'],
     size: 'small',
   },
+  {
+    idx: 5,
+    num: '06',
+    type: 'Dashboard · 2024',
+    title: 'PULSE',
+    sub: 'Realtime Analytics',
+    desc: 'Live metrics dashboard tracking user engagement across 40+ product surfaces with sub-second updates.',
+    tags: ['Vue', 'WebSocket', 'ClickHouse'],
+    size: 'medium',
+  },
+  {
+    idx: 6,
+    num: '07',
+    type: 'Tool · 2022',
+    title: 'FORGE',
+    sub: 'CI/CD Pipeline',
+    desc: 'Automated build and deployment pipeline with parallel job execution and one-click rollback.',
+    tags: ['Go', 'Docker', 'GitHub Actions'],
+    size: 'small',
+  },
+  {
+    idx: 7,
+    num: '08',
+    type: 'Service · 2021',
+    title: 'CIPHER',
+    sub: 'Auth Gateway',
+    desc: 'Zero-trust authentication service handling 2M+ daily logins with adaptive multi-factor auth.',
+    tags: ['Rust', 'PostgreSQL', 'OAuth2'],
+    size: 'small',
+  },
 ];
 
 export const PROJECT_I18N_KEYS: Partial<Record<number, string>> = {
@@ -68,6 +103,9 @@ export const ART_MAP: Record<number, () => JSX.Element> = {
   0: ArtEventApp,
   1: ArtSkullKing,
   2: ArtEmber,
-  3: ArtAtlas,
-  4: ArtVoid,
+  3: ArtBrand,
+  4: ArtTiger,
+  5: ArtPulse,
+  6: ArtReactTs,
+  7: ArtCampfire,
 };

@@ -9,4 +9,6 @@ export interface Project {
   desc: string;
   tags: string[];
   size: ProjectSize;
+  /** External link (repo, live demo…). Card becomes clickable when set. */
+  url?: string;
 }

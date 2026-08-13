@@ -18,7 +18,7 @@
   "projects": {
     "EVENTAPP": {
       "sub": "Panel de eventos",
-      "desc": "Panel de gestión de eventos con tarjetas visuales, categorías por color y soporte para usuarios premium."
+      "desc": "Plataforma para crear y gestionar eventos: invita participantes, personaliza ubicaciones con mapas interactivos y activa opciones premium."
     },
     "SKULL KING": {
       "sub": "Contador de puntos",

@@ -18,7 +18,7 @@
   "projects": {
     "EVENTAPP": {
       "sub": "Panell d'esdeveniments",
-      "desc": "Panell de gestió d'esdeveniments amb targetes visuals, categories per color i suport per a usuaris premium."
+      "desc": "Plataforma per crear i gestionar esdeveniments: convida participants, personalitza ubicacions amb mapes interactius i activa opcions premium."
     },
     "SKULL KING": {
       "sub": "Comptador de punts",

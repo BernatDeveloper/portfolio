@@ -97,7 +97,9 @@
 .timeline-layer {
     position: absolute;
     inset: 0;
-    z-index: 2;
+    /* Above the top/bottom edge fades (z-index: 3) so cards near the section's
+       edges render at full opacity instead of dimming under the fade. */
+    z-index: 4;
     overflow: hidden;
     display: flex;
     flex-direction: column;
