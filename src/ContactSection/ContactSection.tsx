@@ -2,7 +2,7 @@ import React, { useRef, useState, useMemo } from 'react';
 import { useTranslation }      from 'react-i18next';
 import { useEmberCursorHover } from '../hooks/useEmberCursorHover';
 import { useContactEntrance }  from './hooks/useContactEntrance';
-import { SOCIAL_LINKS }        from '../data/socialLinks';
+import { SOCIAL_LINKS, getSocialHref } from '../data/socialLinks';
 import './ContactSection.css';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -124,7 +124,7 @@ export function ContactSection() {
             {SOCIAL_LINKS.map(s => (
               <a
                 key={s.id}
-                href={s.href}
+                href={getSocialHref(s, t)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="cs-social"

@@ -4,7 +4,7 @@ import { useEmberCursorHover } from '../hooks/useEmberCursorHover';
 import { scrollToLenis } from '../hooks/useLenis';
 import { useHeroData } from './hooks/useHeroData';
 import { CV_FILES } from './data/cvFiles';
-import { SOCIAL_LINKS } from '../data/socialLinks';
+import { SOCIAL_LINKS, getSocialHref } from '../data/socialLinks';
 import type { Lang } from '../i18n/i18n';
 import './HeroSection.css';
 import { useHeroEntranceTl } from './hooks/useHeroEntranceTl';
@@ -115,7 +115,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ shouldAnimate }) => {
           {HERO_SOCIALS.map((s) => (
             <a
               key={s.id}
-              href={s.href}
+              href={getSocialHref(s, t)}
               target="_blank"
               rel="noopener noreferrer"
               className="hero-social-link"

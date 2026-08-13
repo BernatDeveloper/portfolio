@@ -46,6 +46,12 @@
     }
   },
 
+  "social": {
+    "whatsappMessage": "Hi Bernat! I saw your portfolio and I'd like to talk to you about a project.",
+    "emailSubject": "Contact from your portfolio",
+    "emailBody": "Hi Bernat,\n\n"
+  },
+
   "footer": {
     "ariaLabel": "Site footer",
     "statementMain": "Fire shapes the finest things.",

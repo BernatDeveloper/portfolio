@@ -1,8 +1,23 @@
+import type { TFunction } from 'i18next';
+
 export interface SocialLink {
   id:    string;
   href:  string;
   label: string;
   path:  string;
+}
+
+/** Appends a localized default message to links that support one
+ *  (WhatsApp pre-filled text, Gmail subject/body); others pass through. */
+export function getSocialHref(link: SocialLink, t: TFunction): string {
+  switch (link.id) {
+    case 'whatsapp':
+      return `${link.href}?text=${encodeURIComponent(t('social.whatsappMessage'))}`;
+    case 'email':
+      return `${link.href}&su=${encodeURIComponent(t('social.emailSubject'))}&body=${encodeURIComponent(t('social.emailBody'))}`;
+    default:
+      return link.href;
+  }
 }
 
 export const SOCIAL_LINKS: SocialLink[] = [
@@ -26,7 +41,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     id:    'email',
-    href:  'https://mail.google.com/mail/?view=cm&to=faenabernat@gmail.com',
+    href:  'https://mail.google.com/mail/?view=cm&to=bernatfontdeveloper@gmail.com',
     label: 'Gmail',
     path:  'M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z',
   },

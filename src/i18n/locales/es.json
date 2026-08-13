@@ -46,6 +46,12 @@
     }
   },
 
+  "social": {
+    "whatsappMessage": "¡Hola Bernat! Vi tu portfolio y me gustaría hablar contigo sobre un proyecto.",
+    "emailSubject": "Contacto desde tu portfolio",
+    "emailBody": "¡Hola Bernat!\n\n"
+  },
+
   "footer": {
     "ariaLabel": "Pie de página",
     "statementMain": "El fuego forja las mejores cosas.",

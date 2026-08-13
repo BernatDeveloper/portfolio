@@ -46,6 +46,12 @@
     }
   },
 
+  "social": {
+    "whatsappMessage": "Hola Bernat! He vist el teu portfolio i m'agradaria parlar amb tu sobre un projecte.",
+    "emailSubject": "Contacte des del teu portfolio",
+    "emailBody": "Hola Bernat,\n\n"
+  },
+
   "footer": {
     "ariaLabel": "Peu de pàgina",
     "statementMain": "El foc forja les millors coses.",
