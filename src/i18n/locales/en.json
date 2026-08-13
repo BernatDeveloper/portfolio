@@ -40,7 +40,9 @@
       "emailPlaceholder": "your@email.com",
       "messageLabel": "Message",
       "messagePlaceholder": "Tell me about your project…",
-      "submit": "Send message"
+      "submit": "Send message",
+      "sending": "Sending…",
+      "error": "Something went wrong. Please try again in a moment."
     }
   },
 

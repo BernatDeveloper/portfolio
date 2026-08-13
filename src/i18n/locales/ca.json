@@ -40,7 +40,9 @@
       "emailPlaceholder": "tu@email.com",
       "messageLabel": "Missatge",
       "messagePlaceholder": "Explica'm sobre el teu projecte…",
-      "submit": "Envia el missatge"
+      "submit": "Envia el missatge",
+      "sending": "Enviant…",
+      "error": "Alguna cosa ha anat malament. Torna-ho a provar d'aquí un moment."
     }
   },
 

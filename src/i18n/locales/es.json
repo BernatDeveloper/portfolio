@@ -40,7 +40,9 @@
       "emailPlaceholder": "tu@email.com",
       "messageLabel": "Mensaje",
       "messagePlaceholder": "Cuéntame sobre tu proyecto…",
-      "submit": "Enviar mensaje"
+      "submit": "Enviar mensaje",
+      "sending": "Enviando…",
+      "error": "Algo ha ido mal. Inténtalo de nuevo en un momento."
     }
   },
 
