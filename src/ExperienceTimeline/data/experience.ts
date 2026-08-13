@@ -1,7 +1,10 @@
 import type { Experience } from "../types";
 
+/** year/role/desc below are the Spanish fallback text; ExperienceTimeline.tsx
+ *  overrides them per language via i18n keys `experience.<id>.*`. */
 export const experiences: Experience[] = [
     {
+        id: "FP_DAW",
         year: "SEP 2022",
         company: "Institut Bernat el Ferrer",
         role: "FP DAW · Desarrollo de Aplicaciones Web",
@@ -9,6 +12,7 @@ export const experiences: Experience[] = [
         side: "left",
     },
     {
+        id: "ELADIET",
         year: "OCT 2023 – JUL 2024",
         company: "Eladiet",
         role: "Programador",
@@ -16,6 +20,7 @@ export const experiences: Experience[] = [
         side: "right",
     },
     {
+        id: "MASTER",
         year: "OCT 2024",
         company: "Nett Digital School",
         role: "Máster en Desarrollo Web Avanzado",
@@ -23,6 +28,7 @@ export const experiences: Experience[] = [
         side: "left",
     },
     {
+        id: "DATALAB",
         year: "OCT 2025 – ACTUALIDAD",
         company: "DataLab",
         role: "Desarrollador de Software",
