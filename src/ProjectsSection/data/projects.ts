@@ -2,7 +2,7 @@ import type { JSX } from 'react';
 import type { Project } from '../types';
 import { ArtEventApp } from '../svg/ArtEventApp';
 import { ArtSkullKing } from '../svg/ArtSkullKing';
-import { ArtEmber }    from '../svg/ArtEmber';
+import { ArtGymTracker } from '../svg/ArtGymTracker';
 import { ArtPulse }    from '../svg/ArtPulse';
 import { ArtBrand }    from '../svg/ArtBrand';
 import { ArtTiger }    from '../svg/ArtTiger';
@@ -35,12 +35,13 @@ export const PROJECTS: Project[] = [
   {
     idx: 2,
     num: '03',
-    type: 'Library · 2023',
-    title: 'EMBER',
-    sub: 'Design System',
-    desc: 'Component library powering 5 enterprise products. 200+ accessible, documented components.',
-    tags: ['TypeScript', 'Storybook', 'CSS'],
+    type: 'App · 2026',
+    title: 'GYMTRACKER',
+    sub: 'Workout Tracker',
+    desc: 'Registra tus rutinas de entrenamiento, consulta el historial y controla tus récords personales. Funciona offline como PWA instalable.',
+    tags: ['React', 'TS', 'PWA'],
     size: 'medium',
+    url: 'https://gym-tracker-pi-liart.vercel.app',
   },
   {
     idx: 3,
@@ -97,12 +98,13 @@ export const PROJECTS: Project[] = [
 export const PROJECT_I18N_KEYS: Partial<Record<number, string>> = {
   0: 'EVENTAPP',
   1: 'SKULL KING',
+  2: 'GYMTRACKER',
 };
 
 export const ART_MAP: Record<number, () => JSX.Element> = {
   0: ArtEventApp,
   1: ArtSkullKing,
-  2: ArtEmber,
+  2: ArtGymTracker,
   3: ArtBrand,
   4: ArtTiger,
   5: ArtPulse,

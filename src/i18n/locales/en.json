@@ -23,6 +23,10 @@
     "SKULL KING": {
       "sub": "Score Tracker",
       "desc": "Scorer for the Skull King card game. Calculates round scores, keeps a match history and determines the winner."
+    },
+    "GYMTRACKER": {
+      "sub": "Workout Tracker",
+      "desc": "Log your workout routines, check your history and track your personal records. Works offline as an installable PWA."
     }
   },
 

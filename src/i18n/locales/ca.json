@@ -23,6 +23,10 @@
     "SKULL KING": {
       "sub": "Comptador de punts",
       "desc": "Marcador per al joc de cartes Skull King. Calcula puntuacions per ronda, guarda l'historial de partides i determina el guanyador."
+    },
+    "GYMTRACKER": {
+      "sub": "Seguiment d'entrenaments",
+      "desc": "Registra les teves rutines d'entrenament, consulta l'historial i controla els teus rècords personals. Funciona offline com a PWA instal·lable."
     }
   },
 
