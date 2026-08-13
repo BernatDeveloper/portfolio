@@ -5,7 +5,7 @@ export const experiences: Experience[] = [
         year: "SEP 2022",
         company: "Institut Bernat el Ferrer",
         role: "FP DAW · Desarrollo de Aplicaciones Web",
-        desc: "Formación de grado superior centrada en desarrollo web: HTML, CSS, JavaScript y bases de datos como cimientos del oficio.",
+        desc: "Formación de grado superior en desarrollo web full-stack: HTML, CSS, JavaScript y bases de datos como cimientos del oficio, con Vue y Laravel en proyectos aplicados.",
         side: "left",
     },
     {
@@ -19,7 +19,7 @@ export const experiences: Experience[] = [
         year: "OCT 2024",
         company: "Nett Digital School",
         role: "Máster en Desarrollo Web Avanzado",
-        desc: "Especialización full-stack: profundización en frameworks modernos y buenas prácticas de arquitectura de software.",
+        desc: "Especialización full-stack con React y Node.js, profundizando en arquitectura de software y buenas prácticas modernas.",
         side: "left",
     },
     {
