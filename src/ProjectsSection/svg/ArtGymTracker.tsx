@@ -45,6 +45,7 @@ export function ArtGymTracker() {
 
       {/* ===== APP PANEL (dark) ===== */}
       <g transform="translate(-6,126)">
+      <g id="gt-c1">
         <rect x="126" y="30" width="360" height="190" rx="24" fill="#e08a2a" opacity="0.06" filter="url(#gt-soft)" />
         <rect x="106" y="16" width="400" height="206" rx="18" fill="url(#gt-panel)" filter="url(#gt-pshadow)" />
         <rect x="106.5" y="16.5" width="399" height="205" rx="17.5" fill="none" stroke="#e9a94e" strokeOpacity="0.18" />
@@ -92,9 +93,11 @@ export function ArtGymTracker() {
           <text x="356" y="12" textAnchor="end" fontSize="12" fontWeight="700" fill="#f5972f">+18%</text>
         </g>
       </g>
+      </g>
 
       {/* ===== DUMBBELL (compact, centered under panel) ===== */}
       <g transform="translate(300,382)">
+      <g id="gt-c2">
         <rect x="-72" y="-18" width="144" height="36" rx="18" fill="#f0851f" opacity="0.10" filter="url(#gt-soft)" />
         <rect x="-42" y="-3.5" width="84" height="7" rx="3.5" fill="url(#gt-amberH)" />
         <g fill="url(#gt-amberV)">
@@ -108,9 +111,11 @@ export function ArtGymTracker() {
           <rect x="62" y="-10" width="6" height="20" rx="3" />
         </g>
       </g>
+      </g>
 
       {/* streak dots */}
       <g transform="translate(300,417)">
+      <g id="gt-c3">
         <g fill="#f0851f">
           <circle cx="-75" cy="0" r="5.5" />
           <circle cx="-50" cy="0" r="5.5" />
@@ -123,14 +128,17 @@ export function ArtGymTracker() {
           <circle cx="75" cy="0" r="5.5" />
         </g>
       </g>
+      </g>
 
       {/* stat chips */}
       <g transform="translate(300,452)" textAnchor="middle" className="gt-mono" fontSize="10.5" letterSpacing="1.5" fill="#b98a56">
+      <g id="gt-c4">
         <text x="-150" y="0">12 WEEKS</text>
         <circle cx="-80" cy="-3" r="1.6" fill="#7a4127" />
         <text x="0" y="0">84 WORKOUTS</text>
         <circle cx="80" cy="-3" r="1.6" fill="#7a4127" />
         <text x="150" y="0" fill="#e2903e">OFFLINE</text>
+      </g>
       </g>
     </svg>
   );
