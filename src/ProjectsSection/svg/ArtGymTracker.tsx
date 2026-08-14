@@ -1,35 +1,35 @@
 export function ArtGymTracker() {
   return (
-    <svg viewBox="0 0 612 372" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" fontFamily="ui-sans-serif,system-ui,'Segoe UI',Roboto,sans-serif">
+    <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" fontFamily="ui-sans-serif,system-ui,'Segoe UI',Roboto,sans-serif">
       <defs>
         <style>{`.gt-mono{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;}`}</style>
-        <linearGradient id="gt-bg" x1="0" y1="0" x2="0.3" y2="1">
+        <linearGradient id="gt-bg" x1="0" y1="0" x2="0.4" y2="1">
           <stop offset="0" stopColor="#120c07" />
           <stop offset="0.6" stopColor="#0c0805" />
           <stop offset="1" stopColor="#080604" />
         </linearGradient>
-        <radialGradient id="gt-glow" cx="0.5" cy="0.3" r="0.7">
-          <stop offset="0" stopColor="#33200c" stopOpacity="0.7" />
+        <radialGradient id="gt-glow" cx="0.5" cy="0.36" r="0.62">
+          <stop offset="0" stopColor="#33200c" stopOpacity="0.75" />
           <stop offset="1" stopColor="#0c0805" stopOpacity="0" />
         </radialGradient>
         <linearGradient id="gt-panel" x1="0" y1="0" x2="0.25" y2="1">
           <stop offset="0" stopColor="#20180f" />
           <stop offset="1" stopColor="#150f09" />
         </linearGradient>
-        <linearGradient id="gt-amber" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#6a4520" />
-          <stop offset="0.5" stopColor="#e9a94e" />
-          <stop offset="1" stopColor="#6a4520" />
-        </linearGradient>
         <linearGradient id="gt-amberV" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#ffb64d" />
           <stop offset="1" stopColor="#ef7d17" />
+        </linearGradient>
+        <linearGradient id="gt-amberH" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#b07a34" />
+          <stop offset="0.5" stopColor="#f0b25a" />
+          <stop offset="1" stopColor="#b07a34" />
         </linearGradient>
         <linearGradient id="gt-spark" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0" stopColor="#f0851f" />
           <stop offset="1" stopColor="#ffbf5e" />
         </linearGradient>
-        <filter id="gt-soft" x="-60%" y="-60%" width="220%" height="220%">
+        <filter id="gt-soft" x="-80%" y="-80%" width="260%" height="260%">
           <feGaussianBlur stdDeviation="7" />
         </filter>
         <filter id="gt-pshadow" x="-40%" y="-40%" width="180%" height="180%">
@@ -38,19 +38,17 @@ export function ArtGymTracker() {
       </defs>
 
       {/* background */}
-      <rect x="0" y="0" width="612" height="372" fill="url(#gt-bg)" />
-      <rect x="0" y="0" width="612" height="372" fill="url(#gt-glow)" />
-      <polyline points="10,300 90,278 150,290 220,250 300,262 380,214 450,230 520,168 600,182"
-        fill="none" stroke="#e79a3b" strokeOpacity="0.09" strokeWidth="2" />
-      <circle cx="520" cy="168" r="3.5" fill="#e79a3b" fillOpacity="0.16" />
+      <rect x="0" y="0" width="600" height="600" fill="url(#gt-bg)" />
+      <rect x="0" y="0" width="600" height="600" fill="url(#gt-glow)" />
+      <polyline points="40,520 130,500 200,510 280,474 360,486 440,442 520,456 570,430"
+        fill="none" stroke="#e79a3b" strokeOpacity="0.08" strokeWidth="2" />
 
       {/* ===== APP PANEL (dark) ===== */}
-      <g>
+      <g transform="translate(-6,96)">
         <rect x="126" y="30" width="360" height="190" rx="24" fill="#e08a2a" opacity="0.06" filter="url(#gt-soft)" />
         <rect x="106" y="16" width="400" height="206" rx="18" fill="url(#gt-panel)" filter="url(#gt-pshadow)" />
         <rect x="106.5" y="16.5" width="399" height="205" rx="17.5" fill="none" stroke="#e9a94e" strokeOpacity="0.18" />
         <path d="M120 17 H492" stroke="#ffffff" strokeOpacity="0.05" strokeWidth="1" />
-
         <g transform="translate(128,44)">
           <g fill="#f0851f">
             <rect x="0" y="-4" width="4" height="10" rx="1.5" />
@@ -63,7 +61,6 @@ export function ArtGymTracker() {
           <text x="350" y="4" textAnchor="end" fontSize="11" fill="#8f8474">Week 6 · today</text>
         </g>
         <line x1="128" y1="60" x2="484" y2="60" stroke="#ffffff" strokeOpacity="0.08" strokeWidth="1" />
-
         <g fontSize="13">
           <circle cx="136" cy="90" r="6.5" fill="#f0851f" />
           <path d="M133 90 l2 2 l4.4 -4.8" fill="none" stroke="#1c130a" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
@@ -96,26 +93,24 @@ export function ArtGymTracker() {
         </g>
       </g>
 
-      {/* ===== BARBELL ===== */}
-      <g transform="translate(0,4)">
-        <rect x="66" y="246" width="480" height="7" rx="3.5" fill="url(#gt-amber)" filter="url(#gt-soft)" opacity="0.55" />
-        <rect x="66" y="247" width="480" height="5" rx="2.5" fill="url(#gt-amber)" />
-        <g fill="#e9a94e">
-          <rect x="192" y="237" width="4" height="25" rx="2" />
-          <rect x="204" y="237" width="4" height="25" rx="2" />
-          <rect x="404" y="237" width="4" height="25" rx="2" />
-          <rect x="416" y="237" width="4" height="25" rx="2" />
+      {/* ===== DUMBBELL (compact, centered under panel) ===== */}
+      <g transform="translate(300,378)">
+        <rect x="-72" y="-18" width="144" height="36" rx="18" fill="#f0851f" opacity="0.10" filter="url(#gt-soft)" />
+        <rect x="-42" y="-3.5" width="84" height="7" rx="3.5" fill="url(#gt-amberH)" />
+        <g fill="url(#gt-amberV)">
+          <rect x="-50" y="-20" width="8" height="40" rx="4" />
+          <rect x="-60" y="-15" width="8" height="30" rx="4" />
+          <rect x="-68" y="-10" width="6" height="20" rx="3" />
         </g>
         <g fill="url(#gt-amberV)">
-          <rect x="58" y="233" width="8" height="33" rx="3" />
-          <rect x="49" y="238" width="6" height="23" rx="3" />
-          <rect x="546" y="233" width="8" height="33" rx="3" />
-          <rect x="558" y="238" width="6" height="23" rx="3" />
+          <rect x="42" y="-20" width="8" height="40" rx="4" />
+          <rect x="52" y="-15" width="8" height="30" rx="4" />
+          <rect x="62" y="-10" width="6" height="20" rx="3" />
         </g>
       </g>
 
       {/* streak dots */}
-      <g transform="translate(306,300)">
+      <g transform="translate(300,436)">
         <g fill="#f0851f">
           <circle cx="-75" cy="0" r="5.5" />
           <circle cx="-50" cy="0" r="5.5" />
@@ -130,7 +125,7 @@ export function ArtGymTracker() {
       </g>
 
       {/* stat chips */}
-      <g transform="translate(306,342)" textAnchor="middle" className="gt-mono" fontSize="10.5" letterSpacing="1.5" fill="#b98a56">
+      <g transform="translate(300,486)" textAnchor="middle" className="gt-mono" fontSize="10.5" letterSpacing="1.5" fill="#b98a56">
         <text x="-150" y="0">12 WEEKS</text>
         <circle cx="-80" cy="-3" r="1.6" fill="#7a4127" />
         <text x="0" y="0">84 WORKOUTS</text>
