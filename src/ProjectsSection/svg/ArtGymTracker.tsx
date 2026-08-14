@@ -44,7 +44,7 @@ export function ArtGymTracker() {
         fill="none" stroke="#e79a3b" strokeOpacity="0.08" strokeWidth="2" />
 
       {/* ===== APP PANEL (dark) ===== */}
-      <g transform="translate(-6,126)">
+      <g transform="translate(-6,108)">
       <g id="gt-c1">
         <rect x="126" y="30" width="360" height="190" rx="24" fill="#e08a2a" opacity="0.06" filter="url(#gt-soft)" />
         <rect x="106" y="16" width="400" height="206" rx="18" fill="url(#gt-panel)" filter="url(#gt-pshadow)" />
@@ -96,7 +96,7 @@ export function ArtGymTracker() {
       </g>
 
       {/* ===== DUMBBELL (compact, centered under panel) ===== */}
-      <g transform="translate(300,382)">
+      <g transform="translate(300,364)">
       <g id="gt-c2">
         <rect x="-72" y="-18" width="144" height="36" rx="18" fill="#f0851f" opacity="0.10" filter="url(#gt-soft)" />
         <rect x="-42" y="-3.5" width="84" height="7" rx="3.5" fill="url(#gt-amberH)" />
@@ -114,7 +114,7 @@ export function ArtGymTracker() {
       </g>
 
       {/* streak dots */}
-      <g transform="translate(300,417)">
+      <g transform="translate(300,399)">
       <g id="gt-c3">
         <g fill="#f0851f">
           <circle cx="-75" cy="0" r="5.5" />
@@ -131,7 +131,7 @@ export function ArtGymTracker() {
       </g>
 
       {/* stat chips */}
-      <g transform="translate(300,452)" textAnchor="middle" className="gt-mono" fontSize="10.5" letterSpacing="1.5" fill="#b98a56">
+      <g transform="translate(300,434)" textAnchor="middle" className="gt-mono" fontSize="10.5" letterSpacing="1.5" fill="#b98a56">
       <g id="gt-c4">
         <text x="-150" y="0">12 WEEKS</text>
         <circle cx="-80" cy="-3" r="1.6" fill="#7a4127" />
