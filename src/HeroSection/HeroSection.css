@@ -230,7 +230,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-self: stretch;
-  gap: var(--space-lg);
+  gap: var(--space-xl);
   padding: 0 var(--space-lg);
   margin-top: 1rem;
 }
