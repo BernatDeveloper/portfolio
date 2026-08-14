@@ -1,28 +1,142 @@
 export function ArtGymTracker() {
   return (
-    <svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-      <rect width="500" height="300" fill="#080503" />
+    <svg viewBox="0 0 612 372" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" fontFamily="ui-sans-serif,system-ui,'Segoe UI',Roboto,sans-serif">
+      <defs>
+        <style>{`.gt-mono{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;}`}</style>
+        <linearGradient id="gt-bg" x1="0" y1="0" x2="0.3" y2="1">
+          <stop offset="0" stopColor="#120c07" />
+          <stop offset="0.6" stopColor="#0c0805" />
+          <stop offset="1" stopColor="#080604" />
+        </linearGradient>
+        <radialGradient id="gt-glow" cx="0.5" cy="0.3" r="0.7">
+          <stop offset="0" stopColor="#33200c" stopOpacity="0.7" />
+          <stop offset="1" stopColor="#0c0805" stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id="gt-panel" x1="0" y1="0" x2="0.25" y2="1">
+          <stop offset="0" stopColor="#20180f" />
+          <stop offset="1" stopColor="#150f09" />
+        </linearGradient>
+        <linearGradient id="gt-amber" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#6a4520" />
+          <stop offset="0.5" stopColor="#e9a94e" />
+          <stop offset="1" stopColor="#6a4520" />
+        </linearGradient>
+        <linearGradient id="gt-amberV" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#ffb64d" />
+          <stop offset="1" stopColor="#ef7d17" />
+        </linearGradient>
+        <linearGradient id="gt-spark" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#f0851f" />
+          <stop offset="1" stopColor="#ffbf5e" />
+        </linearGradient>
+        <filter id="gt-soft" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="7" />
+        </filter>
+        <filter id="gt-pshadow" x="-40%" y="-40%" width="180%" height="180%">
+          <feDropShadow dx="0" dy="16" stdDeviation="20" floodColor="#000000" floodOpacity="0.6" />
+        </filter>
+      </defs>
 
-      {/* barbell */}
-      <line className="sl" x1="120" y1="150" x2="380" y2="150" stroke="rgba(244,140,6,.55)" strokeWidth="6" strokeLinecap="round" />
-      <rect className="sl" x="95"  y="110" width="16" height="80" rx="4" fill="rgba(232,93,4,.5)" />
-      <rect className="sl" x="75"  y="125" width="14" height="50" rx="4" fill="rgba(244,140,6,.4)" style={{ animationDelay: ".3s" }} />
-      <rect className="sl" x="389" y="110" width="16" height="80" rx="4" fill="rgba(232,93,4,.5)" />
-      <rect className="sl" x="411" y="125" width="14" height="50" rx="4" fill="rgba(244,140,6,.4)" style={{ animationDelay: ".3s" }} />
-      <line x1="200" y1="140" x2="200" y2="160" stroke="rgba(255,201,64,.3)" strokeWidth="2" />
-      <line x1="215" y1="140" x2="215" y2="160" stroke="rgba(255,201,64,.3)" strokeWidth="2" />
-      <line x1="285" y1="140" x2="285" y2="160" stroke="rgba(255,201,64,.3)" strokeWidth="2" />
-      <line x1="300" y1="140" x2="300" y2="160" stroke="rgba(255,201,64,.3)" strokeWidth="2" />
+      {/* background */}
+      <rect x="0" y="0" width="612" height="372" fill="url(#gt-bg)" />
+      <rect x="0" y="0" width="612" height="372" fill="url(#gt-glow)" />
+      <polyline points="10,300 90,278 150,290 220,250 300,262 380,214 450,230 520,168 600,182"
+        fill="none" stroke="#e79a3b" strokeOpacity="0.09" strokeWidth="2" />
+      <circle cx="520" cy="168" r="3.5" fill="#e79a3b" fillOpacity="0.16" />
 
-      {/* weekly streak dots */}
-      <circle className="sc" cx="200" cy="230" r="6" fill="rgba(255,201,64,.6)" />
-      <circle className="sc" cx="225" cy="230" r="6" fill="rgba(255,201,64,.6)" style={{ animationDelay: ".2s" }} />
-      <circle className="sc" cx="250" cy="230" r="6" fill="rgba(232,93,4,.25)" style={{ animationDelay: ".4s" }} />
-      <circle cx="275" cy="230" r="6" fill="none" stroke="rgba(232,93,4,.25)" strokeWidth="1.5" />
-      <circle cx="300" cy="230" r="6" fill="none" stroke="rgba(232,93,4,.25)" strokeWidth="1.5" />
+      {/* ===== APP PANEL (dark) ===== */}
+      <g>
+        <rect x="126" y="30" width="360" height="190" rx="24" fill="#e08a2a" opacity="0.06" filter="url(#gt-soft)" />
+        <rect x="106" y="16" width="400" height="206" rx="18" fill="url(#gt-panel)" filter="url(#gt-pshadow)" />
+        <rect x="106.5" y="16.5" width="399" height="205" rx="17.5" fill="none" stroke="#e9a94e" strokeOpacity="0.18" />
+        <path d="M120 17 H492" stroke="#ffffff" strokeOpacity="0.05" strokeWidth="1" />
 
-      {/* PR progress trend */}
-      <path className="sl" d="M60,260 L140,260 L180,230 L230,245 L280,190 L340,205 L440,150" fill="none" stroke="rgba(255,201,64,.28)" strokeWidth="1.5" style={{ animationDelay: ".6s" }} />
+        <g transform="translate(128,44)">
+          <g fill="#f0851f">
+            <rect x="0" y="-4" width="4" height="10" rx="1.5" />
+            <rect x="5" y="-6" width="3" height="14" rx="1.5" />
+            <rect x="8" y="-1.5" width="16" height="5" rx="2.5" />
+            <rect x="24" y="-6" width="3" height="14" rx="1.5" />
+            <rect x="28" y="-4" width="4" height="10" rx="1.5" />
+          </g>
+          <text x="44" y="4" fontSize="13" fontWeight="700" letterSpacing="1.5" fill="#f3ecdd">PUSH DAY</text>
+          <text x="350" y="4" textAnchor="end" fontSize="11" fill="#8f8474">Week 6 · today</text>
+        </g>
+        <line x1="128" y1="60" x2="484" y2="60" stroke="#ffffff" strokeOpacity="0.08" strokeWidth="1" />
+
+        <g fontSize="13">
+          <circle cx="136" cy="90" r="6.5" fill="#f0851f" />
+          <path d="M133 90 l2 2 l4.4 -4.8" fill="none" stroke="#1c130a" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+          <text x="154" y="94" fontWeight="600" fill="#efe7d7">Bench press</text>
+          <text x="326" y="94" className="gt-mono" fontSize="12" fill="#8a7c6c">4×8</text>
+          <text x="402" y="94" textAnchor="end" fontWeight="700" fill="#f5972f">82.5</text>
+          <text x="406" y="94" fontSize="10" fill="#9a8d7c">kg</text>
+          <rect x="430" y="83" width="26" height="15" rx="7.5" fill="#f0851f" fillOpacity="0.16" />
+          <text x="443" y="94" textAnchor="middle" className="gt-mono" fontSize="9" letterSpacing="0.5" fill="#f6b25a">PR</text>
+
+          <circle cx="136" cy="126" r="6.5" fill="#f0851f" />
+          <path d="M133 126 l2 2 l4.4 -4.8" fill="none" stroke="#1c130a" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+          <text x="154" y="130" fontWeight="600" fill="#efe7d7">Overhead press</text>
+          <text x="326" y="130" className="gt-mono" fontSize="12" fill="#8a7c6c">4×10</text>
+          <text x="402" y="130" textAnchor="end" fontWeight="700" fill="#e9dfce">42.5</text>
+          <text x="406" y="130" fontSize="10" fill="#9a8d7c">kg</text>
+
+          <circle cx="136" cy="162" r="6.5" fill="none" stroke="#5e5445" strokeWidth="1.6" />
+          <text x="154" y="166" fontWeight="600" fill="#8a7e6e">Lateral raise</text>
+          <text x="326" y="166" className="gt-mono" fontSize="12" fill="#6f6455">3×12</text>
+          <text x="402" y="166" textAnchor="end" fontWeight="700" fill="#9a8d7c">12</text>
+          <text x="406" y="166" fontSize="10" fill="#7d7160">kg</text>
+        </g>
+        <line x1="128" y1="186" x2="484" y2="186" stroke="#ffffff" strokeOpacity="0.06" strokeWidth="1" />
+        <g transform="translate(128,200)">
+          <text x="0" y="12" className="gt-mono" fontSize="10" letterSpacing="1" fill="#8a7e6e">WEEKLY VOLUME</text>
+          <polyline points="196,16 214,12 232,14 250,7 268,10 286,2" fill="none" stroke="url(#gt-spark)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+          <circle cx="286" cy="2" r="2.6" fill="#f0851f" />
+          <text x="356" y="12" textAnchor="end" fontSize="12" fontWeight="700" fill="#f5972f">+18%</text>
+        </g>
+      </g>
+
+      {/* ===== BARBELL ===== */}
+      <g transform="translate(0,4)">
+        <rect x="66" y="246" width="480" height="7" rx="3.5" fill="url(#gt-amber)" filter="url(#gt-soft)" opacity="0.55" />
+        <rect x="66" y="247" width="480" height="5" rx="2.5" fill="url(#gt-amber)" />
+        <g fill="#e9a94e">
+          <rect x="192" y="237" width="4" height="25" rx="2" />
+          <rect x="204" y="237" width="4" height="25" rx="2" />
+          <rect x="404" y="237" width="4" height="25" rx="2" />
+          <rect x="416" y="237" width="4" height="25" rx="2" />
+        </g>
+        <g fill="url(#gt-amberV)">
+          <rect x="58" y="233" width="8" height="33" rx="3" />
+          <rect x="49" y="238" width="6" height="23" rx="3" />
+          <rect x="546" y="233" width="8" height="33" rx="3" />
+          <rect x="558" y="238" width="6" height="23" rx="3" />
+        </g>
+      </g>
+
+      {/* streak dots */}
+      <g transform="translate(306,300)">
+        <g fill="#f0851f">
+          <circle cx="-75" cy="0" r="5.5" />
+          <circle cx="-50" cy="0" r="5.5" />
+          <circle cx="-25" cy="0" r="5.5" />
+          <circle cx="0" cy="0" r="5.5" />
+          <circle cx="25" cy="0" r="5.5" />
+        </g>
+        <g fill="none" stroke="#6a4a2a" strokeWidth="1.6">
+          <circle cx="50" cy="0" r="5.5" />
+          <circle cx="75" cy="0" r="5.5" />
+        </g>
+      </g>
+
+      {/* stat chips */}
+      <g transform="translate(306,342)" textAnchor="middle" className="gt-mono" fontSize="10.5" letterSpacing="1.5" fill="#b98a56">
+        <text x="-150" y="0">12 WEEKS</text>
+        <circle cx="-80" cy="-3" r="1.6" fill="#7a4127" />
+        <text x="0" y="0">84 WORKOUTS</text>
+        <circle cx="80" cy="-3" r="1.6" fill="#7a4127" />
+        <text x="150" y="0" fill="#e2903e">OFFLINE</text>
+      </g>
     </svg>
   );
 }

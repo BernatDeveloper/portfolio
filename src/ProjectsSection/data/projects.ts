@@ -3,7 +3,7 @@ import type { Project } from '../types';
 import { ArtEventApp } from '../svg/ArtEventApp';
 import { ArtSkullKing } from '../svg/ArtSkullKing';
 import { ArtGymTracker } from '../svg/ArtGymTracker';
-import { ArtPulse }    from '../svg/ArtPulse';
+import { ArtComingSoon } from '../svg/ArtComingSoon';
 import { ArtBrand }    from '../svg/ArtBrand';
 import { ArtTiger }    from '../svg/ArtTiger';
 import { ArtReactTs }  from '../svg/ArtReactTs';
@@ -66,11 +66,11 @@ export const PROJECTS: Project[] = [
   {
     idx: 5,
     num: '06',
-    type: 'Dashboard · 2024',
-    title: 'PULSE',
-    sub: 'Realtime Analytics',
-    desc: 'Live metrics dashboard tracking user engagement across 40+ product surfaces with sub-second updates.',
-    tags: ['Vue', 'WebSocket', 'ClickHouse'],
+    type: 'Coming soon',
+    title: 'COMING SOON',
+    sub: 'Forging something new',
+    desc: 'A new project is taking shape. Check back soon to see what it becomes.',
+    tags: [],
     size: 'medium',
   },
   {
@@ -107,7 +107,7 @@ export const ART_MAP: Record<number, () => JSX.Element> = {
   2: ArtGymTracker,
   3: ArtBrand,
   4: ArtTiger,
-  5: ArtPulse,
+  5: ArtComingSoon,
   6: ArtReactTs,
   7: ArtCampfire,
 };
