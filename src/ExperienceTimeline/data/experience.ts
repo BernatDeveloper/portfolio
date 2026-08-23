@@ -32,7 +32,7 @@ export const experiences: Experience[] = [
         year: "OCT 2025 – ACTUALIDAD",
         company: "DataLab",
         role: "Desarrollador de Software",
-        desc: "Desarrollo de nuevas funcionalidades para el ERP corporativo con Java, JavaScript y GWT, junto con el mantenimiento, optimización y gestión de bases de datos. También realizo la mejora y refactorización de módulos existentes para mantener un código escalable y mantenible.",
+        desc: "Desarrollo de nuevas funcionalidades para el ERP corporativo con Java, JavaScript y GWT, trabajando también en la gestión, mantenimiento y optimización de bases de datos y consultas SQL. Además, realizo la mejora y refactorización de módulos existentes, priorizando la calidad, escalabilidad y mantenibilidad del código.",
         side: "right",
     },
 ];
