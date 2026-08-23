@@ -34,22 +34,22 @@
     "FP_DAW": {
       "year": "SET 2022 – JUN 2024",
       "role": "CFGS DAW · Desenvolupament d'Aplicacions Web",
-      "desc": "Formació de grau superior en desenvolupament web full-stack: HTML, CSS, JavaScript i bases de dades com a fonaments de l'ofici, amb Vue i Laravel en projectes aplicats."
+      "desc": "Formació superior en desenvolupament d'aplicacions web, amb especialització full-stack i experiència pràctica en HTML, CSS, JavaScript, bases de dades, Vue i Laravel."
     },
     "ELADIET": {
       "year": "OCT 2023 – JUL 2024",
       "role": "Programador",
-      "desc": "Desenvolupament de Power Pages amb HTML, CSS, JavaScript i Liquid, i noves funcionalitats a l'ERP amb C/AL sobre Microsoft Dynamics NAV."
+      "desc": "Desenvolupament i manteniment de Power Pages amb HTML, CSS, JavaScript i Liquid, a més de la implementació de noves funcionalitats a l'ERP mitjançant C/AL sobre Microsoft Dynamics NAV."
     },
     "MASTER": {
       "year": "OCT 2024 – JUL 2025",
       "role": "Màster en Desenvolupament Web Avançat",
-      "desc": "Especialització full-stack amb React i Node.js, aprofundint en arquitectura de software i bones pràctiques modernes."
+      "desc": "Especialització avançada en desenvolupament web full-stack amb React i Node.js, treballant arquitectura de software, bones pràctiques i desenvolupament d'aplicacions modernes."
     },
     "DATALAB": {
       "year": "OCT 2025 – ACTUALITAT",
       "role": "Desenvolupador de Software",
-      "desc": "Desenvolupament de noves funcionalitats a l'ERP corporatiu amb Java, JavaScript i GWT, i refactorització de mòduls existents preservant-ne la mantenibilitat."
+      "desc": "Desenvolupament de noves funcionalitats per a l'ERP corporatiu amb Java, JavaScript i GWT, juntament amb el manteniment, l'optimització i la gestió de bases de dades. També faig la millora i refactorització de mòduls existents per mantenir un codi escalable i mantenible."
     }
   },
 

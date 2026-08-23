@@ -34,22 +34,22 @@
     "FP_DAW": {
       "year": "SEP 2022 – JUN 2024",
       "role": "Higher Diploma in Web Application Development (DAW)",
-      "desc": "Higher vocational training in full-stack web development: HTML, CSS, JavaScript and databases as the craft's foundation, with Vue and Laravel in applied projects."
+      "desc": "Higher-level training in web application development, with a full-stack specialization and hands-on experience in HTML, CSS, JavaScript, databases, Vue and Laravel."
     },
     "ELADIET": {
       "year": "OCT 2023 – JUL 2024",
       "role": "Developer",
-      "desc": "Built Power Pages with HTML, CSS, JavaScript and Liquid, and new ERP features in C/AL on Microsoft Dynamics NAV."
+      "desc": "Development and maintenance of Power Pages with HTML, CSS, JavaScript and Liquid, plus new ERP features built in C/AL on Microsoft Dynamics NAV."
     },
     "MASTER": {
       "year": "OCT 2024 – JUL 2025",
       "role": "Master's in Advanced Web Development",
-      "desc": "Full-stack specialization with React and Node.js, deepening software architecture and modern best practices."
+      "desc": "Advanced specialization in full-stack web development with React and Node.js, working on software architecture, best practices and modern application development."
     },
     "DATALAB": {
       "year": "OCT 2025 – PRESENT",
       "role": "Software Developer",
-      "desc": "Building new features for the corporate ERP with Java, JavaScript and GWT, and refactoring existing modules while preserving maintainability."
+      "desc": "Development of new features for the corporate ERP with Java, JavaScript and GWT, along with maintenance, optimization and database management. I also improve and refactor existing modules to keep the codebase scalable and maintainable."
     }
   },
 

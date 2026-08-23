@@ -8,7 +8,7 @@ export const experiences: Experience[] = [
         year: "SEP 2022 – JUN 2024",
         company: "Institut Bernat el Ferrer",
         role: "FP DAW · Desarrollo de Aplicaciones Web",
-        desc: "Formación de grado superior en desarrollo web full-stack: HTML, CSS, JavaScript y bases de datos como cimientos del oficio, con Vue y Laravel en proyectos aplicados.",
+        desc: "Formación superior en desarrollo de aplicaciones web, con especialización full-stack y experiencia práctica en HTML, CSS, JavaScript, bases de datos, Vue y Laravel.",
         side: "left",
     },
     {
@@ -16,7 +16,7 @@ export const experiences: Experience[] = [
         year: "OCT 2023 – JUL 2024",
         company: "Eladiet",
         role: "Programador",
-        desc: "Desarrollo de Power Pages con HTML, CSS, JavaScript y Liquid, y nuevas funcionalidades en el ERP con C/AL sobre Microsoft Dynamics NAV.",
+        desc: "Desarrollo y mantenimiento de Power Pages con HTML, CSS, JavaScript y Liquid, además de implementación de nuevas funcionalidades en el ERP mediante C/AL sobre Microsoft Dynamics NAV.",
         side: "right",
     },
     {
@@ -24,7 +24,7 @@ export const experiences: Experience[] = [
         year: "OCT 2024 – JUL 2025",
         company: "Nett Digital School",
         role: "Máster en Desarrollo Web Avanzado",
-        desc: "Especialización full-stack con React y Node.js, profundizando en arquitectura de software y buenas prácticas modernas.",
+        desc: "Especialización avanzada en desarrollo web full-stack con React y Node.js, trabajando arquitectura de software, buenas prácticas y desarrollo de aplicaciones modernas.",
         side: "left",
     },
     {
@@ -32,7 +32,7 @@ export const experiences: Experience[] = [
         year: "OCT 2025 – ACTUALIDAD",
         company: "DataLab",
         role: "Desarrollador de Software",
-        desc: "Desarrollo de nuevas funcionalidades en el ERP corporativo con Java, JavaScript y GWT, y refactorización de módulos existentes preservando su mantenibilidad.",
+        desc: "Desarrollo de nuevas funcionalidades para el ERP corporativo con Java, JavaScript y GWT, junto con el mantenimiento, optimización y gestión de bases de datos. También realizo la mejora y refactorización de módulos existentes para mantener un código escalable y mantenible.",
         side: "right",
     },
 ];
