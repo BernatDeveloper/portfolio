@@ -238,6 +238,19 @@
   color: rgba(255, 180, 100, 0.2);
 }
 
+.cs-input:-webkit-autofill,
+.cs-input:-webkit-autofill:hover,
+.cs-input:-webkit-autofill:focus,
+.cs-textarea:-webkit-autofill,
+.cs-textarea:-webkit-autofill:hover,
+.cs-textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-text);
+  -webkit-box-shadow: 0 0 0 1000px var(--color-bg) inset;
+  box-shadow: 0 0 0 1000px var(--color-bg) inset;
+  caret-color: var(--color-text);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .cs-input:focus,
 .cs-textarea:focus {
   border-bottom-color: var(--color-accent);
