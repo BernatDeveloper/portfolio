@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useScrollLock } from './hooks/useScrollLock';
+import { useScrollLock } from '../hooks/useScrollLock';
 import { useSigilAnimation } from './hooks/useSigilAnimation';
 import { useLoaderExit } from './hooks/useLoaderExit';
 import { Sigil } from './Sigil/Sigil';

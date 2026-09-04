@@ -1,0 +1,172 @@
+/* ── PANEL DRESSING ──────────────────────────────────── */
+.pim-panel {
+  overflow: hidden;
+}
+
+/* warm ember glow, echoes the loader/hero flame atmosphere */
+.pim-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(ellipse 70% 55% at 100% 0%, rgba(255, 101, 32, .18) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* the project's own SVG art, bled off the top-right corner as a faint
+   watermark — ties the modal back to the card that opened it */
+.pim-art {
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 58%;
+  height: 58%;
+  z-index: 0;
+  opacity: .14;
+  pointer-events: none;
+}
+
+.pim-art svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Sit exactly on the panel's own edge (like .pc-tl/.pc-br on the bento
+   cards) so they read as an accented segment of the border itself, not a
+   decoration floating over the padding. */
+.pim-corner-tl,
+.pim-corner-br {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.pim-corner-tl {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid var(--color-accent);
+  border-left: 2px solid var(--color-accent);
+}
+
+.pim-corner-br {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid var(--color-accent);
+  border-right: 2px solid var(--color-accent);
+}
+
+/* ── CONTENT ─────────────────────────────────────────── */
+.pim-content {
+  position: relative;
+  z-index: 1;
+}
+
+.pim-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.pim-num {
+  font-size: 11px;
+  letter-spacing: .4em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+}
+
+.pim-type {
+  font-size: 10px;
+  letter-spacing: .16em;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 101, 32, .3);
+  padding: 3px 9px;
+}
+
+.pim-title {
+  font-family: var(--font-display-alt);
+  font-weight: 900;
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: .95;
+  letter-spacing: -.01em;
+  color: var(--color-text);
+  margin: 0 var(--space-lg) 0 0;
+}
+
+/* The title itself is the "open project" affordance when there's a url —
+   no separate button, just the name with an arrow that wakes up on hover. */
+.pim-title-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: inherit;
+  text-decoration: none;
+  transition: color .3s ease;
+}
+
+.pim-title-link:hover,
+.pim-title-link:focus-visible {
+  color: var(--color-accent);
+}
+
+.pim-title-arrow {
+  width: .5em;
+  height: .5em;
+  flex-shrink: 0;
+  opacity: .4;
+  transition: opacity .3s ease, transform .3s ease;
+}
+
+.pim-title-link:hover .pim-title-arrow,
+.pim-title-link:focus-visible .pim-title-arrow {
+  opacity: 1;
+  transform: translate(3px, -3px);
+}
+
+.pim-title-link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 6px;
+}
+
+.pim-sub {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--color-text-muted);
+  font-size: var(--text-base);
+  margin: 4px 0 0;
+}
+
+.pim-divider {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent), transparent);
+  margin: var(--space-md) 0;
+}
+
+.pim-desc {
+  font-family: var(--font-serif);
+  font-size: var(--text-base);
+  color: var(--color-text-warm);
+  line-height: 1.7;
+  margin-bottom: var(--space-md);
+}
+
+.pim-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pim-tag {
+  font-size: var(--text-xs);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  border: 1px solid var(--color-border);
+  padding: 4px 10px;
+}

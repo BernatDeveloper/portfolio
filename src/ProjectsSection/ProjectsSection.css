@@ -37,20 +37,38 @@
 }
 
 /* ── BASE CARD ───────────────────────────────────────── */
-/* The card itself never navigates — only .pc-link (the arrow next to the
-   tags) does, when the project has a url. */
+/* .pc is a plain, non-interactive container — the two things you can
+   actually interact with are its children: .pc-link-area (an <a> covering
+   the whole tile, opens the project) and .pc-info-btn (opens the info
+   modal). Hover/focus chrome below reacts to :hover and :focus-within so
+   it fires the same way for the mouse and for keyboard focus landing on
+   either child. */
 .pc {
   display: block;
   position: relative;
   overflow: hidden;
   background: var(--color-bg-secondary);
   border: 1px solid var(--color-border);
-  transition: border-color .45s, box-shadow .45s;
+  transition: border-color .45s, box-shadow .45s, transform .45s cubic-bezier(.25, .46, .45, .94);
 }
 
-.pc:hover {
+.pc:hover,
+.pc:focus-within {
   border-color: rgba(255, 101, 32, .6);
   box-shadow: 0 0 40px var(--color-glow-soft), inset 0 0 28px rgba(255, 101, 32, .05);
+  transform: translateY(-6px);
+}
+
+.pc-link-area {
+  position: absolute;
+  inset: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.pc-link-area:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -3px;
 }
 
 /* sizes — bento layout, 6 columns x 3 rows:
@@ -59,8 +77,8 @@
    6 6 6 7 9 9
    Card 1 (featured) is a big 3x2 block; card 2 (SKULL KING) and card 6
    (PULSE) are wide 2x1 banners; card 3 (EMBER, the merged square — was
-   two separate tall cards) is a 2x2 square; cards 4/5/7/8 (ATLAS, VOID,
-   FORGE, CIPHER) are small 1x1 squares.
+   two separate tall cards) is a 2x2 square; cards 4/5/7 (ATLAS, VOID,
+   FORGE) are small 1x1 squares; card 8 is the "more projects" modal trigger.
 */
 .pc.featured {
   grid-column: 1 / 4;
@@ -100,7 +118,9 @@
 }
 
 .pc:hover .pc-tl,
-.pc:hover .pc-br {
+.pc:hover .pc-br,
+.pc:focus-within .pc-tl,
+.pc:focus-within .pc-br {
   width: 20px;
   height: 20px;
   border-color: var(--color-accent);
@@ -120,8 +140,49 @@
   transition: opacity .4s;
 }
 
-.pc:hover::before {
+.pc:hover::before,
+.pc:focus-within::before {
   opacity: .6;
+}
+
+/* ── TRIGGER TILE (opens the secondary-projects modal) ── */
+.pc-trigger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--color-bg-secondary);
+  border: 1px dashed var(--color-border);
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: border-color .35s, color .35s, background .35s;
+}
+
+.pc-trigger:hover,
+.pc-trigger:focus-visible {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: rgba(255, 101, 32, .06);
+}
+
+.pc-trigger:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -4px;
+}
+
+.pc-trigger-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.pc-trigger-label {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-normal);
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0 8px;
 }
 
 /* ── SVG ART ─────────────────────────────────────────── */
@@ -144,7 +205,8 @@
   inset: 16%;
 }
 
-.pc:hover .pc-art {
+.pc:hover .pc-art,
+.pc:focus-within .pc-art {
   filter: brightness(1.7) saturate(1.25);
 }
 
@@ -158,7 +220,8 @@
   pointer-events: none;
 }
 
-.pc:hover .pc-art::after {
+.pc:hover .pc-art::after,
+.pc:focus-within .pc-art::after {
   opacity: 1;
 }
 
@@ -171,7 +234,8 @@
   transition: background .5s;
 }
 
-.pc:hover .pc-overlay {
+.pc:hover .pc-overlay,
+.pc:focus-within .pc-overlay {
   background: linear-gradient(170deg, rgba(6, 4, 3, .0) 0%, rgba(6, 4, 3, .18) 35%, rgba(6, 4, 3, .82) 100%);
 }
 
@@ -189,24 +253,26 @@
 }
 
 .pc-num {
-  font-size: 8px;
-  letter-spacing: .5em;
+  font-size: 10px;
+  letter-spacing: .4em;
   color: var(--color-accent);
-  opacity: .55;
   text-transform: uppercase;
 }
 
 .pc-type {
-  font-size: 7px;
-  letter-spacing: .28em;
+  font-size: 10px;
+  letter-spacing: .18em;
   color: var(--color-text-muted);
-  opacity: .7;
   text-transform: uppercase;
   border: 1px solid rgba(255, 101, 32, .22);
-  padding: 3px 8px;
+  padding: 4px 10px;
 }
 
 /* ── BOTTOM PANEL ────────────────────────────────────── */
+/* Just title + subtitle now — the rest (description, skills) lives in the
+   info modal instead of a hover-reveal panel, so height is always fixed
+   and small regardless of viewport width. That's what actually fixes the
+   "breaks depending on screen width" issue: there's nothing left to grow. */
 .pc-panel {
   position: absolute;
   bottom: 0;
@@ -215,16 +281,6 @@
   z-index: 3;
   padding: clamp(16px, 2.5vh, 28px) clamp(16px, 2vw, 24px) clamp(18px, 2.5vh, 28px);
   background: linear-gradient(0deg, rgba(6, 4, 3, .95) 60%, transparent 100%);
-}
-
-/* title block */
-.pc-title-block {
-  transform: translateY(0);
-  transition: transform .7s cubic-bezier(.25, .46, .45, .94);
-}
-
-.pc:hover .pc-title-block {
-  transform: translateY(-8px);
 }
 
 .pc-title {
@@ -263,92 +319,48 @@
   font-size: clamp(12px, 1.3vw, 20px);
 }
 
-/* summary */
-.pc-summary {
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transform: translateY(6px);
-  transition:
-    max-height .65s cubic-bezier(.25, .46, .45, .94),
-    opacity .55s .15s,
-    transform .6s .12s;
-}
-
-.pc:hover .pc-summary {
-  max-height: 120px;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.pc-summary-divider {
-  width: 28px;
-  height: 1px;
-  background: linear-gradient(90deg, var(--color-accent), transparent);
-  margin: 10px 0 8px;
-  opacity: .6;
-}
-
-.pc-desc {
-  font-size: clamp(9px, 0.85vw, 13px);
-  color: var(--color-text-warm);
-  line-height: 1.7;
-  margin-bottom: 8px;
-}
-
-.pc-tags-row {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.pc-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-}
-
-.pc-tag {
-  font-size: 7px;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  border: 1px solid var(--color-border);
-  color: var(--color-accent);
-  padding: 2px 7px;
-}
-
-/* External-link arrow, revealed alongside the rest of .pc-summary on
-   card hover; only rendered when the project has a url. */
-.pc-link {
-  flex-shrink: 0;
+/* ── INFO BUTTON ─────────────────────────────────────── */
+/* Always visible (not hover-gated) — opens ProjectInfoModal with the full
+   title/subtitle/description/skills. Sits above .pc-link-area so clicking
+   it doesn't also trigger the card's own external-link navigation. Plain
+   accent outline, no glow/animation — just enough contrast to read as
+   interactive without drawing extra attention to itself. */
+.pc-info-btn {
+  position: absolute;
+  top: 50%;
+  right: clamp(12px, 1.5vw, 18px);
+  transform: translateY(-50%);
+  z-index: 4;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  background: rgba(8, 6, 4, .55);
   border: 1.5px solid var(--color-accent);
   border-radius: 50%;
   color: var(--color-accent);
-  text-decoration: none;
   cursor: pointer;
-  transition: color .3s ease, border-color .3s ease, transform .3s ease, background .3s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: color .3s ease, background .3s ease, transform .3s ease;
 }
 
-.pc-link svg {
-  width: 13px;
-  height: 13px;
-  transition: transform .3s ease;
+.pc-info-btn svg {
+  width: 16px;
+  height: 16px;
 }
 
-.pc-link:hover {
+.pc-info-btn:hover,
+.pc-info-btn:focus-visible {
   color: var(--color-bg);
   background: var(--color-accent);
-  border-color: var(--color-accent);
+  transform: translateY(-50%) scale(1.08);
 }
 
-.pc-link:hover svg {
-  transform: translate(2px, -2px);
+.pc-info-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }
 
 /* ── SVG IDLE ANIMATIONS ─────────────────────────────── */
@@ -421,7 +433,9 @@
     aspect-ratio: auto;
   }
 
-  .pc.small { display: none; }
+  /* Logo-only tiles are decorative art, not content worth the scroll length
+     here — but the modal trigger is a real control, so it stays visible. */
+  .pc.small:not(.pc-trigger) { display: none; }
 
   /* Same specificity as the desktop nth-child rules (.pc.medium:nth-child(N))
      so these actually win the cascade instead of losing to them. */
@@ -432,6 +446,18 @@
     grid-column: 1;
     grid-row: auto;
     aspect-ratio: 16 / 10;
+  }
+
+  /* .pc.small.pc-trigger (3 classes) to match the specificity of the desktop
+     ".pc.small:nth-child(8)" placement rule above — otherwise that rule (grid-
+     column: 4) wins here too and the trigger drifts out of the single column
+     into an implicit 4th column instead of stacking with the other cards. */
+  .pc.small.pc-trigger {
+    grid-column: 1;
+    grid-row: auto;
+    aspect-ratio: auto;
+    flex-direction: row;
+    padding: var(--space-md);
   }
 
   /* EMBER and PULSE are full-width banners here (not squares), so their

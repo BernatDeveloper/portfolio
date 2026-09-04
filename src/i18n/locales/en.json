@@ -89,5 +89,18 @@
   "langSwitcher": {
     "ariaLabel": "Language selector",
     "switchToPrefix": "Switch to"
+  },
+
+  "projectsModal": {
+    "trigger": "More projects",
+    "title": "More projects",
+    "close": "Close",
+    "repoLabel": "Repo",
+    "demoLabel": "Demo"
+  },
+
+  "projectInfo": {
+    "trigger": "Project info",
+    "visitLink": "Visit project"
   }
 }

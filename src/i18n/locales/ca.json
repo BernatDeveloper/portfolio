@@ -89,5 +89,18 @@
   "langSwitcher": {
     "ariaLabel": "Selector d'idioma",
     "switchToPrefix": "Canvia a"
+  },
+
+  "projectsModal": {
+    "trigger": "Més projectes",
+    "title": "Més projectes",
+    "close": "Tancar",
+    "repoLabel": "Repo",
+    "demoLabel": "Demo"
+  },
+
+  "projectInfo": {
+    "trigger": "Informació del projecte",
+    "visitLink": "Veure el projecte"
   }
 }
