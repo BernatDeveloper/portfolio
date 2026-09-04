@@ -48,6 +48,9 @@
 }
 
 .pm-item-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: var(--font-body);
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-normal);
@@ -61,6 +64,22 @@
 .pm-item-link:hover,
 .pm-item-link:focus-visible {
   border-bottom-color: var(--color-accent);
+}
+
+/* Same treatment as the info modal's title-link arrow — quiet at rest,
+   wakes up and nudges diagonally on hover/focus. */
+.pm-item-link-arrow {
+  width: .9em;
+  height: .9em;
+  flex-shrink: 0;
+  opacity: .4;
+  transition: opacity .3s ease, transform .3s ease;
+}
+
+.pm-item-link:hover .pm-item-link-arrow,
+.pm-item-link:focus-visible .pm-item-link-arrow {
+  opacity: 1;
+  transform: translate(2px, -2px);
 }
 
 .pm-item-link:focus-visible {

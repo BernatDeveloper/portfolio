@@ -33,6 +33,10 @@ export function ProjectsModal({ isOpen, onClose, projects }: ProjectsModalProps)
                     aria-label={`${t('projectsModal.repoLabel')} ${p.title}`}
                   >
                     {t('projectsModal.repoLabel')}
+                    <svg className="pm-item-link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M7 17L17 7" />
+                      <path d="M7 7h10v10" />
+                    </svg>
                   </a>
                 )}
                 {p.demoUrl && (
@@ -44,6 +48,10 @@ export function ProjectsModal({ isOpen, onClose, projects }: ProjectsModalProps)
                     aria-label={`${t('projectsModal.demoLabel')} ${p.title}`}
                   >
                     {t('projectsModal.demoLabel')}
+                    <svg className="pm-item-link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M7 17L17 7" />
+                      <path d="M7 7h10v10" />
+                    </svg>
                   </a>
                 )}
               </div>
