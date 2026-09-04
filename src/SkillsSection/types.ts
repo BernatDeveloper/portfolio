@@ -1,4 +1,4 @@
-export type Category = 'frontend' | 'backend' | 'database' | 'tools'
+export type Category = 'frontend' | 'backend' | 'database' | 'tools' | 'ai'
 
 export interface NodeData {
   id:  string

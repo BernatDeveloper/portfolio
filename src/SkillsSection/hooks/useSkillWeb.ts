@@ -127,7 +127,7 @@ export function useSkillWeb(refs: Refs) {
       ln.setAttribute('x1', String(na.x)); ln.setAttribute('y1', String(na.y))
       ln.setAttribute('x2', String(nb.x)); ln.setAttribute('y2', String(nb.y))
       ln.setAttribute('stroke', '#ff5200')
-      ln.setAttribute('stroke-opacity', '0.2')
+      ln.setAttribute('stroke-opacity', '0.32')
       ln.setAttribute('stroke-width', '0.8')
 
       const len = Math.hypot(nb.x - na.x, nb.y - na.y)
@@ -152,7 +152,7 @@ export function useSkillWeb(refs: Refs) {
 
       const gl2 = mkCircle(n.r + 22, cat.hex, '0')
       const gl1 = mkCircle(n.r + 10, cat.hex, '0')
-      const bg  = mkCircle(n.r, '#0e0705', '1', cat.hex, '0.55', '1')
+      const bg  = mkCircle(n.r, '#0e0705', '1', cat.hex, '0.68', '1')
       const ir  = mkCircle(Math.max(n.r - 5, 2), 'none', '1', cat.hex, '0.22', '0.5')
       const dot = mkCircle(3, cat.hex, '1')
 
@@ -169,7 +169,7 @@ export function useSkillWeb(refs: Refs) {
       const lbl = document.createElementNS(NS, 'text') as SVGTextElement
       lbl.setAttribute('text-anchor', 'middle')
       lbl.setAttribute('dy', String(n.r + 14))
-      lbl.setAttribute('fill', '#a05a20')
+      lbl.setAttribute('fill', 'var(--color-accent-warm)')
       lbl.setAttribute('font-size', n.r >= 18 ? 'var(--text-sm)' : 'var(--text-xs)')
       lbl.setAttribute('letter-spacing', '0.5')
       lbl.setAttribute('font-family', '"Courier New", monospace')
@@ -259,7 +259,7 @@ export function useSkillWeb(refs: Refs) {
         gsap.to(gl1, { attr: { r: nd.r + 10, 'fill-opacity': 0 }, duration: 0.4  })
         gsap.to(gl2, { attr: { r: nd.r + 22, 'fill-opacity': 0 }, duration: 0.45 })
         gsap.to(dot, { attr: { r: 3, fill: cat.hex }, duration: 0.3 })
-        gsap.to(lbl, { attr: { fill: '#a05a20' }, duration: 0.3 })
+        gsap.to(lbl, { attr: { fill: 'var(--color-accent-warm)' }, duration: 0.3 })
         if (ringTl) { ringTl.kill(); ringTl = null }
         gsap.to(hr, { opacity: 0, duration: 0.3, onComplete: () => gsap.set(hr, { rotation: 0 }) })
 
@@ -278,7 +278,7 @@ export function useSkillWeb(refs: Refs) {
           gsap.to(o.gl1, { attr: { 'fill-opacity': 0     }, duration: 0.4  })
           gsap.to(o.bg,  { attr: { 'stroke-opacity': 0.55 }, duration: 0.35 })
           gsap.to(o.dot, { attr: { r: 3 },                  duration: 0.35 })
-          gsap.to(o.lbl, { attr: { fill: '#a05a20' },       duration: 0.35 })
+          gsap.to(o.lbl, { attr: { fill: 'var(--color-accent-warm)' },       duration: 0.35 })
         })
 
         hideTT()
