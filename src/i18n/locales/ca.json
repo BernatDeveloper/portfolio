@@ -13,8 +13,6 @@
     "contact": { "eyebrow": "Posa't en contacte", "title": "Contacte" }
   },
 
-  "skills": { "hint": "— passa el cursor per un node —" },
-
   "projects": {
     "EVENTAPP": {
       "sub": "Panell d'esdeveniments",

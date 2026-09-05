@@ -4,7 +4,6 @@ import './SkillSection.css'
 import { useSkillEmbers }       from './hooks/useSkillEmbers'
 import { useScrollReveal }      from './hooks/useScrollReveal'
 import { useSkillWeb }          from './hooks/useSkillWeb'
-import { SkillHint }            from './components/SkillHint'
 import { SkillTooltip }         from './components/SkillTooltip'
 
 export function SkillSection() {
@@ -12,7 +11,6 @@ export function SkillSection() {
   const swRef   = useRef<HTMLDivElement>(null)
   const emCvRef = useRef<HTMLCanvasElement>(null)
   const svgRef  = useRef<SVGSVGElement>(null)
-  const hintRef = useRef<HTMLSpanElement>(null)
   const ttRef   = useRef<HTMLDivElement>(null)
   const ttNRef  = useRef<HTMLDivElement>(null)
   const ttCRef  = useRef<HTMLDivElement>(null)
@@ -20,7 +18,7 @@ export function SkillSection() {
   // ── Hooks ──────────────────────────────────────────
   useSkillEmbers(emCvRef, swRef)
 
-  const { init } = useSkillWeb({ svgRef, swRef, hintRef, ttRef, ttNRef, ttCRef })
+  const { init } = useSkillWeb({ svgRef, swRef, ttRef, ttNRef, ttCRef })
 
   useScrollReveal(swRef, init)
 
@@ -30,8 +28,6 @@ export function SkillSection() {
     <section className="sn-skills-section">
       <div className="sn-sw" ref={swRef}>
         <canvas className="sn-em-cv" ref={emCvRef} />
-
-        <SkillHint ref={hintRef} />
 
         <svg
           ref={svgRef}

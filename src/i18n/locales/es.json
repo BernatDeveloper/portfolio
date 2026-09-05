@@ -13,8 +13,6 @@
     "contact": { "eyebrow": "Ponte en contacto", "title": "Contacto" }
   },
 
-  "skills": { "hint": "— pasa el cursor por un nodo —" },
-
   "projects": {
     "EVENTAPP": {
       "sub": "Panel de eventos",

@@ -43,23 +43,6 @@
   z-index: 0;
 }
 
-/* ── Hint ── */
-.sn-sw-head {
-  position: absolute;
-  bottom: 18px;
-  right: 22px;
-  z-index: 3;
-  pointer-events: none;
-}
-
-.sn-sw-hint {
-  font-family: var(--font-body);
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-normal);
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-}
-
 /* ── SVG ── */
 .sn-sw-svg {
   display: block;

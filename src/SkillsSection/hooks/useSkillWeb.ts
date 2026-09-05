@@ -5,7 +5,6 @@ import type { LineData, NodeData, NodeEls } from '../types'
 import { CAT, NODES, CONNS, TRAVEL_DUR } from '../data/nodes'
 import { LAYOUTS } from '../data/layouts'
 import { useEmberCursorHover } from '../../hooks/useEmberCursorHover'
-import i18n from '../../i18n/i18n'
 
 const NS = 'http://www.w3.org/2000/svg'
 
@@ -31,7 +30,6 @@ function mkCircle(
 interface Refs {
   svgRef:  RefObject<SVGSVGElement | null>
   swRef:   RefObject<HTMLDivElement | null>
-  hintRef: RefObject<HTMLSpanElement | null>
   ttRef:   RefObject<HTMLDivElement | null>
   ttNRef:  RefObject<HTMLDivElement | null>
   ttCRef:  RefObject<HTMLDivElement | null>
@@ -45,10 +43,9 @@ export function useSkillWeb(refs: Refs) {
     if (initedRef.current) return
     initedRef.current = true
 
-    const { svgRef, swRef, hintRef, ttRef, ttNRef, ttCRef } = refs
+    const { svgRef, swRef, ttRef, ttNRef, ttCRef } = refs
     const svgEl  = svgRef.current!
     const swEl   = swRef.current!
-    const hintEl = hintRef.current!
     const ttEl   = ttRef.current!
     const ttNEl  = ttNRef.current!
     const ttCEl  = ttCRef.current!
@@ -107,17 +104,6 @@ export function useSkillWeb(refs: Refs) {
     function hideTT() {
       gsap.killTweensOf(ttEl)
       gsap.to(ttEl, { opacity: 0, y: 5, scale: 0.92, duration: 0.14, ease: 'power2.in' })
-    }
-
-    function setHint(text: string) {
-      gsap.killTweensOf(hintEl)
-      gsap.to(hintEl, {
-        opacity: 0, duration: 0.1,
-        onComplete: () => {
-          hintEl.textContent = text
-          gsap.to(hintEl, { opacity: 1, duration: 0.2 })
-        },
-      })
     }
 
     // ── Draw connections ───────────────────────────────
@@ -192,7 +178,6 @@ export function useSkillWeb(refs: Refs) {
       g.addEventListener('mouseenter', () => {
         emberEnter()
         const nd = nm[n.id]
-        setHint(`${nd.n}  ·  ${nd.cat}`)
 
         gsap.to(bg,  { attr: { r: nd.r + 3, 'stroke-opacity': 0.85, 'stroke-width': 1.6 }, duration: 0.2 })
         gsap.to(gl1, { attr: { r: nd.r + 15, 'fill-opacity': 0.22 }, duration: 0.25 })
@@ -253,7 +238,6 @@ export function useSkillWeb(refs: Refs) {
         emberLeave()
         const nd  = nm[n.id]
         const cat = CAT[nd.cat]
-        setHint(i18n.t('skills.hint'))
 
         gsap.to(bg,  { attr: { r: nd.r, 'stroke-opacity': 0.55, 'stroke-width': 1 }, duration: 0.35 })
         gsap.to(gl1, { attr: { r: nd.r + 10, 'fill-opacity': 0 }, duration: 0.4  })
