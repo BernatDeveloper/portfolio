@@ -63,6 +63,45 @@ export function ProjectInfoModal({ project, isOpen, onClose }: ProjectInfoModalP
             <span key={tag} className="pim-tag">{tag}</span>
           ))}
         </div>
+
+        {(project.url || project.repoUrl) && (
+          <div className="pim-links">
+            {project.url && (
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pim-link"
+                aria-label={`${t('projectsModal.demoLabel')}: ${project.title}`}
+                onMouseEnter={emberEnter}
+                onMouseLeave={emberLeave}
+              >
+                {t('projectsModal.demoLabel')}
+                <svg className="pim-link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M7 17L17 7" />
+                  <path d="M7 7h10v10" />
+                </svg>
+              </a>
+            )}
+            {project.repoUrl && (
+              <a
+                href={project.repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pim-link"
+                aria-label={`${t('projectsModal.repoLabel')}: ${project.title}`}
+                onMouseEnter={emberEnter}
+                onMouseLeave={emberLeave}
+              >
+                {t('projectsModal.repoLabel')}
+                <svg className="pim-link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M7 17L17 7" />
+                  <path d="M7 7h10v10" />
+                </svg>
+              </a>
+            )}
+          </div>
+        )}
       </div>
     </Modal>
   );

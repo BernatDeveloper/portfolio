@@ -28,7 +28,7 @@ export const NODES: NodeData[] = [
   { id: 'mysql',  n: 'MySQL',      x: 620, y: 338, r: 18, cat: 'database' },
   { id: 'git',    n: 'Git',        x: 198, y: 168, r: 20, cat: 'tools'    },
   { id: 'rest',   n: 'REST API',   x: 476, y: 382, r: 16, cat: 'tools'    },
-  { id: 'claude', n: 'Claude',     x: 340, y: 385, r: 20, cat: 'ai'       },
+  { id: 'claude', n: 'Claude',     x: 340, y: 385, r: 24, cat: 'ai'       },
 ]
 
 export const CONNS: [string, string][] = [

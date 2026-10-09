@@ -19,7 +19,7 @@ export const LAYOUTS: Record<'desktop' | 'tablet' | 'mobile' | 'xs', Layout> = {
       { id: 'mysql', x: 614, y: 318, r: 18 },
       { id: 'git',   x: 185, y: 245, r: 20 },
       { id: 'rest',  x: 474, y: 388, r: 16 },
-      { id: 'claude',x: 340, y: 385, r: 20 },
+      { id: 'claude',x: 340, y: 385, r: 24 },
     ],
   },
 
@@ -41,7 +41,7 @@ export const LAYOUTS: Record<'desktop' | 'tablet' | 'mobile' | 'xs', Layout> = {
       { id: 'mysql', x: 458, y: 365, r: 16 },
       { id: 'git',   x: 165, y: 168, r: 18 },
       { id: 'rest',  x: 372, y: 402, r: 14 },
-      { id: 'claude',x: 260, y: 495, r: 19 },
+      { id: 'claude',x: 260, y: 495, r: 22 },
     ],
   },
 
@@ -63,7 +63,7 @@ export const LAYOUTS: Record<'desktop' | 'tablet' | 'mobile' | 'xs', Layout> = {
       { id: 'pg',    x: 117, y: 479, r: 13 },
       { id: 'mysql', x: 269, y: 481, r: 13 },
       { id: 'rest',  x: 123, y: 365, r: 12 },
-      { id: 'claude',x: 205, y: 435, r: 13 },
+      { id: 'claude',x: 205, y: 435, r: 18 },
     ],
   },
 
@@ -85,7 +85,7 @@ export const LAYOUTS: Record<'desktop' | 'tablet' | 'mobile' | 'xs', Layout> = {
       { id: 'pg',    x: 92,  y: 416, r: 11 },
       { id: 'mysql', x: 212, y: 418, r: 11 },
       { id: 'rest',  x: 100, y: 315, r: 10 },
-      { id: 'claude',x: 170, y:370, r: 11 },
+      { id: 'claude',x: 170, y:370, r: 15 },
     ],
   },
 }

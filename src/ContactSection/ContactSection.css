@@ -235,7 +235,7 @@
 
 .cs-input::placeholder,
 .cs-textarea::placeholder {
-  color: rgba(255, 180, 100, 0.2);
+  color: rgba(255, 180, 100, 0.45);
 }
 
 .cs-input:-webkit-autofill,
@@ -276,7 +276,7 @@
   font-weight: 600;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: rgba(255, 150, 80, 0.35);
+  color: rgba(255, 150, 80, 0.6);
   background: transparent;
   border: 1px solid rgba(255, 101, 32, 0.2);
   cursor: not-allowed;

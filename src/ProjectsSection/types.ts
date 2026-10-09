@@ -9,8 +9,10 @@ export interface Project {
   desc: string;
   tags: string[];
   size: ProjectSize;
-  /** External link (repo, live demo…). Card becomes clickable when set. */
+  /** Primary external link (usually the live demo). Card becomes clickable when set. */
   url?: string;
+  /** Optional secondary link to the source repo, shown in the info modal. */
+  repoUrl?: string;
 }
 
 /** Secondary/basic project, shown only inside the "more projects" modal list. */

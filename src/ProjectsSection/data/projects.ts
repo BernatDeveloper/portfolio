@@ -19,7 +19,8 @@ export const PROJECTS: Project[] = [
     desc: 'Plataforma para crear y gestionar eventos: invita participantes, personaliza ubicaciones con mapas interactivos y activa opciones premium.',
     tags: ['React', 'TypeScript', 'Redux Toolkit', 'Laravel', 'MySQL'],
     size: 'featured',
-    url: 'https://github.com/BernatDeveloper/eventos-app',
+    url: 'https://eventos-app.vercel.app/',
+    repoUrl: 'https://github.com/BernatDeveloper/eventos-app',
   },
   {
     idx: 1,
@@ -31,6 +32,7 @@ export const PROJECTS: Project[] = [
     tags: ['React', 'TypeScript', 'Zustand', 'PWA'],
     size: 'medium',
     url: 'https://skull-king-nu.vercel.app',
+    repoUrl: 'https://github.com/BernatDeveloper/skull-king',
   },
   {
     idx: 2,
@@ -42,6 +44,7 @@ export const PROJECTS: Project[] = [
     tags: ['React', 'TypeScript', 'PWA', 'Claude'],
     size: 'medium',
     url: 'https://gym-tracker-pi-liart.vercel.app',
+    repoUrl: 'https://github.com/BernatDeveloper/GymTracker',
   },
   {
     idx: 3,
