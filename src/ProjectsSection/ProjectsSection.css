@@ -401,21 +401,21 @@
 #sk-c4 { transform: rotate(8deg)   translateX(30px);   transition: transform .7s .04s cubic-bezier(.25, .46, .45, .94); }
 #sk-c5 { transform: rotate(16deg)  translateX(60px);   transition: transform .7s cubic-bezier(.25, .46, .45, .94); }
 
-.pc.medium:nth-child(2):hover #sk-c1 { transform: rotate(-20deg) translateX(-85px); transition: transform .75s cubic-bezier(.34, 1.56, .64, 1); }
-.pc.medium:nth-child(2):hover #sk-c2 { transform: rotate(-11deg) translateX(-42px); transition: transform .75s .04s cubic-bezier(.34, 1.56, .64, 1); }
-.pc.medium:nth-child(2):hover #sk-c3 { transform: rotate(0deg)   translateY(-10px); transition: transform .75s .08s cubic-bezier(.34, 1.56, .64, 1); }
-.pc.medium:nth-child(2):hover #sk-c4 { transform: rotate(11deg)  translateX(42px);  transition: transform .75s .04s cubic-bezier(.34, 1.56, .64, 1); }
-.pc.medium:nth-child(2):hover #sk-c5 { transform: rotate(20deg)  translateX(85px);  transition: transform .75s cubic-bezier(.34, 1.56, .64, 1); }
+.pc.medium:nth-child(6):hover #sk-c1 { transform: rotate(-20deg) translateX(-85px); transition: transform .75s cubic-bezier(.34, 1.56, .64, 1); }
+.pc.medium:nth-child(6):hover #sk-c2 { transform: rotate(-11deg) translateX(-42px); transition: transform .75s .04s cubic-bezier(.34, 1.56, .64, 1); }
+.pc.medium:nth-child(6):hover #sk-c3 { transform: rotate(0deg)   translateY(-10px); transition: transform .75s .08s cubic-bezier(.34, 1.56, .64, 1); }
+.pc.medium:nth-child(6):hover #sk-c4 { transform: rotate(11deg)  translateX(42px);  transition: transform .75s .04s cubic-bezier(.34, 1.56, .64, 1); }
+.pc.medium:nth-child(6):hover #sk-c5 { transform: rotate(20deg)  translateX(85px);  transition: transform .75s cubic-bezier(.34, 1.56, .64, 1); }
 
 /* ── GYMTRACKER SVG ANIMATIONS ────────────────────────── */
 #gt-c1, #gt-c2, #gt-c3, #gt-c4 {
   transition: transform .55s cubic-bezier(.25, .46, .45, .94);
 }
 
-.pc.medium:nth-child(3):hover #gt-c1 { transform: translateY(-7px);                    transition: transform .6s cubic-bezier(.34, 1.56, .64, 1); }
-.pc.medium:nth-child(3):hover #gt-c2 { transform: translateY(-10px) rotate(-3deg);     transition: transform .6s .05s cubic-bezier(.34, 1.56, .64, 1); }
-.pc.medium:nth-child(3):hover #gt-c3 { transform: translateY(-6px);                    transition: transform .6s .1s cubic-bezier(.34, 1.56, .64, 1); }
-.pc.medium:nth-child(3):hover #gt-c4 { transform: translateY(-5px);                    transition: transform .6s .15s cubic-bezier(.34, 1.56, .64, 1); }
+.pc.medium:nth-child(2):hover #gt-c1 { transform: translateY(-7px);                    transition: transform .6s cubic-bezier(.34, 1.56, .64, 1); }
+.pc.medium:nth-child(2):hover #gt-c2 { transform: translateY(-10px) rotate(-3deg);     transition: transform .6s .05s cubic-bezier(.34, 1.56, .64, 1); }
+.pc.medium:nth-child(2):hover #gt-c3 { transform: translateY(-6px);                    transition: transform .6s .1s cubic-bezier(.34, 1.56, .64, 1); }
+.pc.medium:nth-child(2):hover #gt-c4 { transform: translateY(-5px);                    transition: transform .6s .15s cubic-bezier(.34, 1.56, .64, 1); }
 
 /* ── RESPONSIVE ──────────────────────────────────────── */
 /* Below 1100px the 6-column desktop grid gets uncomfortably tight before

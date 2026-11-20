@@ -7,7 +7,6 @@ import { SECONDARY_PROJECTS } from './data/secondaryProjects';
 import { ProjectCard }          from './components/ProjectCard';
 import { ProjectsModal }        from './components/ProjectsModal';
 import { ProjectsModalTrigger } from './components/ProjectsModalTrigger';
-import { useProjectsEntrance }  from './hooks/useProjectsEntrance';
 
 // CIPHER (idx 7) used to render as a flame-shaped icon tile (ArtCampfire).
 // That slot now hosts the "more projects" trigger instead — see mejoras-portfolio.md.
@@ -17,8 +16,6 @@ export function ProjectsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useProjectsEntrance(sectionRef);
 
   const projects = PROJECTS
     .filter((p) => p.idx !== CIPHER_IDX)

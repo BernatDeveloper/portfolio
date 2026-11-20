@@ -25,6 +25,10 @@
     "GYMTRACKER": {
       "sub": "Workout Tracker",
       "desc": "Log your workout routines, check your history and track your personal records. Works offline as an installable PWA."
+    },
+    "HIVE": {
+      "sub": "Real-time collaborative organization",
+      "desc": "Real-time collaborative organization app. Create password-protected rooms and share a calendar, lists, notes and bookmarks with link previews, no accounts or sign-up."
     }
   },
 

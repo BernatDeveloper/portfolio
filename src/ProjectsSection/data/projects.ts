@@ -3,7 +3,7 @@ import type { Project } from '../types';
 import { ArtEventApp } from '../svg/ArtEventApp';
 import { ArtSkullKing } from '../svg/ArtSkullKing';
 import { ArtGymTracker } from '../svg/ArtGymTracker';
-import { ArtComingSoon } from '../svg/ArtComingSoon';
+import { ArtHive } from '../svg/ArtHive';
 import { ArtBrand }    from '../svg/ArtBrand';
 import { ArtTiger }    from '../svg/ArtTiger';
 import { ArtReactTs }  from '../svg/ArtReactTs';
@@ -23,20 +23,8 @@ export const PROJECTS: Project[] = [
     repoUrl: 'https://github.com/BernatDeveloper/eventos-app',
   },
   {
-    idx: 1,
-    num: '02',
-    type: 'Game · 2024',
-    title: 'SKULL KING',
-    sub: 'Score Tracker',
-    desc: 'Scorer para el juego de cartas Skull King. Calcula puntuaciones por ronda, lleva el historial de partidas y determina al ganador.',
-    tags: ['React', 'TypeScript', 'Zustand', 'PWA'],
-    size: 'medium',
-    url: 'https://skull-king-nu.vercel.app',
-    repoUrl: 'https://github.com/BernatDeveloper/skull-king',
-  },
-  {
     idx: 2,
-    num: '03',
+    num: '02',
     type: 'App · 2026',
     title: 'GYMTRACKER',
     sub: 'Workout Tracker',
@@ -45,6 +33,18 @@ export const PROJECTS: Project[] = [
     size: 'medium',
     url: 'https://gym-tracker-pi-liart.vercel.app',
     repoUrl: 'https://github.com/BernatDeveloper/GymTracker',
+  },
+  {
+    idx: 5,
+    num: '03',
+    type: 'App · 2026',
+    title: 'HIVE',
+    sub: 'Organización colaborativa en tiempo real',
+    desc: 'App de organización colaborativa en tiempo real. Crea salas protegidas con contraseña y comparte calendario, listas, notas y marcadores con vista previa de enlaces, sin cuentas ni registro.',
+    tags: ['React', 'TypeScript', 'Node.js', 'Express', 'SQLite', 'PWA', 'Claude'],
+    size: 'medium',
+    url: 'https://hive-virid.vercel.app/',
+    repoUrl: 'https://github.com/BernatDeveloper/Hive',
   },
   {
     idx: 3,
@@ -67,14 +67,16 @@ export const PROJECTS: Project[] = [
     size: 'small',
   },
   {
-    idx: 5,
+    idx: 1,
     num: '06',
-    type: 'Coming soon',
-    title: 'COMING SOON',
-    sub: 'Forging something new',
-    desc: 'A new project is taking shape. Check back soon to see what it becomes.',
-    tags: [],
+    type: 'Game · 2024',
+    title: 'SKULL KING',
+    sub: 'Score Tracker',
+    desc: 'Scorer para el juego de cartas Skull King. Calcula puntuaciones por ronda, lleva el historial de partidas y determina al ganador.',
+    tags: ['React', 'TypeScript', 'Zustand', 'PWA'],
     size: 'medium',
+    url: 'https://skull-king-nu.vercel.app',
+    repoUrl: 'https://github.com/BernatDeveloper/skull-king',
   },
   {
     idx: 6,
@@ -102,6 +104,7 @@ export const PROJECT_I18N_KEYS: Partial<Record<number, string>> = {
   0: 'EVENTAPP',
   1: 'SKULL KING',
   2: 'GYMTRACKER',
+  5: 'HIVE',
 };
 
 export const ART_MAP: Record<number, () => JSX.Element> = {
@@ -110,7 +113,7 @@ export const ART_MAP: Record<number, () => JSX.Element> = {
   2: ArtGymTracker,
   3: ArtBrand,
   4: ArtTiger,
-  5: ArtComingSoon,
+  5: ArtHive,
   6: ArtReactTs,
   7: ArtCampfire,
 };

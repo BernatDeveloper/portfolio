@@ -25,6 +25,10 @@
     "GYMTRACKER": {
       "sub": "Seguimiento de entrenos",
       "desc": "Registra tus rutinas de entrenamiento, consulta el historial y controla tus récords personales. Funciona offline como PWA instalable."
+    },
+    "HIVE": {
+      "sub": "Organización colaborativa en tiempo real",
+      "desc": "App de organización colaborativa en tiempo real. Crea salas protegidas con contraseña y comparte calendario, listas, notas y marcadores con vista previa de enlaces, sin cuentas ni registro."
     }
   },
 
